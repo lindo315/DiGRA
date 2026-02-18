@@ -1,0 +1,50 @@
+.wrapper {
+  margin-bottom: 48px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.bar {
+  width: 40px;
+  height: 3px;
+  background-color: var(--color-accent-gold);
+  border-radius: 2px;
+}
+
+.subtitle {
+  margin-top: 16px;
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* Alignment variants */
+.left {
+  text-align: left;
+}
+
+.left .bar {
+  margin-left: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.center .bar {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center .subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}

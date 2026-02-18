@@ -1,0 +1,362 @@
+/* Landscape */
+.landscapeSection {
+  padding: var(--section-padding);
+}
+
+.landscapeGrid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 60px;
+  align-items: start;
+}
+
+.landscapeGrid > div:first-child p {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.landscapeSidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.highlightBox {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  border-left: 3px solid var(--color-accent-gold);
+}
+
+.highlightLabel {
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: 10px;
+}
+
+.highlightText {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Research Areas */
+.areasSection {
+  padding: var(--section-padding);
+}
+
+.areasGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.areaCard {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.areaCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.areaIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: rgba(233, 69, 96, 0.08);
+  color: var(--color-accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.areaTitle {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.areaDesc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Library */
+.librarySection {
+  padding: var(--section-padding);
+}
+
+.libraryCallout {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 60px;
+  align-items: center;
+  background-color: var(--color-bg);
+  border-radius: 20px;
+  padding: 48px;
+  border: 1px solid var(--color-border);
+}
+
+.libraryEyebrow {
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: 12px;
+}
+
+.libraryText h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+}
+
+.libraryText p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.libraryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent-red);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.libraryLink:hover {
+  text-decoration: none;
+  color: #cf3a52;
+}
+
+.libraryDecor {
+  display: flex;
+  justify-content: center;
+}
+
+.libraryBadge {
+  background: linear-gradient(135deg, var(--color-primary), #2d2d4e);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  width: 100%;
+}
+
+.libBadgeDiamond {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-accent-gold);
+  transform: rotate(45deg);
+  margin: 0 auto 16px;
+}
+
+.libraryBadge p:first-of-type {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: 6px;
+}
+
+.libraryBadge p:last-of-type {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+/* Journals */
+.journalsSection {
+  padding: var(--section-padding);
+}
+
+.journalsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.journalCard {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transition: var(--transition);
+}
+
+.journalCard:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.journalInfo {
+  flex: 1;
+}
+
+.journalName {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.journalDesc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.journalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent-red);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.journalLink:hover {
+  text-decoration: none;
+  color: #cf3a52;
+}
+
+/* Teaching */
+.teachingSection {
+  padding: var(--section-padding);
+}
+
+.resourcesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.resourceCard {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resourceCard h3 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.resourceCard p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+  margin: 0;
+}
+
+.resourceLink {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent-red);
+  text-decoration: none;
+  margin-top: 4px;
+  transition: var(--transition);
+}
+
+.resourceLink:hover {
+  text-decoration: none;
+  color: #cf3a52;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .areasGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .landscapeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .landscapeSidebar {
+    position: static;
+  }
+
+  .libraryCallout {
+    grid-template-columns: 1fr;
+  }
+
+  .libraryDecor {
+    display: none;
+  }
+
+  .resourcesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .journalCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .landscapeSection,
+  .areasSection,
+  .librarySection,
+  .journalsSection,
+  .teachingSection {
+    padding: 60px 20px;
+  }
+
+  .areasGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .libraryCallout {
+    padding: 28px 20px;
+  }
+}
