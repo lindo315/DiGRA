@@ -1,220 +1,360 @@
-import SectionHeader from '../components/SectionHeader';
-import TeamCard from '../components/TeamCard';
-import CTABanner from '../components/CTABanner';
-import { team } from '../data/team';
-import styles from './About.module.css';
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import PageHero from '../components/PageHero'
+import PixelDivider from '../components/PixelDivider'
+import SectionWrapper from '../components/SectionWrapper'
+import TeamCard from '../components/cards/TeamCard'
+import { team } from '../data/team'
 
-const aims = [
-  'Establish game studies as legitimate and valued scholarship within South African academic institutions.',
-  'Build an interconnected network of scholars, researchers, educators, and practitioners across Southern Africa.',
-  'Link academic game research communities to professional and industry game research communities.',
-  'Support teaching, postgraduate development, and early-career researchers in the field of game studies.',
-  'Promote South African and African game scholarship on the global stage through publications and international collaborations.',
-  'Encourage inclusive, diverse, and transdisciplinary research that centres African perspectives on games and play.',
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
 
-const goals = [
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+}
+
+const GOALS = [
   {
-    number: '01',
-    title: 'Advance Game Scholarship',
-    description:
-      'Foster rigorous academic research on digital and non-digital games in South African and African contexts, contributing original knowledge to the global field of game studies.',
+    num: '01',
+    colour: '#F5A623',
+    title: 'Produce Original Research',
+    desc: 'Publish peer-reviewed research on African games — from cultural analysis to game design theory — in international venues.',
   },
   {
-    number: '02',
-    title: 'Build an Inclusive Community',
-    description:
-      'Create a welcoming, open community that brings together researchers, students, educators, developers, and enthusiasts from diverse backgrounds, disciplines, and career stages.',
+    num: '02',
+    colour: '#00CFDD',
+    title: 'Build Research Capacity',
+    desc: 'Train the next generation of African game scholars through mentorship, workshops, and access to DiGRA International resources.',
   },
   {
-    number: '03',
-    title: 'Connect Locally and Globally',
-    description:
-      'Serve as the bridge between South African game studies and the international DiGRA community, ensuring African voices are heard in global conversations about games and play.',
+    num: '03',
+    colour: '#3DE87A',
+    title: 'Connect African Scholars',
+    desc: 'Link game researchers across South Africa and the continent into a working network — not just a mailing list.',
   },
   {
-    number: '04',
-    title: 'Centre African Experience',
-    description:
-      'Actively challenge Eurocentric frameworks in game studies and develop alternative approaches grounded in African philosophies, histories, and cultural contexts.',
+    num: '04',
+    colour: '#E94560',
+    title: 'Represent Africa Internationally',
+    desc: 'Get African voices into DiGRA International conferences, panels, and publications on an ongoing basis.',
   },
-];
+]
+
+const AIMS = [
+  'Advance game studies scholarship rooted in African experience',
+  'Provide a platform for African game researchers to publish and present',
+  'Bridge game scholarship and the South African game development industry',
+  'Include students, early-career researchers, and independent scholars',
+  'Develop educational resources for game studies teaching in African contexts',
+  'Partner with Pan-African academic networks and institutions',
+  'Operate transparently and with open access wherever possible',
+]
+
+const ACCENT_BULLETS = ['#F5A623', '#00CFDD', '#E94560', '#3DE87A', '#B45FFF', '#FF6B35', '#F5A623']
 
 export default function About() {
   return (
-    <>
-      {/* Page Hero */}
-      <div className="page-hero">
-        <div className="page-hero-inner">
-          <p className="page-hero-breadcrumb">Home / About</p>
-          <h1>About DiGRA South Africa</h1>
-          <p>Grounding game studies in African experience, community, and scholarship.</p>
-        </div>
-      </div>
-
-      {/* About Section */}
-      <section id="who-we-are" className={`${styles.aboutSection} section-white`}>
-        <div className="container">
-          <div className={styles.aboutGrid}>
-            <div className={styles.aboutBody}>
-              <SectionHeader title="Who We Are" />
-              <p>
-                DiGRA South Africa is the official South African regional chapter of the Digital
-                Games Research Association (DiGRA) International — the world&apos;s premier academic
-                organisation dedicated to the study of digital games, founded in 2003. As a chapter,
-                we operate within the global DiGRA framework while maintaining a specific focus on
-                South African and African contexts.
-              </p>
-              <p>
-                We were established in 2025 to address a significant gap: the need for a dedicated
-                South African scholarly home for game studies. Games are a major cultural, creative,
-                and economic force in South Africa, yet academic research on games has historically
-                been scattered, under-resourced, and disconnected from global scholarly conversations.
-              </p>
-              <p>
-                DiGRA SA exists to change that — by building infrastructure for game scholarship,
-                facilitating networking and collaboration, hosting events, supporting publications,
-                and advocating for game studies as a legitimate and important field within South
-                African academia and beyond.
-              </p>
-            </div>
-            <div className={styles.infoBox}>
-              <h3 className={styles.infoBoxHeading}>Key Facts</h3>
-              <ul className={styles.infoList}>
-                <li>
-                  <span className={styles.infoLabel}>Founded</span>
-                  <span className={styles.infoValue}>2025</span>
-                </li>
-                <li>
-                  <span className={styles.infoLabel}>Region</span>
-                  <span className={styles.infoValue}>South Africa & Southern Africa</span>
-                </li>
-                <li>
-                  <span className={styles.infoLabel}>Parent Organisation</span>
-                  <span className={styles.infoValue}>DiGRA International (Est. 2003)</span>
-                </li>
-                <li>
-                  <span className={styles.infoLabel}>Status</span>
-                  <span className={styles.infoValue}>Newly Established Chapter</span>
-                </li>
-                <li>
-                  <span className={styles.infoLabel}>Scope</span>
-                  <span className={styles.infoValue}>Open & Inclusive</span>
-                </li>
-                <li>
-                  <span className={styles.infoLabel}>Focus</span>
-                  <span className={styles.infoValue}>Game Studies in African Contexts</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Goals */}
-      <section id="mission" className={`${styles.goalsSection} section-bg`}>
-        <div className="container">
-          <SectionHeader
-            title="Our Mission & Goals"
-            subtitle="Four pillars that guide everything DiGRA South Africa does."
-            align="center"
-          />
-          <div className={styles.goalsGrid}>
-            {goals.map((goal) => (
-              <div key={goal.number} className={styles.goalCard}>
-                <span className={styles.goalNumber}>{goal.number}</span>
-                <h3 className={styles.goalTitle}>{goal.title}</h3>
-                <p className={styles.goalDesc}>{goal.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Aims */}
-      <section id="our-aims" className={`${styles.aimsSection} section-white`}>
-        <div className="container">
-          <div className={styles.aimsGrid}>
-            <div>
-              <SectionHeader
-                title="Our Aims"
-                subtitle="The specific objectives that shape our work as a chapter of DiGRA International."
-              />
-            </div>
-            <ul className={styles.aimsList}>
-              {aims.map((aim, i) => (
-                <li key={i} className={styles.aimItem}>
-                  <span className={styles.aimBullet} />
-                  <p>{aim}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section id="our-team" className={`${styles.teamSection} section-bg`}>
-        <div className="container">
-          <SectionHeader
-            title="Meet the Founding Committee"
-            subtitle="The team behind DiGRA South Africa."
-          />
-          <div className={styles.teamGrid}>
-            {team.map((member) => (
-              <TeamCard key={member.id} {...member} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DiGRA International Connection */}
-      <section className={`${styles.parentSection} section-white`}>
-        <div className="container">
-          <div className={styles.parentBox}>
-            <div className={styles.parentText}>
-              <h2>Our Connection to DiGRA International</h2>
-              <div className="gold-bar" style={{ marginBottom: '24px' }} />
-              <p>
-                DiGRA South Africa is an official regional chapter of the Digital Games Research
-                Association (DiGRA) International. Founded in 2003, DiGRA International is the
-                world&apos;s leading academic organisation for the study of digital games. It hosts
-                the premier annual DiGRA conference, publishes the ToDiGRA journal, and maintains
-                an open-access digital library of game studies scholarship.
-              </p>
-              <p>
-                As a chapter, DiGRA SA operates with autonomy to address local needs while benefiting
-                from the resources, networks, and prestige of the global DiGRA community. Our members
-                have access to DiGRA International resources, discounts on conference registration,
-                and the opportunity to participate in shaping the future of global game studies.
-              </p>
-              <a
-                href="https://digra.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.parentLink}
-              >
-                Visit DiGRA International →
-              </a>
-            </div>
-            <div className={styles.parentVisual} aria-hidden="true">
-              <div className={styles.parentBadge}>
-                <span className={styles.badgeDiamond} />
-                <p className={styles.badgeText}>Official Chapter</p>
-                <p className={styles.badgeOrg}>DiGRA International</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <CTABanner
-        headline="Be part of building something new."
-        subtext="DiGRA SA is at its founding stage — your involvement now shapes what we become. Join us."
-        buttonText="Join DiGRA SA"
-        buttonLink="/membership"
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="pt-16"
+    >
+      <PageHero
+        title="About DiGRA South Africa"
+        breadcrumb="Home / About"
+        accentColor="violet"
+        subtitle="Who we are, what we're building, and why it matters."
       />
-    </>
-  );
+
+      {/* WHO WE ARE */}
+      <section id="who-we-are" className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+            {/* Left: body text */}
+            <SectionWrapper className="lg:col-span-3">
+              <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-3">
+                Who We Are
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-6">
+                The South African Chapter
+              </h2>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                DiGRA South Africa is the official South African regional chapter of the Digital
+                Games Research Association — the world's leading academic organisation dedicated
+                to the study of digital games.
+              </p>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                We were established in 2025 to build a home for game studies scholarship in South
+                Africa and across the continent. Our members include academics, postgraduate
+                students, educators, and game developers who share an interest in understanding
+                games seriously.
+              </p>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
+                We are in our founding phase — which means the chapter is being shaped right now,
+                by its founding members. This is a good time to be part of it.
+              </p>
+            </SectionWrapper>
+
+            {/* Right: Key Facts sidebar */}
+            <SectionWrapper className="lg:col-span-2" delay={0.15}>
+              <div className="bg-deep-purple p-8 relative overflow-hidden" style={{ borderLeft: '4px solid rgba(180,95,255,0.6)' }}>
+                <h3 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-6">
+                  Key Facts
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { label: 'Founded', value: '2025' },
+                    { label: 'Region', value: 'South Africa & Southern Africa' },
+                    { label: 'Parent Org', value: 'DiGRA International, Est. 2003' },
+                    { label: 'Status', value: 'Founding Phase' },
+                    { label: 'Scope', value: 'Pan-African' },
+                    { label: 'Focus', value: 'Game Studies & Culture' },
+                  ].map(({ label, value }) => (
+                    <div key={label} className="flex flex-col gap-0.5">
+                      <span className="font-rajdhani font-light text-xs uppercase tracking-wider text-accent-gold/60">
+                        {label}
+                      </span>
+                      <span className="font-dm-sans font-medium text-white text-sm">{value}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Left-edge beadwork accent */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 flex flex-col">
+                  {['#B45FFF', '#F5A623', '#00CFDD', '#3DE87A', '#E94560', '#FF6B35'].map((c, i) => (
+                    <div key={i} className="flex-1" style={{ background: c }} />
+                  ))}
+                </div>
+              </div>
+            </SectionWrapper>
+          </div>
+        </div>
+      </section>
+
+      <PixelDivider variant="cool" />
+
+      {/* MISSION & GOALS */}
+      <section id="mission" className="bg-bg-tint py-16 md:py-24">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="text-center mb-12">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+                Mission & Goals
+              </h2>
+              <div className="w-16 h-[2px] bg-accent-violet mx-auto" />
+            </div>
+          </SectionWrapper>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-0 max-w-5xl mx-auto"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {GOALS.map(({ num, colour, title, desc }, i) => (
+              <motion.div
+                key={num}
+                className="flex gap-5 items-start p-8 border border-border-light"
+                variants={fadeUp}
+              >
+                <span
+                  className="font-rajdhani font-bold text-5xl leading-none flex-shrink-0 w-16"
+                  style={{ color: colour }}
+                >
+                  {num}
+                </span>
+                <div className="pt-1">
+                  <div className="w-6 h-[2px] mb-3" style={{ background: colour }} />
+                  <h3 className="font-rajdhani font-semibold text-text-primary text-xl mb-2">{title}</h3>
+                  <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">{desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* OUR AIMS */}
+      <section id="aims" className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <SectionWrapper>
+              <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-3">
+                Our Aims
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+                What We're Here to Do
+              </h2>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
+                The chapter has a specific mandate: build the infrastructure for game studies to
+                flourish in Africa. These are the concrete aims that guide everything we do.
+              </p>
+            </SectionWrapper>
+
+            <motion.ul
+              className="space-y-3"
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              {AIMS.map((aim, i) => (
+                <motion.li
+                  key={aim}
+                  className="flex items-start gap-3 font-dm-sans text-text-secondary text-base"
+                  variants={fadeUp}
+                >
+                  <span
+                    className="flex-shrink-0 w-3 h-3 mt-1"
+                    style={{ background: ACCENT_BULLETS[i % ACCENT_BULLETS.length] }}
+                    aria-hidden="true"
+                  />
+                  {aim}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+        </div>
+      </section>
+
+      <PixelDivider variant="warm" />
+
+      {/* FOUNDING COMMITTEE */}
+      <section id="committee" className="bg-bg-tint py-16 md:py-24">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="mb-10">
+              <p className="font-rajdhani font-light text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+                The People
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl">
+                Founding Committee
+              </h2>
+            </div>
+          </SectionWrapper>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-5"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {team.map((member) => (
+              <motion.div key={member.id} variants={fadeUp}>
+                <TeamCard member={member} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* DiGRA INTERNATIONAL CONNECTION */}
+      <section id="digra-international" className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <SectionWrapper>
+              <p className="font-rajdhani font-light text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
+                Our Parent Organisation
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+                DiGRA International
+              </h2>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                DiGRA South Africa is an official regional chapter of DiGRA International — the
+                Digital Games Research Association — established in 2003 as the world's leading
+                academic organisation for game studies.
+              </p>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
+                Chapter membership gives you access to DiGRA's global network, publications,
+                and annual conferences.
+              </p>
+            </SectionWrapper>
+
+            <SectionWrapper delay={0.2}>
+              <div className="bg-deep-purple p-8 relative overflow-hidden">
+                <p className="font-rajdhani text-accent-gold uppercase tracking-[2px] text-sm mb-2">
+                  Official Chapter
+                </p>
+                <p className="font-orbitron text-white text-2xl font-bold mb-4">
+                  DiGRA International
+                </p>
+                <p className="font-dm-sans text-white/50 text-sm mb-6">
+                  Digital Games Research Association · Est. 2003
+                </p>
+                <a
+                  href="https://digra.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm hover:underline"
+                >
+                  Visit DiGRA International ↗
+                </a>
+                {/* Corner accent */}
+                <div
+                  className="absolute bottom-2 right-2 w-16 h-16 opacity-15"
+                  aria-hidden="true"
+                  style={{
+                    background: 'repeating-linear-gradient(45deg, #00CFDD 0, #00CFDD 2px, transparent 0, transparent 50%)',
+                    backgroundSize: '6px 6px',
+                  }}
+                />
+              </div>
+            </SectionWrapper>
+          </div>
+        </div>
+      </section>
+
+      {/* VALUES STRIP */}
+      <section className="dark-textured py-14">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
+              {[
+                { label: 'Open Access', value: 'Knowledge for all', colour: '#F5A623' },
+                { label: 'Ubuntu', value: '"I am because we are"', colour: '#00CFDD' },
+                { label: 'Decolonial', value: 'Scholarship on our terms', colour: '#3DE87A' },
+                { label: 'Pan-African', value: 'Beyond borders', colour: '#B45FFF' },
+              ].map(({ label, value, colour }) => (
+                <div key={label} className="bg-deep-purple px-6 py-8 text-center">
+                  <div className="w-8 h-[2px] mx-auto mb-4" style={{ background: colour }} />
+                  <p className="font-rajdhani font-bold text-white text-base mb-1">{label}</p>
+                  <p className="font-dm-sans text-white/40 text-xs">{value}</p>
+                </div>
+              ))}
+            </div>
+          </SectionWrapper>
+        </div>
+      </section>
+
+      {/* CTA BANNER */}
+      <section className="bg-mid-purple py-16 md:py-20">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
+                  Be part of building something new.
+                </h2>
+                <p className="font-dm-sans text-white/50 text-base">
+                  The chapter is in its founding phase. Now is the time.
+                </p>
+              </div>
+              <Link
+                to="/membership"
+                className="flex-shrink-0 bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+              >
+                Become a Member
+              </Link>
+            </div>
+          </SectionWrapper>
+        </div>
+      </section>
+    </motion.main>
+  )
 }

@@ -5,6 +5,7 @@ export const researchAreas = [
     description:
       "Examining the unique ways games are designed, played, and experienced across African cultural contexts — from board games and street play to mobile games and AAA consumption.",
     icon: "FaGlobeAfrica",
+    accent: "var(--color-accent-gold)",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const researchAreas = [
     description:
       "Challenging Eurocentric frameworks in game scholarship and developing alternative theoretical approaches rooted in African philosophy, ubuntu, and indigenous epistemologies.",
     icon: "FaBookOpen",
+    accent: "var(--color-accent-red)",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ export const researchAreas = [
     description:
       "Investigating South African and African game development practices, tools, aesthetics, and the unique challenges faced by developers on the continent.",
     icon: "FaGamepad",
+    accent: "var(--color-accent-cyan)",
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ export const researchAreas = [
     description:
       "Researching how games are taught and used in South African educational contexts, from higher education game design programmes to games-based learning in schools.",
     icon: "FaGraduationCap",
+    accent: "var(--color-accent-gold)",
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ export const researchAreas = [
     description:
       "Analysing the South African and African games industry landscape, government policy, funding ecosystems, and the socioeconomic conditions shaping game production.",
     icon: "FaChartBar",
+    accent: "var(--color-accent-cyan)",
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ export const researchAreas = [
     description:
       "Applying postcolonial theory to understand how colonial histories shape representation, narrative, and player experience in games made about or set in Africa.",
     icon: "FaBalanceScale",
+    accent: "var(--color-accent-red)",
   },
 ];
 

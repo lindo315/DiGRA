@@ -1,246 +1,369 @@
-import {
-  FaGlobeAfrica,
-  FaBookOpen,
-  FaGamepad,
-  FaGraduationCap,
-  FaChartBar,
-  FaBalanceScale,
-} from 'react-icons/fa';
-import { FiExternalLink } from 'react-icons/fi';
-import SectionHeader from '../components/SectionHeader';
-import CTABanner from '../components/CTABanner';
-import { researchAreas, journals } from '../data/research';
-import styles from './Research.module.css';
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import PageHero from '../components/PageHero'
+import PixelDivider from '../components/PixelDivider'
+import SectionWrapper from '../components/SectionWrapper'
+import ResearchCard from '../components/cards/ResearchCard'
+import { researchAreas, journals } from '../data/research'
 
-const iconMap = {
-  FaGlobeAfrica: FaGlobeAfrica,
-  FaBookOpen: FaBookOpen,
-  FaGamepad: FaGamepad,
-  FaGraduationCap: FaGraduationCap,
-  FaChartBar: FaChartBar,
-  FaBalanceScale: FaBalanceScale,
-};
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+}
+
+const TEACHING = [
+  {
+    title: 'Course Syllabi',
+    description: 'Sample syllabi for game studies courses designed for South African higher education contexts.',
+    colour: '#F5A623',
+  },
+  {
+    title: 'Introductory Texts',
+    description: 'Curated reading lists for students entering game studies for the first time.',
+    colour: '#00CFDD',
+  },
+  {
+    title: 'African Reading List',
+    description: 'A focused collection of scholarship on games from and about the African continent.',
+    colour: '#3DE87A',
+  },
+]
 
 export default function Research() {
   return (
-    <>
-      {/* Page Hero */}
-      <div className="page-hero">
-        <div className="page-hero-inner">
-          <p className="page-hero-breadcrumb">Home / Research</p>
-          <h1>Research & Resources</h1>
-          <p>
-            Advancing game studies scholarship rooted in South African and African experience,
-            and connecting our community to global resources.
-          </p>
-        </div>
-      </div>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="pt-16"
+    >
+      <PageHero
+        title="Research & Resources"
+        breadcrumb="Home / Research"
+        accentColor="cyan"
+        subtitle="Scholarship on African games — produced here, read everywhere."
+      />
 
-      {/* Game Studies in SA — editorial */}
-      <section className={`${styles.landscapeSection} section-white`}>
-        <div className="container">
-          <div className={styles.landscapeGrid}>
-            <div>
-              <SectionHeader
-                title="Game Studies in South Africa"
-                subtitle="The landscape, the challenges, and the opportunity."
-              />
-              <p>
-                South Africa has a rich, rapidly evolving relationship with games. The country has
-                a growing indie game development scene, significant consumer engagement with games
-                across all platforms, and a history of games being used in educational, therapeutic,
-                and community contexts. Yet academic game studies has been slow to establish
-                institutional roots on the continent.
+      {/* GAME STUDIES IN SA */}
+      <section id="game-studies" className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+            {/* Left: editorial text */}
+            <SectionWrapper className="lg:col-span-3">
+              <p className="font-rajdhani font-light text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
+                The Field
               </p>
-              <p>
-                Historically, game studies in South Africa has been characterised by isolated
-                pockets of interest — individual researchers working within larger departments of
-                media studies, computer science, education, or cultural studies — without the
-                infrastructure, community, or critical mass needed to constitute a coherent field.
-                DiGRA SA exists to change this.
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-6">
+                Game Studies in South Africa
+              </h2>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                Game studies as a discipline has grown significantly since the early 2000s — but
+                African contexts have been systematically underrepresented in international
+                scholarship. Most canonical game studies texts treat Western, Japanese, and North
+                American game cultures as the default.
               </p>
-              <p>
-                The potential for game studies in South Africa is immense. Africa&apos;s relationship
-                with digital games is shaped by infrastructural constraints, colonial histories,
-                diverse cultural contexts, and rapidly growing youth populations with increasing
-                access to mobile technology. These realities produce research questions that cannot
-                be answered by frameworks developed in Europe or North America — and that demand
-                locally grounded, decolonially informed scholarship.
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                South African game culture is distinct: shaped by post-apartheid demographics,
+                mobile-first access patterns, a small but active development industry, and rich
+                indigenous game traditions that predate digital games entirely.
               </p>
-            </div>
-            <div className={styles.landscapeSidebar}>
-              <div className={styles.highlightBox}>
-                <p className={styles.highlightLabel}>Did You Know?</p>
-                <p className={styles.highlightText}>
-                  Africa is the world&apos;s fastest-growing mobile gaming market. South Africa leads
-                  the continent in games industry revenue. Yet game studies scholarship remains
-                  vastly underrepresented in international journals.
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
+                DiGRA SA exists to produce, publish, and disseminate research that takes this
+                context seriously.
+              </p>
+            </SectionWrapper>
+
+            {/* Right: pull-quote panels */}
+            <SectionWrapper className="lg:col-span-2 flex flex-col gap-4" delay={0.15}>
+              <div className="bg-bg-tint p-6 border-l-4 border-accent-cyan">
+                <p className="font-rajdhani font-semibold text-text-primary text-sm uppercase tracking-wider mb-2">
+                  Did You Know?
+                </p>
+                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                  South Africa has one of the most active independent game development scenes on
+                  the continent, with dedicated studios in Cape Town, Johannesburg, and Pretoria.
                 </p>
               </div>
-              <div className={styles.highlightBox} style={{ marginTop: '20px' }}>
-                <p className={styles.highlightLabel}>Our Approach</p>
-                <p className={styles.highlightText}>
-                  DiGRA SA actively encourages interdisciplinary, decolonial, and community-centred
-                  approaches to game research — going beyond dominant Western frameworks to develop
-                  methods and theories rooted in African experience.
+              <div className="bg-bg-tint p-6 border-l-4 border-accent-violet">
+                <p className="font-rajdhani font-semibold text-text-primary text-sm uppercase tracking-wider mb-2">
+                  Our Approach
+                </p>
+                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                  We apply African philosophy, ubuntu principles, and decolonial methodology
+                  to game research — not as a critique of existing work, but as an expansion of it.
                 </p>
               </div>
-            </div>
+            </SectionWrapper>
           </div>
         </div>
       </section>
 
-      {/* Research Areas */}
-      <section id="research-areas" className={`${styles.areasSection} section-bg`}>
-        <div className="container">
-          <SectionHeader
-            title="Research Areas"
-            subtitle="Key themes and topics in South African and African game studies."
-            align="center"
-          />
-          <div className={styles.areasGrid}>
-            {researchAreas.map((area) => {
-              const IconComponent = iconMap[area.icon];
-              return (
-                <div key={area.id} className={styles.areaCard}>
-                  {IconComponent && (
-                    <div className={styles.areaIcon}>
-                      <IconComponent size={22} />
-                    </div>
-                  )}
-                  <h3 className={styles.areaTitle}>{area.title}</h3>
-                  <p className={styles.areaDesc}>{area.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <PixelDivider variant="cool" />
 
-      {/* DiGRA Digital Library Callout */}
-      <section id="digital-library" className={`${styles.librarySection} section-white`}>
-        <div className="container">
-          <div className={styles.libraryCallout}>
-            <div className={styles.libraryText}>
-              <p className={styles.libraryEyebrow}>Open Access</p>
-              <h2>DiGRA Digital Library</h2>
-              <div className="gold-bar" style={{ marginBottom: '20px' }} />
-              <p>
-                The DiGRA Digital Library is a free, open-access archive of game studies
-                scholarship — including papers from every DiGRA conference since 2003, articles
-                from ToDiGRA, and other academic resources. As members of the DiGRA community,
-                all DiGRA SA members have access to this invaluable resource.
+      {/* RESEARCH AREAS */}
+      <section id="research-areas" className="bg-bg-tint py-16 md:py-24">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="mb-10">
+              <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-2">
+                What We Study
               </p>
-              <a
-                href="https://digra.org/digital-library/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.libraryLink}
-              >
-                Browse the DiGRA Digital Library <FiExternalLink size={15} />
-              </a>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+                Research Areas
+              </h2>
+              <div className="w-16 h-[2px] bg-accent-violet" />
             </div>
-            <div className={styles.libraryDecor} aria-hidden="true">
-              <div className={styles.libraryBadge}>
-                <span className={styles.libBadgeDiamond} />
-                <p>Open Access</p>
-                <p>Game Studies Archive</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          </SectionWrapper>
 
-      {/* Journals & Publications */}
-      <section id="journals" className={`${styles.journalsSection} section-bg`}>
-        <div className="container">
-          <SectionHeader
-            title="Journals & Publications"
-            subtitle="Key peer-reviewed journals for game studies scholarship."
-          />
-          <div className={styles.journalsList}>
-            {journals.map((journal) => (
-              <div key={journal.id} className={styles.journalCard}>
-                <div className={styles.journalInfo}>
-                  <h3 className={styles.journalName}>{journal.name}</h3>
-                  <p className={styles.journalDesc}>{journal.description}</p>
-                </div>
-                <a
-                  href={journal.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.journalLink}
-                >
-                  Visit <FiExternalLink size={14} />
-                </a>
-              </div>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            {researchAreas.map((area) => (
+              <motion.div key={area.id} variants={fadeUp}>
+                <ResearchCard area={area} />
+              </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* DiGRA DIGITAL LIBRARY */}
+      <section id="library" className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <SectionWrapper>
+              <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+                Open Access
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+                DiGRA Digital Library
+              </h2>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                The DiGRA Digital Library hosts thousands of conference papers, journal articles,
+                and proceedings — all freely accessible. It's one of the largest open-access
+                repositories in game studies.
+              </p>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-6">
+                As a DiGRA SA member, you gain direct pathways to contribute to the library
+                through DiGRA International conferences and publications.
+              </p>
+              <a
+                href="https://dl.digra.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+              >
+                Visit the Library ↗
+              </a>
+            </SectionWrapper>
+
+            <SectionWrapper delay={0.2}>
+              <div className="bg-deep-purple p-8 relative overflow-hidden">
+                <p className="font-rajdhani text-accent-gold uppercase tracking-[2px] text-sm mb-2">
+                  Open Access Repository
+                </p>
+                <p className="font-orbitron text-white text-2xl font-bold mb-3">
+                  DiGRA Digital Library
+                </p>
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                  {[
+                    { label: 'Papers', value: '5,000+' },
+                    { label: 'Years', value: '2003–present' },
+                    { label: 'Access', value: 'Free & Open' },
+                    { label: 'Format', value: 'PDF / HTML' },
+                  ].map(({ label, value }) => (
+                    <div key={label}>
+                      <p className="font-rajdhani text-xs text-white/40 uppercase tracking-wider">{label}</p>
+                      <p className="font-dm-sans text-white font-medium">{value}</p>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className="absolute bottom-2 right-2 w-14 h-14 opacity-15"
+                  aria-hidden="true"
+                  style={{
+                    background: 'repeating-linear-gradient(45deg, #F5A623 0, #F5A623 2px, transparent 0, transparent 50%)',
+                    backgroundSize: '6px 6px',
+                  }}
+                />
+              </div>
+            </SectionWrapper>
           </div>
         </div>
       </section>
 
-      {/* Teaching Resources */}
-      <section className={`${styles.teachingSection} section-white`}>
-        <div className="container">
-          <SectionHeader
-            title="Teaching Resources"
-            subtitle="Resources for educators integrating game studies into their teaching."
-          />
-          <div className={styles.resourcesGrid}>
-            <div className={styles.resourceCard}>
-              <h3>Game Studies Syllabi Collection</h3>
-              <p>
-                A curated collection of syllabi from game studies courses around the world —
-                useful for designing new courses or finding inspiration for integrating games
-                into existing curricula.
+      <PixelDivider variant="warm" />
+
+      {/* JOURNALS */}
+      <section id="journals" className="bg-bg-tint py-16 md:py-24">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="mb-10">
+              <p className="font-rajdhani font-light text-accent-red text-sm uppercase tracking-[3px] mb-2">
+                Publish
               </p>
-              <a
-                href="https://digra.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.resourceLink}
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+                Journals & Publications
+              </h2>
+              <div className="w-16 h-[2px] bg-accent-red" />
+            </div>
+          </SectionWrapper>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {journals.map((journal, i) => {
+              const colours = ['#F5A623', '#00CFDD', '#3DE87A', '#B45FFF']
+              const colour = colours[i % colours.length]
+              return (
+                <motion.div
+                  key={journal.id}
+                  className="bg-surface p-6 border-t-2 flex flex-col"
+                  style={{ borderTopColor: colour }}
+                  variants={fadeUp}
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <h3 className="font-rajdhani font-bold text-text-primary text-base leading-tight mb-3 flex-1">
+                    {journal.name}
+                  </h3>
+                  <p className="font-dm-sans text-text-secondary text-xs leading-relaxed mb-4">
+                    {journal.description}
+                  </p>
+                  <a
+                    href={journal.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-rajdhani font-semibold text-xs uppercase tracking-wider transition-colors"
+                    style={{ color: colour }}
+                  >
+                    Visit →
+                  </a>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* TEACHING RESOURCES */}
+      <section id="teaching" className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="mb-10">
+              <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-2">
+                Teach
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+                Teaching Resources
+              </h2>
+              <div className="w-16 h-[2px] bg-accent-green" />
+            </div>
+          </SectionWrapper>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {TEACHING.map(({ title, description, colour }) => (
+              <motion.div
+                key={title}
+                className="border border-border-light p-6 group hover:border-accent-gold/40 transition-colors duration-200"
+                variants={fadeUp}
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2 }}
               >
-                Access via DiGRA →
-              </a>
+                <div
+                  className="w-8 h-1 mb-4"
+                  style={{ background: colour }}
+                />
+                <h3 className="font-rajdhani font-semibold text-text-primary text-xl mb-2">
+                  {title}
+                </h3>
+                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                  {description}
+                </p>
+                <p className="font-rajdhani text-xs uppercase tracking-wider text-text-secondary/60 mt-4">
+                  Coming Soon
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CALL TO CONTRIBUTE */}
+      <section className="dark-textured py-14">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  colour: '#F5A623',
+                  heading: 'Submit a Paper',
+                  body: "DiGRA SA members can submit to DiGRA International conferences and the chapter's own publications. We welcome empirical, critical, and creative work.",
+                },
+                {
+                  colour: '#00CFDD',
+                  heading: 'Propose a Project',
+                  body: 'Have a research idea rooted in African game culture? Pitch it to the committee. We can help connect you with collaborators and resources.',
+                },
+                {
+                  colour: '#3DE87A',
+                  heading: 'Join a Reading Group',
+                  body: 'We run informal reading groups for members to engage with game studies texts together. A good entry point for early-career researchers.',
+                },
+              ].map(({ colour, heading, body }) => (
+                <div key={heading} className="border-l-2 pl-5" style={{ borderColor: colour }}>
+                  <h3 className="font-rajdhani font-bold text-white text-lg mb-2">{heading}</h3>
+                  <p className="font-dm-sans text-white/50 text-sm leading-relaxed">{body}</p>
+                </div>
+              ))}
             </div>
-            <div className={styles.resourceCard}>
-              <h3>Introduction to Game Studies</h3>
-              <p>
-                Foundational texts for students new to the field, including Jesper Juul&apos;s
-                <em> Half-Real</em>, Ian Bogost&apos;s <em>Unit Operations</em>, and key articles
-                from the <em>Game Studies</em> journal.
-              </p>
-              <a
-                href="http://gamestudies.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.resourceLink}
-              >
-                Game Studies Journal →
-              </a>
-            </div>
-            <div className={styles.resourceCard}>
-              <h3>African Game Studies Reading List</h3>
-              <p>
-                A growing list of scholarship focused on games in African contexts — curated
-                by DiGRA SA members. Includes postcolonial approaches, African game development
-                studies, and indigenous play cultures.
-              </p>
-              <a href="/contact" className={styles.resourceLink}>
-                Contribute a resource →
-              </a>
-            </div>
-          </div>
+          </SectionWrapper>
         </div>
       </section>
 
       {/* CTA */}
-      <CTABanner
-        headline="Share your research with the community."
-        subtext="DiGRA SA members can share publications, present at events, and contribute to our growing repository of South African game studies scholarship."
-        buttonText="Join DiGRA SA"
-        buttonLink="/membership"
-      />
-    </>
-  );
+      <section className="bg-mid-purple py-16 md:py-20">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
+                  Contribute to the field.
+                </h2>
+                <p className="font-dm-sans text-white/50 text-base">
+                  Join DiGRA SA to access resources and publish through our network.
+                </p>
+              </div>
+              <Link
+                to="/membership"
+                className="flex-shrink-0 bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+              >
+                Join the Chapter
+              </Link>
+            </div>
+          </SectionWrapper>
+        </div>
+      </section>
+    </motion.main>
+  )
 }
