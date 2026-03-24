@@ -37,6 +37,18 @@ export const events = [
   },
   {
     id: 4,
+    title: "Reading Group: Postcolonial Game Studies",
+    type: "Talk",
+    date: "2025-11-12",
+    day: "12",
+    month: "NOV",
+    location: "Online (Zoom)",
+    description:
+      "A focused reading group session exploring postcolonial frameworks in game studies. Members will work through selected texts on indigenous play traditions and discuss methodological implications for African game research.",
+    status: "upcoming",
+  },
+  {
+    id: 5,
     title: "DiGRA International Conference — Satellite Viewing",
     type: "Conference",
     date: "2025-06-10",

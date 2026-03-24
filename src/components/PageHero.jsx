@@ -14,7 +14,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accentColor = 'g
 
   return (
     <section
-      className="dark-textured relative overflow-hidden py-20 md:py-28"
+      className="dark-textured relative overflow-hidden py-12 sm:py-20 md:py-28"
       style={{ borderBottom: `3px solid ${colour}33` }}
     >
       {/* Radial glow */}
@@ -40,9 +40,9 @@ export default function PageHero({ title, subtitle, breadcrumb, accentColor = 'g
               {breadcrumb}
             </p>
           )}
-          <h1 className="font-rajdhani text-5xl font-bold text-white md:text-6xl">{title}</h1>
+          <h1 className="font-rajdhani text-3xl sm:text-5xl font-bold text-white md:text-6xl">{title}</h1>
           {subtitle && (
-            <p className="mt-4 max-w-[600px] font-dm-sans text-lg text-white/65">{subtitle}</p>
+            <p className="mt-3 max-w-[600px] font-dm-sans text-base sm:text-lg text-white/65">{subtitle}</p>
           )}
         </motion.div>
       </div>

@@ -132,7 +132,7 @@ export default function Events() {
       {/* HOST AN EVENT */}
       <section id="host" className="bg-surface py-16 md:py-24">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
               <p className="font-rajdhani font-light text-accent-orange text-sm uppercase tracking-[3px] mb-3">
                 Get Involved
@@ -158,7 +158,7 @@ export default function Events() {
 
             {/* Decorative block */}
             <SectionWrapper delay={0.2}>
-              <div className="bg-deep-purple p-8 relative overflow-hidden">
+              <div className="bg-deep-purple p-5 sm:p-8 relative overflow-hidden">
                 <PixelDivider variant="full" height={14} />
                 <div className="py-10">
                   <div className="grid grid-cols-3 gap-3">

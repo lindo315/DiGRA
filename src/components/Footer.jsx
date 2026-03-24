@@ -8,7 +8,7 @@ export default function Footer() {
       <PixelDivider variant="full" />
 
       <div className="container mx-auto py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {/* Col 1: Brand */}
           <div>
             <div className="font-orbitron font-bold text-accent-gold tracking-[4px] text-base mb-1">

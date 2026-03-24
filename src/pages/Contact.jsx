@@ -71,7 +71,7 @@ export default function Contact() {
       {/* CONTACT SECTION */}
       <section id="contact-form" className="bg-surface py-16 md:py-24">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-10 items-start">
             {/* Form: 55% */}
             <div className="lg:col-span-3">
               <SectionWrapper>

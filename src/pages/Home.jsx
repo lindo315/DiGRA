@@ -41,13 +41,13 @@ const MISSION_ITEMS = [
 ]
 
 const HERO_BLOCKS = [
-  { sprite: 'book',    label: 'Research', bg: '#F5A623', fg: '#1C0A3A' },
-  { sprite: 'gamepad', label: 'Play',     bg: '#00CFDD', fg: '#1C0A3A' },
-  { sprite: 'africa',  label: 'Africa',   bg: '#E94560', fg: '#FFFFFF' },
+  { sprite: 'book',    label: 'Research', tag: 'Scholarship',     bg: '#F5A623', fg: '#1C0A3A' },
+  { sprite: 'gamepad', label: 'Play',     tag: 'African Games',   bg: '#00CFDD', fg: '#1C0A3A' },
+  { sprite: 'africa',  label: 'Africa',   tag: 'Pan-Continental', bg: '#E94560', fg: '#FFFFFF' },
 ]
 
 export default function Home() {
-  const upcomingEvents = events.filter((e) => e.status === 'upcoming').slice(0, 3)
+  const upcomingEvents = events.filter((e) => e.status === 'upcoming').slice(0, 4)
   const latestNews = news.slice(0, 3)
 
   return (
@@ -68,7 +68,7 @@ export default function Home() {
         />
 
         <div className="container mx-auto py-10 md:py-14">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center w-full">
             {/* Left: 60% */}
             <div className="lg:col-span-3">
               <motion.p
@@ -82,7 +82,7 @@ export default function Home() {
               </motion.p>
 
               <motion.h1
-                className="font-rajdhani font-bold text-5xl md:text-7xl leading-[1.05] mb-6"
+                className="font-rajdhani font-bold text-4xl sm:text-5xl md:text-7xl leading-[1.05] mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
@@ -126,33 +126,63 @@ export default function Home() {
             </div>
 
             {/* Right: 40% — Pixel art hero blocks */}
-            <div className="lg:col-span-2 hidden lg:flex justify-center items-center">
+            <div className="lg:col-span-2 hidden md:flex justify-center items-center">
               <motion.div
                 className="relative"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                <div className="flex flex-col gap-0 w-48">
-                  {HERO_BLOCKS.map(({ sprite, label, bg, fg }, i) => (
+                <div className="flex flex-col w-56">
+                  {HERO_BLOCKS.map(({ sprite, label, tag, bg, fg }, i) => (
                     <div key={label}>
                       {i > 0 && <PixelDivider variant={i === 1 ? 'warm' : 'cool'} height={14} />}
-                      <div
-                        className="px-6 py-7 flex flex-col items-center justify-center gap-3"
+                      <motion.div
+                        className="px-6 py-8 flex flex-col items-center justify-center gap-2 relative overflow-hidden cursor-default"
                         style={{ background: bg }}
+                        whileHover={{ scale: 1.03 }}
+                        transition={{ duration: 0.15 }}
                       >
-                        <PixelSprite name={sprite} colour={fg} size={32} />
-                        <span
-                          className="font-rajdhani font-bold text-base tracking-[4px] uppercase"
-                          style={{ color: fg }}
-                        >
-                          {label}
-                        </span>
-                      </div>
+                        {/* Corner dot grid */}
+                        <div
+                          className="absolute top-0 right-0 w-14 h-14 opacity-20"
+                          aria-hidden="true"
+                          style={{
+                            background: `repeating-linear-gradient(45deg, ${fg} 0, ${fg} 1.5px, transparent 0, transparent 50%)`,
+                            backgroundSize: '5px 5px',
+                          }}
+                        />
+                        {/* Bottom shimmer line */}
+                        <div className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: `${fg}40` }} />
+                        <PixelSprite name={sprite} colour={fg} size={44} />
+                        <div className="text-center">
+                          <p
+                            className="font-rajdhani font-bold text-xl tracking-[4px] uppercase leading-none"
+                            style={{ color: fg }}
+                          >
+                            {label}
+                          </p>
+                          <p
+                            className="font-dm-sans text-[10px] tracking-[2px] uppercase mt-1"
+                            style={{ color: `${fg}80` }}
+                          >
+                            {tag}
+                          </p>
+                        </div>
+                      </motion.div>
                     </div>
                   ))}
                 </div>
-                {/* Background pattern accents */}
+
+                {/* Outer colour bloom */}
+                <div
+                  className="absolute -inset-6 -z-10 blur-2xl opacity-40"
+                  aria-hidden="true"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(245,166,35,0.6) 0%, rgba(0,207,221,0.6) 50%, rgba(233,69,96,0.6) 100%)',
+                  }}
+                />
+                {/* Corner accents */}
                 <div
                   className="absolute -right-8 -top-8 w-24 h-24 opacity-15"
                   aria-hidden="true"
@@ -327,7 +357,7 @@ export default function Home() {
       {/* ABOUT TEASER */}
       <section className="bg-surface py-16 md:py-24">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 55% */}
             <SectionWrapper className="lg:col-span-3">
               <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-3">
@@ -384,7 +414,7 @@ export default function Home() {
       <section className="dark-textured py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
                 <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-3">
                   The Gap We're Filling

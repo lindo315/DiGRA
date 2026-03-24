@@ -183,7 +183,7 @@ export default function Membership() {
       {/* WHO CAN JOIN */}
       <section id="eligibility" className="bg-bg-tint py-16 md:py-24">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
               <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-3">
                 Eligibility
@@ -244,9 +244,9 @@ export default function Membership() {
             {TIERS.map((tier) => (
               <motion.div
                 key={tier.id}
-                className={`flex flex-col p-8 ${
+                className={`flex flex-col p-5 sm:p-8 ${
                   tier.badge
-                    ? 'border-2 border-accent-gold shadow-xl scale-105 bg-white'
+                    ? 'border-2 border-accent-gold shadow-xl md:scale-105 bg-white'
                     : 'border border-border-light bg-white shadow-sm'
                 }`}
                 variants={fadeUp}
@@ -350,7 +350,7 @@ export default function Membership() {
             </div>
           </SectionWrapper>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-10 items-start">
             {/* Form: 60% */}
             <div className="lg:col-span-3">
               {submitted ? (
@@ -465,7 +465,7 @@ export default function Membership() {
 
             {/* Sidebar: 40% */}
             <div className="lg:col-span-2">
-              <div className="bg-deep-purple p-8">
+              <div className="bg-deep-purple p-5 sm:p-8">
                 <p className="font-rajdhani font-light text-accent-gold text-xs uppercase tracking-[2px] mb-6">
                   What you get
                 </p>
