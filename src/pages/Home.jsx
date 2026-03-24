@@ -56,9 +56,10 @@ export default function Home() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
+      className="pt-16"
     >
       {/* HERO */}
-      <section className="dark-textured relative overflow-hidden min-h-[calc(100vh-64px)] flex flex-col">
+      <section className="dark-textured relative overflow-hidden min-h-[calc(100vh-64px)]">
         {/* Glow */}
         <div
           className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full"
@@ -66,7 +67,7 @@ export default function Home() {
           aria-hidden="true"
         />
 
-        <div className="container mx-auto flex-1 flex items-center py-20 md:py-32">
+        <div className="container mx-auto py-10 md:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center w-full">
             {/* Left: 60% */}
             <div className="lg:col-span-3">
@@ -87,7 +88,7 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <span className="text-white block">Game Studies in Africa,</span>
-                <span className="text-accent-gold block" style={{ textDecoration: 'underline', textDecorationColor: 'rgba(245,166,35,0.4)', textUnderlineOffset: '6px' }}>
+                <span className="text-accent-gold block">
                   For Africa.
                 </span>
               </motion.h1>

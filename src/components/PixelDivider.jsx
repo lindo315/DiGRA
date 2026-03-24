@@ -47,7 +47,7 @@ const PAD_Y = 10       // top/bottom padding
 const TILE_H = ALIEN_H + PAD_Y * 2  // 41
 const TILE_W = (ALIEN_W + GAP_X) * 3 // 114
 
-function AlienSprite({ grid, x, y, fill }) {
+function AlienSprite({ grid, x, y, fill, px }) {
   return (
     <>
       {grid.flatMap((row, ri) =>
@@ -55,10 +55,10 @@ function AlienSprite({ grid, x, y, fill }) {
           cell ? (
             <rect
               key={`${ri}-${ci}`}
-              x={x + ci * PX}
-              y={y + ri * PX}
-              width={PX}
-              height={PX}
+              x={x + ci * px}
+              y={y + ri * px}
+              width={px}
+              height={px}
               fill={fill}
             />
           ) : null
@@ -74,6 +74,11 @@ export default function PixelDivider({ variant = 'full', height }) {
   const patternId = `pdiv-${safeId}`
   const colours = PALETTE[variant] ?? PALETTE.full
   const h = height ?? TILE_H
+  const scale = h / TILE_H
+  const px = PX * scale
+  const gapX = GAP_X * scale
+  const padY = PAD_Y * scale
+  const tileW = (8 * px + gapX) * 3
 
   return (
     <div aria-hidden="true" style={{ height: h, overflow: 'hidden', lineHeight: 0 }}>
@@ -81,25 +86,25 @@ export default function PixelDivider({ variant = 'full', height }) {
         width="100%"
         height={h}
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMinYMid slice"
       >
         <defs>
           <pattern
             id={patternId}
             x="0"
             y="0"
-            width={TILE_W}
-            height={TILE_H}
+            width={tileW}
+            height={h}
             patternUnits="userSpaceOnUse"
           >
-            <rect width={TILE_W} height={TILE_H} fill="#1C0A3A" />
+            <rect width={tileW} height={h} fill="#1C0A3A" />
             {ALIENS.map((grid, i) => (
               <AlienSprite
                 key={i}
                 grid={grid}
-                x={i * (ALIEN_W + GAP_X)}
-                y={PAD_Y}
+                x={i * (8 * px + gapX)}
+                y={padY}
                 fill={colours[i % colours.length]}
+                px={px}
               />
             ))}
           </pattern>
