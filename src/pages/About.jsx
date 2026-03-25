@@ -20,37 +20,34 @@ const GOALS = [
   {
     num: '01',
     colour: '#F5A623',
-    title: 'Produce Original Research',
+    title: 'Build national academic legitimacy for game studies',
     desc: 'Publish peer-reviewed research on African games — from cultural analysis to game design theory — in international venues.',
   },
   {
     num: '02',
     colour: '#00CFDD',
-    title: 'Build Research Capacity',
+    title: 'Strengthen local and regional research networks',
     desc: 'Train the next generation of African game scholars through mentorship, workshops, and access to DiGRA International resources.',
   },
   {
     num: '03',
     colour: '#3DE87A',
-    title: 'Connect African Scholars',
+    title: 'Connect academia with industry and professional practice',
     desc: 'Link game researchers across South Africa and the continent into a working network — not just a mailing list.',
   },
   {
     num: '04',
     colour: '#E94560',
-    title: 'Represent Africa Internationally',
+    title: 'Promote African scholarship in global DiGRA spaces',
     desc: 'Get African voices into DiGRA International conferences, panels, and publications on an ongoing basis.',
   },
 ]
 
 const AIMS = [
-  'Advance game studies scholarship rooted in African experience',
-  'Provide a platform for African game researchers to publish and present',
-  'Bridge game scholarship and the South African game development industry',
-  'Include students, early-career researchers, and independent scholars',
-  'Develop educational resources for game studies teaching in African contexts',
-  'Partner with Pan-African academic networks and institutions',
-  'Operate transparently and with open access wherever possible',
+  'Build national academic legitimacy for game studies',
+  'Strengthen local and regional research networks',
+  'Connect academia with industry and professional practice',
+  'Promote African scholarship in global DiGRA spaces',
 ]
 
 const ACCENT_BULLETS = ['#F5A623', '#00CFDD', '#E94560', '#3DE87A', '#B45FFF', '#FF6B35', '#F5A623']
@@ -85,19 +82,19 @@ export default function About() {
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
                 DiGRA South Africa is the official South African regional chapter of the Digital
-                Games Research Association — the world's leading academic organisation dedicated
-                to the study of digital games.
+                Games Research Association (DiGRA) International — the world's leading academic
+                organisation dedicated to the study of digital games (founded 2003).
               </p>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
-                We were established in 2025 to build a home for game studies scholarship in South
-                Africa and across the continent. Our members include academics, postgraduate
-                students, educators, and game developers who share an interest in understanding
-                games seriously.
+                DiGRA International has formally accepted the establishment of the DiGRA
+                South Africa Chapter. As a regional chapter, DiGRA SA operates within DiGRA International's framework
+                while addressing South African and African priorities in research, policy, industry
+                partnerships, and community development.
               </p>
-              <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
+              {/* <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                 We are in our founding phase — which means the chapter is being shaped right now,
                 by its founding members. This is a good time to be part of it.
-              </p>
+              </p> */}
             </SectionWrapper>
 
             {/* Right: Key Facts sidebar */}
@@ -108,10 +105,10 @@ export default function About() {
                 </h3>
                 <div className="space-y-4">
                   {[
-                    { label: 'Founded', value: '2025' },
-                    { label: 'Region', value: 'South Africa & Southern Africa' },
+                    { label: 'Founded', value: '2026' },
+                    { label: 'Region', value: 'South Africa' },
                     { label: 'Parent Org', value: 'DiGRA International, Est. 2003' },
-                    { label: 'Status', value: 'Founding Phase' },
+                    { label: 'Status', value: 'Officially Recognized' },
                     { label: 'Scope', value: 'Pan-African' },
                     { label: 'Focus', value: 'Game Studies & Culture' },
                   ].map(({ label, value }) => (
@@ -147,6 +144,11 @@ export default function About() {
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet mx-auto" />
             </div>
+            <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+              To establish a sustainable, coherent, and collaborative national ecosystem for game
+              studies, game research, and game-related academic activity across South Africa and
+              the African continent.
+            </p>
           </SectionWrapper>
 
           <motion.div
@@ -235,6 +237,9 @@ export default function About() {
               <h2 className="font-rajdhani font-bold text-deep-purple text-4xl">
                 Founding Committee
               </h2>
+              <p className="font-dm-sans text-text-secondary text-sm mt-2">
+                All members formally accepted their roles at the 3 February 2026 meeting.
+              </p>
             </div>
           </SectionWrapper>
 
