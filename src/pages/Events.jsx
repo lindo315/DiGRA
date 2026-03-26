@@ -43,10 +43,10 @@ export default function Events() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-2">
                 What's Next
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Upcoming Events
               </h2>
               <div className="w-16 h-[2px] bg-accent-green" />
@@ -84,14 +84,14 @@ export default function Events() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-6">
-              <p className="font-rajdhani font-light text-accent-cyan text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-2">
                 Archive
               </p>
               <button
                 className="flex items-center gap-3 group"
                 onClick={() => setPastOpen(!pastOpen)}
               >
-                <h2 className="font-rajdhani font-bold text-deep-purple text-4xl group-hover:text-accent-cyan transition-colors">
+                <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl group-hover:text-accent-cyan transition-colors">
                   Past Events
                 </h2>
                 <div className="flex items-center gap-1 font-rajdhani text-text-secondary">
@@ -134,10 +134,10 @@ export default function Events() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
-              <p className="font-rajdhani font-light text-accent-orange text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-3">
                 Get Involved
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
                 Host an Event
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -201,7 +201,7 @@ export default function Events() {
       <section className="dark-textured py-14">
         <div className="container mx-auto">
           <SectionWrapper>
-            <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+            <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
               What We Run
             </p>
             <h2 className="font-rajdhani font-bold text-white text-3xl mb-8">

@@ -59,10 +59,10 @@ export default function Home() {
       className="pt-16"
     >
       {/* HERO */}
-      <section className="dark-textured relative overflow-hidden min-h-[calc(100vh-64px)]">
+      <section className="dark-textured relative overflow-hidden min-h-[calc(100vh-64px)] max-h-[900px] flex flex-col justify-between">
         {/* Glow */}
         <div
-          className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full"
+          className="pointer-events-none absolute right-0 top-0 h-[250px] w-[250px] sm:h-[400px] sm:w-[400px] md:h-[500px] md:w-[500px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(0,207,221,0.08) 0%, transparent 70%)' }}
           aria-hidden="true"
         />
@@ -72,7 +72,7 @@ export default function Home() {
             {/* Left: 60% */}
             <div className="lg:col-span-3">
               <motion.p
-                className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-6"
+                className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-6"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
@@ -94,7 +94,7 @@ export default function Home() {
               </motion.h1>
 
               <motion.p
-                className="font-dm-sans text-white/65 text-lg max-w-[560px] leading-relaxed mb-8"
+                className="font-dm-sans text-white/65 text-base sm:text-lg max-w-[560px] leading-relaxed mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.5 }}
@@ -105,20 +105,20 @@ export default function Home() {
               </motion.p>
 
               <motion.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row flex-wrap gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
               >
                 <Link
                   to="/membership"
-                  className="bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+                  className="w-full sm:w-auto text-center bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
                 >
                   Join the Chapter
                 </Link>
                 <Link
                   to="/about"
-                  className="border-2 border-white text-white font-rajdhani font-bold uppercase tracking-wider px-8 py-4 hover:bg-white hover:text-deep-purple transition-all duration-200"
+                  className="w-full sm:w-auto text-center border-2 border-white text-white font-rajdhani font-bold uppercase tracking-wider px-8 py-4 hover:bg-white hover:text-deep-purple transition-all duration-200"
                 >
                   Learn More
                 </Link>
@@ -267,10 +267,10 @@ export default function Home() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
                 Latest Updates
               </p>
-              <h2 className="font-rajdhani font-bold text-white text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-white text-3xl sm:text-4xl mb-3">
                 News & Updates
               </h2>
               <div className="w-16 h-[2px] bg-accent-cyan" />
@@ -314,7 +314,7 @@ export default function Home() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-10">
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Upcoming Events
               </h2>
               <div
@@ -360,10 +360,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 55% */}
             <SectionWrapper className="lg:col-span-3">
-              <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
                 Who We Are
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-6">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
                 About DiGRA South Africa
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -416,10 +416,10 @@ export default function Home() {
           <SectionWrapper>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-3">
+                <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-3">
                   The Gap We're Filling
                 </p>
-                <h2 className="font-rajdhani font-bold text-white text-4xl mb-6">
+                <h2 className="font-rajdhani font-bold text-white text-3xl sm:text-4xl mb-6">
                   African Games. African Scholarship.
                 </h2>
                 <p className="font-dm-sans text-white/60 text-base leading-relaxed mb-4">

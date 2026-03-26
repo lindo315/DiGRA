@@ -14,12 +14,12 @@ export default function PageHero({ title, subtitle, breadcrumb, accentColor = 'g
 
   return (
     <section
-      className="dark-textured relative overflow-hidden py-12 sm:py-20 md:py-28"
+      className="dark-textured relative overflow-hidden py-10 sm:py-14 md:py-20"
       style={{ borderBottom: `3px solid ${colour}33` }}
     >
       {/* Radial glow */}
       <div
-        className="pointer-events-none absolute right-0 top-0 h-[400px] w-[400px] rounded-full"
+        className="pointer-events-none absolute right-0 top-0 h-[200px] w-[200px] sm:h-[300px] sm:w-[300px] md:h-[400px] md:w-[400px] rounded-full"
         style={{
           background: `radial-gradient(circle, ${colour}14 0%, transparent 70%)`,
         }}

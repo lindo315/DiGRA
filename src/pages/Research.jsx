@@ -56,10 +56,10 @@ export default function Research() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-10 items-start">
             {/* Left: editorial text */}
             <SectionWrapper className="lg:col-span-3">
-              <p className="font-rajdhani font-light text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
                 The Field
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-6">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
                 Game Studies in South Africa
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -111,10 +111,10 @@ export default function Research() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-2">
                 What We Study
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Research Areas
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet" />
@@ -142,10 +142,10 @@ export default function Research() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
-              <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
                 Open Access
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
                 DiGRA Digital Library
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -209,10 +209,10 @@ export default function Research() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-red text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-red text-sm uppercase tracking-[3px] mb-2">
                 Publish
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Journals & Publications
               </h2>
               <div className="w-16 h-[2px] bg-accent-red" />
@@ -265,10 +265,10 @@ export default function Research() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-2">
                 Teach
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Teaching Resources
               </h2>
               <div className="w-16 h-[2px] bg-accent-green" />

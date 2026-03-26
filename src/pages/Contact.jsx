@@ -76,10 +76,10 @@ export default function Contact() {
             <div className="lg:col-span-3">
               <SectionWrapper>
                 <div className="mb-8">
-                  <p className="font-rajdhani font-light text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+                  <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
                     Send a Message
                   </p>
-                  <h2 className="font-rajdhani font-bold text-deep-purple text-4xl">
+                  <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl">
                     Contact Us
                   </h2>
                 </div>
@@ -243,10 +243,10 @@ export default function Contact() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-cyan text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-2">
                 Follow Along
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Stay Connected
               </h2>
               <div className="w-16 h-[2px] bg-accent-cyan" />

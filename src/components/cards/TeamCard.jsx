@@ -19,39 +19,78 @@ function getInitials(name) {
     .toUpperCase()
 }
 
-export default function TeamCard({ member }) {
+export default function TeamCard({ member, onClick }) {
   const colour = hashColour(member.name)
   const initials = getInitials(member.name)
 
   return (
     <motion.article
-      className="bg-surface flex items-start gap-4 p-5"
-      style={{ borderLeft: `4px solid ${colour}` }}
-      whileHover={{ scale: 1.01, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}
+      className="bg-surface overflow-hidden flex flex-col cursor-pointer"
+      style={{ borderTop: `3px solid ${colour}` }}
+      whileHover={{ y: -4, boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}
       transition={{ duration: 0.2 }}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick?.() }}
+      aria-label={`View profile for ${member.name}`}
     >
-      {/* Avatar */}
+      {/* Photo / Avatar */}
       <div
-        className="flex-shrink-0 w-12 h-12 flex items-center justify-center font-rajdhani font-bold text-white text-lg"
-        style={{ background: colour }}
+        className="relative overflow-hidden flex items-center justify-center"
+        style={{ height: '220px', background: `${colour}12` }}
       >
-        {initials}
+        {member.photo ? (
+          <img
+            src={member.photo}
+            alt={member.name}
+            className="w-full h-full object-cover object-top"
+          />
+        ) : (
+          <div
+            className="w-24 h-24 flex items-center justify-center font-rajdhani font-bold text-white text-3xl"
+            style={{ background: colour }}
+          >
+            {initials}
+          </div>
+        )}
+        {/* Bottom gradient fade for photo */}
+        {member.photo && (
+          <div
+            className="absolute bottom-0 left-0 right-0 h-8"
+            style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.15))' }}
+          />
+        )}
       </div>
 
       {/* Info */}
-      <div className="flex-1 min-w-0">
-        <h3 className="font-rajdhani font-semibold text-text-primary text-lg leading-tight">
-          {member.name}
-        </h3>
+      <div className="p-5 flex flex-col flex-1">
         <p
-          className="font-rajdhani font-light text-xs uppercase tracking-wider mb-1"
+          className="font-rajdhani font-bold text-xs uppercase tracking-[2px] mb-1"
           style={{ color: colour }}
         >
           {member.role}
         </p>
-        <p className="font-dm-sans italic text-text-secondary text-sm mb-2">{member.institution}</p>
-        <p className="font-dm-sans text-text-secondary text-sm leading-relaxed line-clamp-2">
-          {member.bio.split('.')[0] + '.'}
+        <h3 className="font-rajdhani font-bold text-text-primary text-xl leading-tight mb-1">
+          {member.name}
+        </h3>
+        <p className="font-dm-sans italic text-text-secondary text-sm mb-3 border-b border-border-light pb-3">
+          {member.institution}
+        </p>
+        {member.bio ? (
+          <p className="font-dm-sans text-text-secondary text-sm leading-relaxed line-clamp-3 mb-4">
+            {member.bio}
+          </p>
+        ) : (
+          <p className="font-dm-sans text-text-secondary/40 text-sm italic mb-4">
+            Bio coming soon.
+          </p>
+        )}
+        <p
+          className="font-rajdhani font-bold text-xs uppercase tracking-wider mt-auto"
+          style={{ color: colour }}
+        >
+          View Profile →
         </p>
       </div>
     </motion.article>

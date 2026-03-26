@@ -143,10 +143,10 @@ export default function Membership() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-10">
-              <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
                 Why Join?
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Member Benefits
               </h2>
               <div className="w-16 h-[2px] bg-accent-gold mx-auto" />
@@ -185,10 +185,10 @@ export default function Membership() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
-              <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-3">
                 Eligibility
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
                 Who Can Join?
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
@@ -224,10 +224,10 @@ export default function Membership() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-10">
-              <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-2">
                 Pricing
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Membership Tiers
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet mx-auto" />
@@ -283,10 +283,10 @@ export default function Membership() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-12">
-              <p className="font-rajdhani font-light text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
                 Process
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 How to Join
               </h2>
               <div className="w-16 h-[2px] bg-accent-orange mx-auto" />
@@ -340,10 +340,10 @@ export default function Membership() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
                 Expression of Interest
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Join the Chapter
               </h2>
               <div className="w-16 h-[2px] bg-accent-gold" />
@@ -466,7 +466,7 @@ export default function Membership() {
             {/* Sidebar: 40% */}
             <div className="lg:col-span-2">
               <div className="bg-deep-purple p-5 sm:p-8">
-                <p className="font-rajdhani font-light text-accent-gold text-xs uppercase tracking-[2px] mb-6">
+                <p className="font-rajdhani font-semibold text-accent-gold text-xs uppercase tracking-[2px] mb-6">
                   What you get
                 </p>
                 <div className="space-y-5">
@@ -495,7 +495,7 @@ export default function Membership() {
       <section className="dark-textured py-14">
         <div className="container mx-auto max-w-3xl">
           <SectionWrapper>
-            <p className="font-rajdhani font-light text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+            <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
               FAQ
             </p>
             <h2 className="font-rajdhani font-bold text-white text-3xl mb-8">

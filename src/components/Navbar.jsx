@@ -208,7 +208,7 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 bottom-0 w-72 bg-deep-purple z-50 md:hidden flex flex-col border-l border-accent-gold/20 overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-deep-purple z-50 md:hidden flex flex-col border-l border-accent-gold/20 overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}

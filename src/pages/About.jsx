@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import PixelDivider from '../components/PixelDivider'
 import SectionWrapper from '../components/SectionWrapper'
 import TeamCard from '../components/cards/TeamCard'
+import TeamMemberModal from '../components/TeamMemberModal'
 import { team } from '../data/team'
 
 const fadeUp = {
@@ -53,6 +55,8 @@ const AIMS = [
 const ACCENT_BULLETS = ['#F5A623', '#00CFDD', '#E94560', '#3DE87A', '#B45FFF', '#FF6B35', '#F5A623']
 
 export default function About() {
+  const [selectedMember, setSelectedMember] = useState(null)
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -74,10 +78,10 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-10 items-start">
             {/* Left: body text */}
             <SectionWrapper className="lg:col-span-3">
-              <p className="font-rajdhani font-light text-accent-violet text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-3">
                 Who We Are
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-6">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
                 The South African Chapter
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -139,7 +143,7 @@ export default function About() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-12">
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Mission & Goals
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet mx-auto" />
@@ -186,10 +190,10 @@ export default function About() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
-              <p className="font-rajdhani font-light text-accent-green text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-3">
                 Our Aims
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
                 What We're Here to Do
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
@@ -231,10 +235,10 @@ export default function About() {
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-light text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
                 The People
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl">
                 Founding Committee
               </h2>
               <p className="font-dm-sans text-text-secondary text-sm mt-2">
@@ -244,7 +248,7 @@ export default function About() {
           </SectionWrapper>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
@@ -252,7 +256,7 @@ export default function About() {
           >
             {team.map((member) => (
               <motion.div key={member.id} variants={fadeUp}>
-                <TeamCard member={member} />
+                <TeamCard member={member} onClick={() => setSelectedMember(member)} />
               </motion.div>
             ))}
           </motion.div>
@@ -264,10 +268,10 @@ export default function About() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
-              <p className="font-rajdhani font-light text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
                 Our Parent Organisation
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
                 DiGRA International
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -360,6 +364,7 @@ export default function About() {
           </SectionWrapper>
         </div>
       </section>
+      <TeamMemberModal member={selectedMember} onClose={() => setSelectedMember(null)} />
     </motion.main>
   )
 }

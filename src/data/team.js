@@ -4,6 +4,7 @@ export const team = [
     name: "Amanda Jankowitz",
     role: "President",
     institution: "University of the Witwatersrand",
+    photo: "/images/amanda.jpg",
     bio: "Amanda Jankowitz is a Lecturer at the University of the Witwatersrand, South Africa. She specialises in game-based learning, immersive simulation, and ethical AI integration, exploring how playful, technology-enhanced pedagogy can advance engagement, equity, and educator development in healthcare education.",
   },
   {
@@ -11,6 +12,7 @@ export const team = [
     name: "Dr. Olu Randle",
     role: "Vice President",
     institution: "University of the Witwatersrand",
+    photo: "https://i.pravatar.cc/300?img=68",
     bio: "With over 12 years of academic experience, Dr Olu Randle leads the GAIC-Lab at the Wits School of Arts. His multidisciplinary expertise drives research in 4IR technologies, computational linguistics for indigenous African languages, and machine learning models that master traditional games like Mancala.",
   },
   {
@@ -18,6 +20,7 @@ export const team = [
     name: "Marguerite van der Merwe",
     role: "Secretary",
     institution: "University of Pretoria",
+    photo: "https://i.pravatar.cc/300?img=44",
     bio: "",
   },
   {
@@ -25,6 +28,7 @@ export const team = [
     name: "Bernice Beukes",
     role: "Treasurer",
     institution: "University of Pretoria",
+    photo: "https://i.pravatar.cc/300?img=32",
     bio: "",
   },
   {
@@ -32,6 +36,7 @@ export const team = [
     name: "Dr. Andrea Hayes",
     role: "Research & Publications Coordinator",
     institution: "University of the Witwatersrand",
+    photo: "/images/andrea.jpg",
     bio: "Dr Andrea Hayes is a Game Design lecturer at the Digital Arts Department at Wits University. Her research areas in game studies include gender in video games, queer games and how video games intersect with the Anthropocene.",
   },
   {
@@ -39,6 +44,7 @@ export const team = [
     name: "Dr. Veruschka PelserCarstens",
     role: "Programmes & Events Lead",
     institution: "North-West University",
+    photo: "https://i.pravatar.cc/300?img=17",
     bio: "",
   },
   {
@@ -46,6 +52,7 @@ export const team = [
     name: "Dr. Lance Bunt",
     role: "Communications Officer",
     institution: "North-West University",
+    photo: "/images/lance.png",
     bio: "Dr Lance Bunt is a Senior Lecturer at North-West University, South Africa. He specialises in gameful learning, serious game design, and technology enhanced pedagogy. His work explores player experience, instructional design, and systems thinking to improve higher education practice, integrating AI and playful approaches to support meaningful learning.",
   },
   {
@@ -53,6 +60,7 @@ export const team = [
     name: "Nick Hall",
     role: "Industry Partnerships & Sponsorships",
     institution: "IESA / Africa Games Week",
+    photo: "https://i.pravatar.cc/300?img=53",
     bio: "",
   },
   {
@@ -60,6 +68,7 @@ export const team = [
     name: "Menzi Mhlongo",
     role: "Industry Partnerships & Sponsorships",
     institution: "Africa Games Week",
+    photo: "https://i.pravatar.cc/300?img=56",
     bio: "",
   },
   {
@@ -67,6 +76,7 @@ export const team = [
     name: "Dr. Rachel van der Merwe",
     role: "International Academic & Practice Partnerships",
     institution: "University of Groningen / University of the Free State",
+    photo: "https://i.pravatar.cc/300?img=36",
     bio: "",
   },
   {
@@ -74,6 +84,7 @@ export const team = [
     name: "Kyle Smith",
     role: "Industry Advisory",
     institution: "Industry Advisory",
+    photo: "https://i.pravatar.cc/300?img=57",
     bio: "",
   },
   {
@@ -81,6 +92,7 @@ export const team = [
     name: "Prof. Herman van der Merwe",
     role: "Academic Programmes Advisor",
     institution: "North-West University",
+    photo: "https://i.pravatar.cc/300?img=60",
     bio: "",
   },
 ];

@@ -2,6 +2,7 @@
 
 html, body {
   background-color: #1C0A3A;
+  overflow-x: hidden;
 }
 
 @theme {
@@ -70,6 +71,10 @@ html, body {
 
 @media (min-width: 1024px) {
   .container { padding-inline: 48px; }
+}
+
+@media (min-width: 1536px) {
+  .container { max-width: 1400px; padding-inline: 64px; }
 }
 
 /* ── Custom scrollbar ── */
