@@ -37,14 +37,14 @@ export default function TeamCard({ member, onClick }) {
     >
       {/* Photo / Avatar */}
       <div
-        className="relative overflow-hidden flex items-center justify-center"
-        style={{ height: '220px', background: `${colour}12` }}
+        className="relative overflow-hidden flex items-center justify-center aspect-[4/3]"
+        style={{ background: `${colour}12` }}
       >
         {member.photo ? (
           <img
             src={member.photo}
             alt={member.name}
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-[50%_20%]"
           />
         ) : (
           <div

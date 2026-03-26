@@ -96,7 +96,7 @@ export default function TeamMemberModal({ member, onClose }) {
                       <img
                         src={member.photo}
                         alt={member.name}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-[50%_20%]"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
