@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
-html, body {
+html {
+  background-color: #1C0A3A;
+  /* No overflow set on html — any overflow value other than visible here causes
+     position:fixed elements to scroll with the page on iOS/mobile browsers */
+  scroll-padding-top: 80px;
+}
+
+body {
   background-color: #1C0A3A;
   overflow-x: hidden;
 }

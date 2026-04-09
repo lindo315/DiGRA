@@ -160,7 +160,7 @@ export default function About() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {GOALS.map(({ num, colour, title, desc }, i) => (
               <motion.div
@@ -207,7 +207,7 @@ export default function About() {
               variants={stagger}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
             >
               {AIMS.map((aim, i) => (
                 <motion.li
@@ -252,7 +252,7 @@ export default function About() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {team.map((member) => (
               <motion.div key={member.id} variants={fadeUp}>

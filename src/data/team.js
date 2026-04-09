@@ -45,7 +45,7 @@ export const team = [
     role: "Programmes & Events Lead",
     institution: "North-West University",
     photo: "/images/veruschka.png",
-    bio: "",
+    bio: "Prof Veruschka Pelser-Carstens is an Associate Professor in the School of Accounting Sciences at North-West University (NWU), South Africa. She holds a PhD from the University of Joensuu, Finland, and has over 20 years of experience in higher education. Her research focuses on accountancy education, with a particular emphasis on serious games, game-based learning, and innovative pedagogical approaches to enhance student engagement and learning outcomes. Her publications are centred on serious games and accountancy education, contributing to the advancement of teaching and learning within the discipline. Prof Pelser-Carstens has received multiple teaching excellence awards in recognition of her commitment to student-centred learning and pedagogical innovation.",
   },
   {
     id: 7,

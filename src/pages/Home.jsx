@@ -285,7 +285,7 @@ export default function Home() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {latestNews.map((item, i) => (
               <motion.div
@@ -332,7 +332,7 @@ export default function Home() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {upcomingEvents.map((event) => (
               <motion.div key={event.id} variants={fadeUp}>

@@ -258,7 +258,7 @@ export default function Contact() {
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {[
               { Icon: FiTwitter, name: 'Twitter / X', handle: '@DiGRASA', colour: '#00CFDD', desc: 'News, updates, and calls for papers.' },

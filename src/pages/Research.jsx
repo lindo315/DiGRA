@@ -126,7 +126,7 @@ export default function Research() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.05 }}
+            viewport={{ once: false, amount: 0.05 }}
           >
             {researchAreas.map((area) => (
               <motion.div key={area.id} variants={fadeUp}>
@@ -224,7 +224,7 @@ export default function Research() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {journals.map((journal, i) => {
               const colours = ['#F5A623', '#00CFDD', '#3DE87A', '#B45FFF']
@@ -280,7 +280,7 @@ export default function Research() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {TEACHING.map(({ title, description, colour }) => (
               <motion.div

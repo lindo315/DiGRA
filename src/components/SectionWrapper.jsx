@@ -12,7 +12,7 @@ export default function SectionWrapper({ children, className = '', delay = 0 }) 
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: false, amount: 0.15 }}
       transition={{ delay }}
     >
       {children}

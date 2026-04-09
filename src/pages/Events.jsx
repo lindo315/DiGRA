@@ -59,7 +59,7 @@ export default function Events() {
               variants={stagger}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: false, amount: 0.1 }}
             >
               {upcoming.map((event) => (
                 <motion.div key={event.id} variants={fadeUp}>

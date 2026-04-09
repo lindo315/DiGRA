@@ -37,18 +37,17 @@ function ScrollHandler() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
     if (hash) {
-      // Wait for page transition + render before scrolling
+      // Wait for page transition (300ms) + a small buffer before scrolling
       const timer = setTimeout(() => {
         const el = document.querySelector(hash)
         if (el) {
-          const offset = 80
-          const top = el.getBoundingClientRect().top + window.scrollY - offset
-          window.scrollTo({ top, behavior: 'smooth' })
+          // scrollIntoView respects scroll-padding-top set on <html>
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
-      }, 350)
+      }, 400)
       return () => clearTimeout(timer)
     } else {
-      window.scrollTo(0, 0)
+      window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }, [pathname, hash])
   return null
@@ -57,7 +56,7 @@ function ScrollHandler() {
 function AnimatedRoutes() {
   const location = useLocation()
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="sync">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

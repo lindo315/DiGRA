@@ -158,7 +158,7 @@ export default function Membership() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {BENEFITS.map(({ sprite, title, description, colour }) => (
               <motion.div
@@ -202,7 +202,7 @@ export default function Membership() {
               variants={stagger}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
             >
               {ELIGIBILITY.map((item) => (
                 <motion.li
@@ -239,7 +239,7 @@ export default function Membership() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {TIERS.map((tier) => (
               <motion.div
