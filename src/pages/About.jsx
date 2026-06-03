@@ -169,7 +169,7 @@ export default function About() {
                 variants={fadeUp}
               >
                 <span
-                  className="font-rajdhani font-bold text-5xl leading-none flex-shrink-0 w-16"
+                  className="font-rajdhani font-bold text-3xl sm:text-4xl md:text-5xl leading-none flex-shrink-0 w-12 sm:w-16"
                   style={{ color: colour }}
                 >
                   {num}
@@ -186,7 +186,7 @@ export default function About() {
       </section>
 
       {/* OUR AIMS */}
-      <section id="aims" className="bg-surface py-16 md:py-24">
+      <section id="aims" className="pixel-grid-sparse py-16 md:py-24">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
@@ -231,17 +231,18 @@ export default function About() {
       <PixelDivider variant="warm" />
 
       {/* FOUNDING COMMITTEE */}
-      <section id="committee" className="bg-bg-tint py-16 md:py-24">
+      <section id="committee" className="pixel-grid-light py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
               <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
                 The People
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Founding Committee
               </h2>
-              <p className="font-dm-sans text-text-secondary text-sm mt-2">
+              <div className="w-16 h-[2px] bg-accent-orange mb-3" />
+              <p className="font-dm-sans text-text-secondary text-sm">
                 All members formally accepted their roles at the 3 February 2026 meeting.
               </p>
             </div>
@@ -252,19 +253,28 @@ export default function About() {
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.05 }}
           >
-            {team.map((member) => (
-              <motion.div key={member.id} variants={fadeUp}>
-                <TeamCard member={member} onClick={() => setSelectedMember(member)} />
-              </motion.div>
-            ))}
+            {team
+              .filter((m) => ['President', 'Vice President'].includes(m.role))
+              .map((member) => (
+                <motion.div key={member.id} variants={fadeUp}>
+                  <TeamCard member={member} variant="leader" onClick={() => setSelectedMember(member)} />
+                </motion.div>
+              ))}
+            {team
+              .filter((m) => !['President', 'Vice President'].includes(m.role))
+              .map((member) => (
+                <motion.div key={member.id} variants={fadeUp}>
+                  <TeamCard member={member} onClick={() => setSelectedMember(member)} />
+                </motion.div>
+              ))}
           </motion.div>
         </div>
       </section>
 
       {/* DiGRA INTERNATIONAL CONNECTION */}
-      <section id="digra-international" className="bg-surface py-16 md:py-24">
+      <section id="digra-international" className="pixel-grid-sparse py-16 md:py-24">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
@@ -320,7 +330,7 @@ export default function About() {
       </section>
 
       {/* VALUES STRIP */}
-      <section className="dark-textured py-14">
+      <section className="dark-textured py-12 md:py-16">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">

@@ -79,9 +79,10 @@ export default function Contact() {
                   <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
                     Send a Message
                   </p>
-                  <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl">
+                  <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                     Contact Us
                   </h2>
+                  <div className="w-16 h-[2px] bg-accent-orange" />
                 </div>
               </SectionWrapper>
 
@@ -102,7 +103,7 @@ export default function Contact() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className={labelClass}>Name *</label>
                       <input
@@ -157,7 +158,7 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full md:w-auto md:self-start bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-10 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+                    className="w-full md:w-auto md:self-start bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-6 sm:px-10 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
                   >
                     Send Message
                   </button>
@@ -167,7 +168,7 @@ export default function Contact() {
 
             {/* Info panel: 45% */}
             <SectionWrapper className="lg:col-span-2" delay={0.15}>
-              <div className="bg-deep-purple p-8">
+              <div className="bg-deep-purple p-5 sm:p-8">
                 <h3 className="font-rajdhani font-bold text-white text-xl mb-6">
                   Contact Info
                 </h3>
@@ -212,7 +213,7 @@ export default function Contact() {
       <PixelDivider variant="full" />
 
       {/* QUICK LINKS */}
-      <section className="bg-surface py-12">
+      <section className="pixel-grid-sparse py-12">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -239,7 +240,7 @@ export default function Contact() {
       </section>
 
       {/* STAY CONNECTED */}
-      <section id="stay-connected" className="bg-bg-tint py-16 md:py-24">
+      <section id="stay-connected" className="pixel-grid-light py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">

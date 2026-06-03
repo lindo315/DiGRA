@@ -163,8 +163,8 @@ export default function Membership() {
             {BENEFITS.map(({ sprite, title, description, colour }) => (
               <motion.div
                 key={title}
-                className="flex flex-col p-6 border-b-2 group hover:shadow-md transition-shadow duration-200"
-                style={{ borderBottomColor: colour }}
+                className="flex flex-col p-6 border-t-2 group hover:shadow-md transition-shadow duration-200"
+                style={{ borderTopColor: colour }}
                 variants={fadeUp}
               >
                 <div className="mb-4">
@@ -181,16 +181,17 @@ export default function Membership() {
       <PixelDivider variant="warm" />
 
       {/* WHO CAN JOIN */}
-      <section id="eligibility" className="bg-bg-tint py-16 md:py-24">
+      <section id="eligibility" className="pixel-grid-light py-16 md:py-24">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
               <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-3">
                 Eligibility
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Who Can Join?
               </h2>
+              <div className="w-16 h-[2px] bg-accent-green mb-4" />
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                 DiGRA SA is open to anyone with a genuine interest in games as a subject of serious
                 study — regardless of your career stage, institutional affiliation, or background.
@@ -220,7 +221,7 @@ export default function Membership() {
       </section>
 
       {/* MEMBERSHIP TIERS */}
-      <section id="tiers" className="bg-surface py-16 md:py-24">
+      <section id="tiers" className="pixel-grid-sparse py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-10">
@@ -235,7 +236,7 @@ export default function Membership() {
           </SectionWrapper>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-start"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-start"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
@@ -246,7 +247,7 @@ export default function Membership() {
                 key={tier.id}
                 className={`flex flex-col p-5 sm:p-8 ${
                   tier.badge
-                    ? 'border-2 border-accent-gold shadow-xl md:scale-105 bg-white'
+                    ? 'border-2 border-accent-gold bg-white shadow-[4px_4px_0_rgba(245,166,35,0.3)]'
                     : 'border border-border-light bg-white shadow-sm'
                 }`}
                 variants={fadeUp}
@@ -371,7 +372,7 @@ export default function Membership() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className={labelClass}>Full Name *</label>
                       <input
@@ -455,7 +456,7 @@ export default function Membership() {
 
                   <button
                     type="submit"
-                    className="w-full md:w-auto md:self-start bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-10 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+                    className="w-full md:w-auto md:self-start bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-6 sm:px-10 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
                   >
                     Submit Expression of Interest
                   </button>
@@ -492,15 +493,16 @@ export default function Membership() {
       </section>
 
       {/* FAQ */}
-      <section className="dark-textured py-14">
+      <section className="dark-textured py-12 md:py-16">
         <div className="container mx-auto max-w-3xl">
           <SectionWrapper>
             <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
               FAQ
             </p>
-            <h2 className="font-rajdhani font-bold text-white text-3xl mb-8">
+            <h2 className="font-rajdhani font-bold text-white text-3xl mb-3">
               Common Questions
             </h2>
+            <div className="w-16 h-[2px] bg-accent-gold mb-8" />
             <div className="space-y-0">
               {[
                 {

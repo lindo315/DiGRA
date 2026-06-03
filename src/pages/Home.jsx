@@ -7,7 +7,10 @@ import NewsCard from '../components/cards/NewsCard'
 import EventCard from '../components/cards/EventCard'
 import { news } from '../data/news'
 import { events } from '../data/events'
+import { team } from '../data/team'
 import { FiArrowRight } from 'react-icons/fi'
+
+const PERSON_COLOURS = ['#F5A623', '#00CFDD', '#E94560', '#3DE87A', '#B45FFF', '#FF6B35']
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -231,9 +234,16 @@ export default function Home() {
       <PixelDivider variant="warm" />
 
       {/* MISSION STRIP */}
-      <section className="bg-surface py-16 md:py-24">
+      <section className="pixel-grid-sparse py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
+            <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+              Our Purpose
+            </p>
+            <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              What We Stand For
+            </h2>
+            <div className="w-16 h-[2px] bg-accent-gold mb-10" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {MISSION_ITEMS.map(({ sprite, title, description, colour }) => (
                 <div key={title} className="group">
@@ -266,69 +276,81 @@ export default function Home() {
       <section className="dark-textured py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
-            <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
-                Latest Updates
-              </p>
-              <h2 className="font-rajdhani font-bold text-white text-3xl sm:text-4xl mb-3">
-                News & Updates
-              </h2>
-              <div className="w-16 h-[2px] bg-accent-cyan" />
-              <p className="font-dm-sans text-white/50 mt-3 text-base">
-                What's happening in the chapter.
-              </p>
+            <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
+              <div>
+                <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+                  Latest Updates
+                </p>
+                <h2 className="font-rajdhani font-bold text-white text-3xl sm:text-4xl mb-3">
+                  News & Updates
+                </h2>
+                <div className="w-16 h-[2px] bg-accent-gold" />
+              </div>
+              <Link
+                to="/research"
+                className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 pb-1"
+              >
+                All Updates <FiArrowRight />
+              </Link>
             </div>
           </SectionWrapper>
 
+          {/* Editorial layout: featured left + 2 secondary stacked right */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 lg:grid-cols-5 gap-4"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
           >
-            {latestNews.map((item, i) => (
-              <motion.div
-                key={item.id}
-                variants={fadeUp}
-                style={{ marginTop: i === 1 ? '-16px' : '0' }}
-              >
-                <NewsCard item={item} />
+            {/* Featured — takes 3/5 */}
+            {latestNews[0] && (
+              <motion.div className="lg:col-span-3" variants={fadeUp}>
+                <NewsCard item={latestNews[0]} variant="featured" />
               </motion.div>
-            ))}
-          </motion.div>
+            )}
 
-          <SectionWrapper className="mt-8 flex justify-end">
-            <Link
-              to="/research"
-              className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200"
-            >
-              View All News <FiArrowRight />
-            </Link>
-          </SectionWrapper>
+            {/* Secondary stack — takes 2/5 */}
+            <div className="lg:col-span-2 flex flex-col gap-4">
+              {latestNews.slice(1, 3).map((item) => (
+                <motion.div key={item.id} variants={fadeUp}>
+                  <NewsCard item={item} variant="secondary" />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* UPCOMING EVENTS */}
-      <section className="bg-bg-tint py-16 md:py-24">
+      {/* UPCOMING EVENTS — Level 2: higher visual weight than supporting sections */}
+      <section className="pixel-grid-dark py-20 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
-            <div className="text-center mb-10">
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
-                Upcoming Events
-              </h2>
-              <div
-                className="w-16 h-[3px] mx-auto mb-3"
-                style={{ background: 'linear-gradient(90deg, #F5A623, #FF6B35)' }}
-              />
-              <p className="font-dm-sans text-text-secondary">
-                Where the chapter meets, presents, and connects.
-              </p>
+            <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
+              <div>
+                <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+                  <span className="text-accent-gold mr-2">■</span>
+                  What's On
+                </p>
+                <h2 className="font-rajdhani font-bold text-white text-4xl sm:text-5xl mb-3">
+                  Upcoming Events
+                </h2>
+                <div
+                  className="h-[3px] w-20"
+                  style={{ background: 'linear-gradient(90deg, #F5A623, #FF6B35)' }}
+                />
+              </div>
+              <Link
+                to="/events"
+                className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 pb-1"
+              >
+                All Events <FiArrowRight />
+              </Link>
             </div>
           </SectionWrapper>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
@@ -340,22 +362,13 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
-
-          <SectionWrapper className="mt-8 flex justify-center">
-            <Link
-              to="/events"
-              className="font-rajdhani font-semibold text-deep-purple uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 hover:text-accent-gold"
-            >
-              See All Events <FiArrowRight />
-            </Link>
-          </SectionWrapper>
         </div>
       </section>
 
       <PixelDivider variant="full" />
 
       {/* ABOUT TEASER */}
-      <section className="bg-surface py-16 md:py-24">
+      <section className="pixel-grid-light py-16 md:py-24">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 55% */}
@@ -409,6 +422,81 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* PEOPLE STRIP */}
+      <section className="bg-surface py-16 md:py-24">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
+              <div>
+                <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+                  The Team
+                </p>
+                <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+                  Who's Building This
+                </h2>
+                <div className="w-16 h-[2px] bg-accent-orange" />
+              </div>
+              <Link
+                to="/about"
+                className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 pb-1"
+              >
+                Full Committee <FiArrowRight />
+              </Link>
+            </div>
+          </SectionWrapper>
+
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.1 }}
+          >
+            {team.slice(0, 4).map((member, i) => {
+              const colour = PERSON_COLOURS[i % PERSON_COLOURS.length]
+              return (
+                <motion.div key={member.id} variants={fadeUp}>
+                  <Link
+                    to="/about"
+                    className="block bg-bg-tint overflow-hidden group"
+                    style={{ borderTop: `2px solid ${colour}` }}
+                  >
+                    <div
+                      className="aspect-[4/3] overflow-hidden"
+                      style={{ background: `${colour}10` }}
+                    >
+                      {member.photo && (
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className="w-full h-full object-cover object-[50%_20%] group-hover:scale-105 transition-transform duration-300"
+                        />
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <p
+                        className="font-rajdhani font-bold text-xs uppercase tracking-[2px] mb-0.5 truncate"
+                        style={{ color: colour }}
+                      >
+                        {member.role}
+                      </p>
+                      <p className="font-rajdhani font-bold text-text-primary text-base leading-tight">
+                        {member.name}
+                      </p>
+                      <p className="font-dm-sans italic text-text-secondary text-xs mt-1 truncate">
+                        {member.institution}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      <PixelDivider variant="full" />
 
       {/* WHY IT MATTERS */}
       <section className="dark-textured py-16 md:py-24">

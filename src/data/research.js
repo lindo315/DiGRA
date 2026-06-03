@@ -6,6 +6,7 @@ export const researchAreas = [
       "Examining the unique ways games are designed, played, and experienced across African cultural contexts — from board games and street play to mobile games and AAA consumption.",
     icon: "FaGlobeAfrica",
     accent: "var(--color-accent-gold)",
+    tags: ["Cultural Studies", "Mobile", "Indigenous Play"],
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const researchAreas = [
       "Challenging Eurocentric frameworks in game scholarship and developing alternative theoretical approaches rooted in African philosophy, ubuntu, and indigenous epistemologies.",
     icon: "FaBookOpen",
     accent: "var(--color-accent-red)",
+    tags: ["Critical Theory", "Ubuntu", "Epistemology"],
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const researchAreas = [
       "Investigating South African and African game development practices, tools, aesthetics, and the unique challenges faced by developers on the continent.",
     icon: "FaGamepad",
     accent: "var(--color-accent-cyan)",
+    tags: ["Practice", "Aesthetics", "Industry"],
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const researchAreas = [
       "Researching how games are taught and used in South African educational contexts, from higher education game design programmes to games-based learning in schools.",
     icon: "FaGraduationCap",
     accent: "var(--color-accent-gold)",
+    tags: ["Higher Ed", "GBL", "Curriculum"],
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const researchAreas = [
       "Analysing the South African and African games industry landscape, government policy, funding ecosystems, and the socioeconomic conditions shaping game production.",
     icon: "FaChartBar",
     accent: "var(--color-accent-cyan)",
+    tags: ["Economics", "Policy", "Funding"],
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ export const researchAreas = [
       "Applying postcolonial theory to understand how colonial histories shape representation, narrative, and player experience in games made about or set in Africa.",
     icon: "FaBalanceScale",
     accent: "var(--color-accent-red)",
+    tags: ["Theory", "Narrative", "Representation"],
   },
 ];
 

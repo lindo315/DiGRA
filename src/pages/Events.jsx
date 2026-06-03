@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { FiChevronDown, FiChevronUp, FiMapPin, FiCalendar } from 'react-icons/fi'
 import PageHero from '../components/PageHero'
 import PixelDivider from '../components/PixelDivider'
 import SectionWrapper from '../components/SectionWrapper'
@@ -18,10 +18,91 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 }
 
+const TYPE_COLOURS = {
+  Symposium:    '#F5A623',
+  Workshop:     '#3DE87A',
+  Seminar:      '#00CFDD',
+  Conference:   '#B45FFF',
+  Talk:         '#E94560',
+  Webinar:      '#00CFDD',
+  'Game Jam':   '#F5A623',
+  'Launch Event': '#FF6B35',
+}
+
+function FeaturedEventCard({ event }) {
+  const colour = TYPE_COLOURS[event.type] || '#F5A623'
+  const dateLabel = event.month !== 'TBA'
+    ? `${event.month} ${event.date !== 'TBA' ? event.date : ''}`.trim()
+    : event.date !== 'TBA' ? event.date : 'Date TBA'
+
+  return (
+    <motion.div
+      className="relative overflow-hidden bg-deep-purple p-6 sm:p-10 mb-8"
+      style={{ borderLeft: `5px solid ${colour}` }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Background pixel accent */}
+      <div
+        className="absolute top-0 right-0 w-48 h-48 opacity-[0.04] pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: `repeating-linear-gradient(45deg, ${colour} 0, ${colour} 2px, transparent 0, transparent 50%)`,
+          backgroundSize: '8px 8px',
+        }}
+      />
+
+      {/* Featured label */}
+      <div className="flex items-center gap-3 mb-5 flex-wrap">
+        <span
+          className="font-rajdhani font-bold text-[10px] uppercase tracking-[2px] px-2 py-0.5"
+          style={{ background: `${colour}22`, color: colour, border: `1px solid ${colour}40` }}
+        >
+          ◆ Featured
+        </span>
+        <span
+          className="font-rajdhani font-bold text-[10px] uppercase tracking-[2px] px-2 py-0.5"
+          style={{ background: `${colour}14`, color: colour }}
+        >
+          {event.type}
+        </span>
+      </div>
+
+      <h3 className="font-rajdhani font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-4 max-w-2xl">
+        {event.title}
+      </h3>
+
+      <p className="font-dm-sans text-white/60 text-base leading-relaxed mb-6 max-w-2xl">
+        {event.description}
+      </p>
+
+      <div className="flex flex-wrap gap-5 text-sm font-dm-sans text-white/50">
+        <span className="flex items-center gap-1.5">
+          <FiCalendar size={13} style={{ color: colour }} />
+          {dateLabel}
+        </span>
+        <span className="flex items-center gap-1.5">
+          <FiMapPin size={13} style={{ color: colour }} />
+          {event.location}
+        </span>
+      </div>
+
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px]"
+        style={{ background: `linear-gradient(90deg, ${colour}60, transparent)` }}
+      />
+    </motion.div>
+  )
+}
+
 export default function Events() {
   const [pastOpen, setPastOpen] = useState(true)
   const upcoming = events.filter((e) => e.status === 'upcoming')
   const past = events.filter((e) => e.status === 'past')
+  const featured = upcoming[0]
+  const rest = upcoming.slice(1)
 
   return (
     <motion.main
@@ -39,7 +120,7 @@ export default function Events() {
       />
 
       {/* UPCOMING EVENTS */}
-      <section id="upcoming" className="bg-surface py-16 md:py-24">
+      <section id="upcoming" className="pixel-grid-light py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
@@ -49,26 +130,47 @@ export default function Events() {
               <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
                 Upcoming Events
               </h2>
-              <div className="w-16 h-[2px] bg-accent-green" />
+              <div className="w-16 h-[2px] bg-accent-green mb-4" />
+              {/* Metadata pills */}
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: `${upcoming.length} events planned` },
+                  { label: '2026 – 2028' },
+                  { label: 'In-person & online' },
+                ].map(({ label }) => (
+                  <span
+                    key={label}
+                    className="font-rajdhani text-[11px] uppercase tracking-[1.5px] px-3 py-1 text-text-secondary border border-border-light"
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
             </div>
           </SectionWrapper>
 
           {upcoming.length > 0 ? (
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              {upcoming.map((event) => (
-                <motion.div key={event.id} variants={fadeUp}>
-                  <EventCard event={event} />
+            <>
+              {featured && <FeaturedEventCard event={featured} />}
+
+              {rest.length > 0 && (
+                <motion.div
+                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                  variants={stagger}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.05 }}
+                >
+                  {rest.map((event) => (
+                    <motion.div key={event.id} variants={fadeUp}>
+                      <EventCard event={event} />
+                    </motion.div>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
+              )}
+            </>
           ) : (
-            <div className="text-center py-16">
+            <div className="py-16">
               <p className="font-dm-sans text-text-secondary text-base">
                 No upcoming events right now. Check back soon or join our newsletter.
               </p>
@@ -83,7 +185,7 @@ export default function Events() {
       <section id="past" className="bg-bg-tint py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
-            <div className="mb-6">
+            <div className="mb-8">
               <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-2">
                 Archive
               </p>
@@ -111,18 +213,24 @@ export default function Events() {
                 transition={{ duration: 0.35, ease: 'easeInOut' }}
                 className="overflow-hidden"
               >
-                <motion.div
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                  variants={stagger}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {past.map((event) => (
-                    <motion.div key={event.id} variants={fadeUp}>
-                      <EventCard event={event} isPast />
-                    </motion.div>
-                  ))}
-                </motion.div>
+                {past.length > 0 ? (
+                  <motion.div
+                    className="max-w-3xl"
+                    variants={stagger}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {past.map((event, i) => (
+                      <motion.div key={event.id} variants={fadeUp}>
+                        <EventCard event={event} variant="timeline" isPast isLast={i === past.length - 1} />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                ) : (
+                  <p className="font-dm-sans text-text-secondary text-sm py-8">
+                    No past events on record yet.
+                  </p>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -161,7 +269,7 @@ export default function Events() {
               <div className="bg-deep-purple p-5 sm:p-8 relative overflow-hidden">
                 <PixelDivider variant="full" height={14} />
                 <div className="py-10">
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                     {[
                       { label: 'Symposium', colour: '#F5A623' },
                       { label: 'Workshop', colour: '#3DE87A' },
@@ -198,7 +306,7 @@ export default function Events() {
       </section>
 
       {/* WHAT TO EXPECT */}
-      <section className="dark-textured py-14">
+      <section className="dark-textured py-12 md:py-16">
         <div className="container mx-auto">
           <SectionWrapper>
             <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">

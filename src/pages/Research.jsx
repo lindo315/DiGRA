@@ -107,7 +107,7 @@ export default function Research() {
       <PixelDivider variant="cool" />
 
       {/* RESEARCH AREAS */}
-      <section id="research-areas" className="bg-bg-tint py-16 md:py-24">
+      <section id="research-areas" className="pixel-grid-light py-16 md:py-24">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
@@ -175,7 +175,7 @@ export default function Research() {
                 <p className="font-orbitron text-white text-2xl font-bold mb-3">
                   DiGRA Digital Library
                 </p>
-                <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
                   {[
                     { label: 'Papers', value: '5,000+' },
                     { label: 'Years', value: '2003–present' },
@@ -310,7 +310,7 @@ export default function Research() {
       </section>
 
       {/* CALL TO CONTRIBUTE */}
-      <section className="dark-textured py-14">
+      <section className="dark-textured py-12 md:py-16">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
