@@ -85,7 +85,15 @@ function FeaturedEventCard({ event }) {
         </span>
         <span className="flex items-center gap-1.5">
           <FiMapPin size={13} style={{ color: colour }} />
-          {event.location}
+          <p>
+          <a
+            href={event.locationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {event.location}
+          </a>
+        </p>
         </span>
       </div>
 

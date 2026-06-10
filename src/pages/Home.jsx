@@ -395,7 +395,21 @@ export default function Home() {
               >
                 Learn More About Us <FiArrowRight />
               </Link>
+              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+                Where to Find DiGRA SA
+              </p>
+              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
+                DiGRA South Africa at the eFundanathi Gaming Symposium
+              </h2>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
+                DiGRA South Africa (DiGRA SA) will be present at the eFundanathi Gaming Symposium, hosted on the University of the Witwatersrand (Wits) campus.
+                As part of the symposium programme, DiGRA SA will host and facilitate a panel discussion, bringing together researchers, educators, and industry practitioners to explore critical questions around games, play, and digital culture in South Africa and the African context.
+              </p>
+              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-6">
+                This engagement forms part of DiGRA SA’s soft‑launch activities and reflects the chapter’s commitment to dialogue across academia, industry, and creative practice. Register here:
+              </p>
             </SectionWrapper>
+
 
             {/* Right: 45% — Decorative tile */}
             <SectionWrapper className="lg:col-span-2" delay={0.2}>
