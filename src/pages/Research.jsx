@@ -158,7 +158,7 @@ export default function Research() {
                 through DiGRA International conferences and publications.
               </p>
               <a
-                href="https://dl.digra.org"
+                href="https://digra.co.za"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
