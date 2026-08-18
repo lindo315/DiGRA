@@ -550,7 +550,7 @@ export default function Membership() {
                 </p>
               </div>
               <a
-                href="mailto:info@digrasa.org"
+                href="mailto:info@digrasa.co.za"
                 className="flex-shrink-0 border-2 border-white text-white font-rajdhani font-bold uppercase tracking-wider px-8 py-4 hover:bg-white hover:text-deep-purple transition-all duration-200"
               >
                 Email Us

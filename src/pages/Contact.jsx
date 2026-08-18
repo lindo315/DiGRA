@@ -174,11 +174,11 @@ export default function Contact() {
                 </h3>
                 <div className="space-y-5 mb-8">
                   <a
-                    href="mailto:info@digrasa.org"
+                    href="mailto:info@digrasa.co.za"
                     className="flex items-center gap-3 font-dm-sans text-white/70 text-sm hover:text-accent-gold transition-colors group"
                   >
                     <FiMail size={16} className="text-accent-gold flex-shrink-0" />
-                    info@digrasa.org
+                    info@digrasa.co.za
                   </a>
                   <div className="flex items-center gap-3 font-dm-sans text-white/70 text-sm">
                     <FiMapPin size={16} className="text-accent-orange flex-shrink-0" />
