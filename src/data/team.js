@@ -15,14 +15,14 @@ export const team = [
     photo: "/images/olu.jpeg",
     bio: "Dr Olu Randle is a digital arts academic and lead researcher of the Games Artificial Intelligence and Culture (GAIC) Lab at the University of the Witwatersrand, South Africa. He specialises in game design, machine intelligence, and computational creativity, with a focus on applying artificial intelligence to African board games, digital culture, and indigenous language technologies to advance innovation and access within 4IR contexts.",
   },
-  {
-    id: 3,
-    name: "Dr. Marguerite van der Merwe",
-    role: "Secretary",
-    institution: "University of Pretoria",
-    photo: "/images/marguerite.png",
-    bio: "Dr Marguerite van der Merwe Marguerite is a design educator and researcher with a PhD in Information Design from the University of Pretoria, South Africa. She specialises in branding, typography, and editorial design, with a research focus on how play, storytelling, and co-design can be integrated into design education to foster meaningful learning experiences, creativity, empathy, and engagement, particularly within interdisciplinary and child-centred contexts.",
-  },
+  // {
+  //   id: 3,
+  //   name: "Dr. Marguerite van der Merwe",
+  //   role: "Secretary",
+  //   institution: "University of Pretoria",
+  //   photo: "/images/marguerite.png",
+  //   bio: "Dr Marguerite van der Merwe Marguerite is a design educator and researcher with a PhD in Information Design from the University of Pretoria, South Africa. She specialises in branding, typography, and editorial design, with a research focus on how play, storytelling, and co-design can be integrated into design education to foster meaningful learning experiences, creativity, empathy, and engagement, particularly within interdisciplinary and child-centred contexts.",
+  // },
   {
     id: 4,
     name: "Bernice Beukes",
