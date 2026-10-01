@@ -15,16 +15,8 @@ export const team = [
     photo: "/images/olu.jpeg",
     bio: "Dr Olu Randle is a digital arts academic and lead researcher of the Games Artificial Intelligence and Culture (GAIC) Lab at the University of the Witwatersrand, South Africa. He specialises in game design, machine intelligence, and computational creativity, with a focus on applying artificial intelligence to African board games, digital culture, and indigenous language technologies to advance innovation and access within 4IR contexts.",
   },
-  // {
-  //   id: 3,
-  //   name: "Dr. Marguerite van der Merwe",
-  //   role: "Secretary",
-  //   institution: "University of Pretoria",
-  //   photo: "/images/marguerite.png",
-  //   bio: "Dr Marguerite van der Merwe Marguerite is a design educator and researcher with a PhD in Information Design from the University of Pretoria, South Africa. She specialises in branding, typography, and editorial design, with a research focus on how play, storytelling, and co-design can be integrated into design education to foster meaningful learning experiences, creativity, empathy, and engagement, particularly within interdisciplinary and child-centred contexts.",
-  // },
   {
-    id: 4,
+    id: 3,
     name: "Bernice Beukes",
     role: "Treasurer",
     institution: "University of Pretoria",
@@ -32,7 +24,7 @@ export const team = [
     bio: "Bernice Beukes Bernice is a  higher education educator with over 15 years of teaching experience. She specialises in accounting education and technology‑enhanced learning, with a focus on innovative pedagogical practices that integrate both emerging and established technologies to enhance student learning; her work has been recognised with an Education Innovation Award in 2017.",
   },
   {
-    id: 5,
+    id: 4,
     name: "Dr. Andrea Hayes",
     role: "Research & Publications Coordinator",
     institution: "University of the Witwatersrand",
@@ -40,7 +32,7 @@ export const team = [
     bio: "Dr Andrea Hayes is a Game Design lecturer at the Digital Arts Department at Wits University. Her research areas in game studies include gender in video games, queer games and how video games intersect with the Anthropocene.",
   },
   {
-    id: 6,
+    id: 5,
     name: "Prof. Veruschka PelserCarstens",
     role: "Programmes & Events Lead",
     institution: "North-West University",
@@ -48,7 +40,7 @@ export const team = [
     bio: "Prof Veruschka Pelser-Carstens is an Associate Professor in the School of Accounting Sciences at North-West University (NWU), South Africa. She holds a PhD from the University of Joensuu, Finland, and has over 20 years of experience in higher education. Her research focuses on accountancy education, with a particular emphasis on serious games, game-based learning, and innovative pedagogical approaches to enhance student engagement and learning outcomes. Her publications are centred on serious games and accountancy education, contributing to the advancement of teaching and learning within the discipline. Prof Pelser-Carstens has received multiple teaching excellence awards in recognition of her commitment to student-centred learning and pedagogical innovation.",
   },
   {
-    id: 7,
+    id: 6,
     name: "Dr. Lance Bunt",
     role: "Communications Officer",
     institution: "North-West University",
@@ -56,7 +48,7 @@ export const team = [
     bio: "Dr Lance Bunt is a Senior Lecturer at North-West University, South Africa. He specialises in gameful learning, serious game design, and technology enhanced pedagogy. His work explores player experience, instructional design, and systems thinking to improve higher education practice, integrating AI and playful approaches to support meaningful learning.",
   },
   {
-    id: 8,
+    id: 7,
     name: "Nick Hall",
     role: "Industry Partnerships & Sponsorships",
     institution: "IESA / Africa Games Week",
@@ -64,7 +56,7 @@ export const team = [
     bio: "",
   },
   {
-    id: 9,
+    id: 8,
     name: " Prof. Rachel van der Merwe",
     role: "International Academic & Practice Partnerships",
     institution: "University of Groningen / University of the Free State",
@@ -72,7 +64,7 @@ export const team = [
     bio: "Rachel is an assistant professor of media studies at the Centre for Media and Journalism Studies at the University of Groningen and a Research Fellow at the Centre for Gender and Africa Studies at the University of the Free State. Her current research project, Gaming the Nation, is an qualitative study of the South African video game industry, which includes an investigation into the role games play in facilitating national and cultural identities.",
   },
   {
-    id: 10,
+    id: 9,
     name: "Kyle Smith",
     role: "Industry Advisory",
     institution: "Industry Advisory",
@@ -80,7 +72,7 @@ export const team = [
     bio: "Head of Game Design and Development at Emeris Vega School. My research and professional interests focus on game design, play, and game‑based learning that challenge convention. I am interested in the use of games as tools for meaningful impact, experimentation, and boundary‑pushing creativity across education, culture, and interactive media.",
   },
   {
-    id: 11,
+    id: 10,
     name: "Prof. Herman van der Merwe",
     role: "Academic Programmes Advisor",
     institution: "North-West University",
@@ -88,7 +80,7 @@ export const team = [
     bio: "",
   },
   {
-    id: 12,
+    id: 11,
     name: "Angus Davidson",
     role: "Technology, Infrastructure & Digital Production",
     institution: "University of the Witwatersrand",
