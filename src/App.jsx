@@ -10,6 +10,9 @@ import Events from './pages/Events'
 import Research from './pages/Research'
 import Membership from './pages/Membership'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
+import News from './pages/News'
+import NewsArticle from './pages/NewsArticle'
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false)
@@ -62,8 +65,11 @@ function AnimatedRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<Events />} />
         <Route path="/research" element={<Research />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/news/:slug" element={<NewsArticle />} />
         <Route path="/membership" element={<Membership />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   )

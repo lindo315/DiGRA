@@ -33,6 +33,7 @@ const NAV_ITEMS = [
       { label: 'Teaching Resources', hash: '#teaching' },
     ],
   },
+  { to: '/news', label: 'News', sections: [] },
   {
     to: '/membership', label: 'Membership',
     sections: [
@@ -47,7 +48,6 @@ const NAV_ITEMS = [
     to: '/contact', label: 'Contact',
     sections: [
       { label: 'Send a Message', hash: '#contact-form' },
-      { label: 'Stay Connected', hash: '#stay-connected' },
     ],
   },
 ]
@@ -70,7 +70,7 @@ function NavDropdown({ item, onClose }) {
             key={hash}
             to={`${item.to}${hash}`}
             onClick={onClose}
-            className="block px-5 py-2.5 font-rajdhani font-semibold text-xs uppercase tracking-[1.5px] text-white/60 hover:text-accent-gold hover:bg-accent-gold/5 transition-colors duration-150 border-b border-white/5 last:border-0"
+            className="block px-5 py-2.5 font-rajdhani font-semibold text-sm uppercase tracking-[1.5px] text-white/60 hover:text-accent-gold hover:bg-accent-gold/5 transition-colors duration-150 border-b border-white/5 last:border-0"
           >
             {label}
           </Link>
@@ -138,7 +138,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center shrink-0" onClick={closeDropdown}>
             <img
-              src="/digra-logo.png"
+              src="/digra-logo-nav.png"
+              width="170"
+              height="40"
               alt="DiGRA SA"
               className="h-10 w-auto"
               onError={(e) => {
@@ -196,14 +198,24 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden flex items-center justify-center w-10 h-10 text-white"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-          >
-            <FiMenu size={22} />
-          </button>
+          {/* Mobile: Join stays visible + labelled menu button (44px targets) */}
+          <div className="md:hidden flex items-center gap-2">
+            <Link
+              to="/membership#join-form"
+              className="inline-flex items-center min-h-11 bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-4 text-sm shadow-[2px_2px_0_rgba(0,0,0,0.3)]"
+            >
+              Join
+            </Link>
+            <button
+              className="flex items-center gap-1.5 min-h-11 min-w-11 px-2 text-white font-rajdhani font-semibold uppercase tracking-wider text-sm"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={open}
+            >
+              <FiMenu size={24} aria-hidden="true" />
+              <span>Menu</span>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -241,7 +253,7 @@ export default function Navbar() {
                 </span>
                 <button
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center w-8 h-8 text-white/70 hover:text-white"
+                  className="flex items-center justify-center w-11 h-11 text-white/80 hover:text-white"
                   aria-label="Close menu"
                 >
                   <FiX size={20} />
@@ -274,7 +286,7 @@ export default function Navbar() {
                             key={hash}
                             to={`${item.to}${hash}`}
                             onClick={() => setOpen(false)}
-                            className="block py-1.5 font-rajdhani text-xs uppercase tracking-wider text-white/40 hover:text-accent-gold/80 transition-colors"
+                            className="block py-1.5 font-rajdhani text-sm uppercase tracking-wider text-white/70 hover:text-accent-gold/80 transition-colors"
                           >
                             {label}
                           </Link>

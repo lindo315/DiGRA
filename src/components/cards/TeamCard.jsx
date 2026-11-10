@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ink, onDark } from "../../lib/theme";
 
 const ACCENT_COLOURS = [
   "#F5A623",
@@ -48,7 +49,7 @@ function TeamCardLeader({ member, onClick }) {
       {/* Leadership badge */}
       {/* <div className="absolute top-3 right-3 z-10">
         <span
-          className="font-rajdhani font-bold text-[10px] uppercase tracking-[2px] px-2 py-0.5"
+          className="font-rajdhani font-bold text-sm uppercase tracking-[2px] px-2 py-0.5"
           style={{ background: `${colour}25`, color: colour, border: `1px solid ${colour}50` }}
         >
           ◆ Leadership
@@ -64,6 +65,8 @@ function TeamCardLeader({ member, onClick }) {
           <img
             src={member.photo}
             alt={member.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-[50%_20%]"
           />
         ) : (
@@ -82,29 +85,29 @@ function TeamCardLeader({ member, onClick }) {
       {/* Info */}
       <div className="p-5 flex flex-col flex-1">
         <p
-          className="font-rajdhani font-bold text-xs uppercase tracking-[2px] mb-1"
-          style={{ color: colour }}
+          className="font-rajdhani font-bold text-sm uppercase tracking-[2px] mb-1"
+          style={{ color: onDark(colour) }}
         >
           {member.role}
         </p>
         <h3 className="font-rajdhani font-bold text-white text-xl leading-tight mb-1">
           {member.name}
         </h3>
-        <p className="font-dm-sans italic text-white/40 text-sm mb-3 border-b border-white/10 pb-3">
+        <p className="font-dm-sans italic text-white/70 text-base mb-3 border-b border-white/10 pb-3">
           {member.institution}
         </p>
         {member.bio ? (
-          <p className="font-dm-sans text-white/60 text-sm leading-relaxed line-clamp-3 mb-4">
+          <p className="font-dm-sans text-white/60 text-base leading-relaxed line-clamp-3 mb-4">
             {member.bio}
           </p>
         ) : (
-          <p className="font-dm-sans text-white/25 text-sm italic mb-4">
+          <p className="font-dm-sans text-white/70 text-base italic mb-4">
             Bio coming soon.
           </p>
         )}
         <p
-          className="font-rajdhani font-bold text-xs uppercase tracking-wider mt-auto"
-          style={{ color: colour }}
+          className="font-rajdhani font-bold text-sm uppercase tracking-wider mt-auto"
+          style={{ color: onDark(colour) }}
         >
           View Profile →
         </p>
@@ -144,6 +147,8 @@ export default function TeamCard({ member, onClick, variant = "default" }) {
           <img
             src={member.photo}
             alt={member.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-[50%_20%]"
           />
         ) : (
@@ -168,29 +173,29 @@ export default function TeamCard({ member, onClick, variant = "default" }) {
       {/* Info */}
       <div className="p-5 flex flex-col flex-1">
         <p
-          className="font-rajdhani font-bold text-xs uppercase tracking-[2px] mb-1"
-          style={{ color: colour }}
+          className="font-rajdhani font-bold text-sm uppercase tracking-[2px] mb-1"
+          style={{ color: ink(colour) }}
         >
           {member.role}
         </p>
         <h3 className="font-rajdhani font-bold text-text-primary text-xl leading-tight mb-1">
           {member.name}
         </h3>
-        <p className="font-dm-sans italic text-text-secondary text-sm mb-3 border-b border-border-light pb-3">
+        <p className="font-dm-sans italic text-text-secondary text-base mb-3 border-b border-border-light pb-3">
           {member.institution}
         </p>
         {member.bio ? (
-          <p className="font-dm-sans text-text-secondary text-sm leading-relaxed line-clamp-3 mb-4">
+          <p className="font-dm-sans text-text-secondary text-base leading-relaxed line-clamp-3 mb-4">
             {member.bio}
           </p>
         ) : (
-          <p className="font-dm-sans text-text-secondary/40 text-sm italic mb-4">
+          <p className="font-dm-sans text-text-secondary text-base italic mb-4">
             Bio coming soon.
           </p>
         )}
         <p
-          className="font-rajdhani font-bold text-xs uppercase tracking-wider mt-auto"
-          style={{ color: colour }}
+          className="font-rajdhani font-bold text-sm uppercase tracking-wider mt-auto"
+          style={{ color: ink(colour) }}
         >
           View Profile →
         </p>

@@ -10,6 +10,19 @@ html {
 body {
   background-color: #1C0A3A;
   overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid #F5A623;
+  outline-offset: 2px;
+}
+
+/* Lighter pattern density on small screens */
+@media (max-width: 639px) {
+  .dark-textured, .pixel-grid-light, .pixel-grid-sparse, .pixel-grid-dark { background-size: 32px 32px; }
 }
 
 @theme {
@@ -28,6 +41,14 @@ body {
   --color-accent-orange: #FF6B35;
   --color-accent-violet: #B45FFF;
 
+  /* ── Accessible text shades of the accents (for light backgrounds) ── */
+  --color-ink-gold: #8D5A06;
+  --color-ink-red: #BC1632;
+  --color-ink-cyan: #006F77;
+  --color-ink-green: #0E7633;
+  --color-ink-orange: #B73100;
+  --color-ink-violet: #7B2CC7;
+
   /* ── Text ── */
   --color-text-primary: #1C0A3A;
   --color-text-secondary: #5A4D7A;
@@ -36,6 +57,11 @@ body {
 
   /* ── Border ── */
   --color-border-light: #DDD5F5;
+
+  /* ── Type scale line heights (body 1.6–1.75, headings tighter) ── */
+  --text-base--line-height: 1.7;
+  --text-lg--line-height: 1.7;
+  --text-sm--line-height: 1.6;
 
   /* ── Fonts ── */
   --font-orbitron: 'Orbitron', monospace;
@@ -60,7 +86,7 @@ body {
 /* ── Dark textured background pattern ── */
 .dark-textured {
   background-color: #1C0A3A;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect x='11' y='5' width='2' height='2' fill='white' opacity='0.06'/%3E%3Crect x='5' y='11' width='2' height='2' fill='white' opacity='0.06'/%3E%3Crect x='17' y='11' width='2' height='2' fill='white' opacity='0.06'/%3E%3Crect x='11' y='17' width='2' height='2' fill='white' opacity='0.06'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect x='11' y='5' width='2' height='2' fill='white' opacity='0.09'/%3E%3Crect x='5' y='11' width='2' height='2' fill='white' opacity='0.09'/%3E%3Crect x='17' y='11' width='2' height='2' fill='white' opacity='0.09'/%3E%3Crect x='11' y='17' width='2' height='2' fill='white' opacity='0.09'/%3E%3C/svg%3E");
   background-size: 24px 24px;
 }
 
@@ -68,21 +94,21 @@ body {
 /* Dense grid: used on Research/primary feature sections */
 .pixel-grid-light {
   background-color: #F5F0FF;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='0' y='0' width='1' height='1' fill='%231C0A3A' opacity='0.06'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='0' y='0' width='2' height='2' fill='%231C0A3A' opacity='0.07'/%3E%3C/svg%3E");
   background-size: 16px 16px;
 }
 
 /* Sparse diagonal: used on alternating surface sections */
 .pixel-grid-sparse {
   background-color: #FFFFFF;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect x='0' y='0' width='2' height='2' fill='%231C0A3A' opacity='0.04'/%3E%3Crect x='16' y='16' width='2' height='2' fill='%231C0A3A' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect x='0' y='0' width='2' height='2' fill='%231C0A3A' opacity='0.06'/%3E%3Crect x='16' y='16' width='2' height='2' fill='%231C0A3A' opacity='0.06'/%3E%3C/svg%3E");
   background-size: 32px 32px;
 }
 
 /* Mid-purple with dense pixel overlay — used on dark featured sections */
 .pixel-grid-dark {
   background-color: #2E1065;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='0' y='0' width='1' height='1' fill='white' opacity='0.07'/%3E%3Crect x='10' y='10' width='1' height='1' fill='white' opacity='0.05'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='0' y='0' width='1' height='1' fill='white' opacity='0.10'/%3E%3Crect x='10' y='10' width='1' height='1' fill='white' opacity='0.07'/%3E%3C/svg%3E");
   background-size: 20px 20px;
 }
 
@@ -125,4 +151,11 @@ body {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+/* Pixel grid laid over photos so imagery sits inside the pixel identity */
+.pixel-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect x='0' y='0' width='1' height='1' fill='%231C0A3A' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 6px 6px;
+  pointer-events: none;
 }

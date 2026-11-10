@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiMapPin, FiBriefcase } from 'react-icons/fi'
+import { ink } from '../lib/theme'
 
 const ACCENT_COLOURS = ['#F5A623', '#00CFDD', '#E94560', '#3DE87A', '#B45FFF', '#FF6B35']
 
@@ -96,6 +97,7 @@ export default function TeamMemberModal({ member, onClose }) {
                       <img
                         src={member.photo}
                         alt={member.name}
+                        decoding="async"
                         className="w-full h-full object-cover object-[50%_20%]"
                       />
                     ) : (
@@ -114,8 +116,8 @@ export default function TeamMemberModal({ member, onClose }) {
                 {/* Info column */}
                 <div className="flex-1 min-w-0">
                   <p
-                    className="font-rajdhani font-bold text-xs uppercase tracking-[2px] mb-1"
-                    style={{ color: colour }}
+                    className="font-rajdhani font-bold text-sm uppercase tracking-[2px] mb-1"
+                    style={{ color: ink(colour) }}
                   >
                     {member.role}
                   </p>
@@ -124,12 +126,12 @@ export default function TeamMemberModal({ member, onClose }) {
                   </h2>
 
                   <div className="flex flex-col gap-2 mb-5 pb-5 border-b border-border-light">
-                    <div className="flex items-center gap-2 font-dm-sans text-text-secondary text-sm">
+                    <div className="flex items-center gap-2 font-dm-sans text-text-secondary text-base">
                       <FiMapPin size={14} style={{ color: colour, flexShrink: 0 }} />
                       {member.institution}
                     </div>
                     {member.department && (
-                      <div className="flex items-center gap-2 font-dm-sans text-text-secondary text-sm">
+                      <div className="flex items-center gap-2 font-dm-sans text-text-secondary text-base">
                         <FiBriefcase size={14} style={{ color: colour, flexShrink: 0 }} />
                         {member.department}
                       </div>
@@ -138,32 +140,32 @@ export default function TeamMemberModal({ member, onClose }) {
 
                   {member.bio ? (
                     <div>
-                      <p className="font-rajdhani font-semibold text-xs uppercase tracking-[2px] text-text-secondary mb-2">
+                      <p className="font-rajdhani font-semibold text-sm uppercase tracking-[2px] text-text-secondary mb-2">
                         About
                       </p>
-                      <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                      <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                         {member.bio}
                       </p>
                     </div>
                   ) : (
-                    <p className="font-dm-sans text-text-secondary/50 text-sm italic">
+                    <p className="font-dm-sans text-text-secondary text-base italic">
                       Full bio coming soon.
                     </p>
                   )}
 
                   {member.researchInterests && member.researchInterests.length > 0 && (
                     <div className="mt-5">
-                      <p className="font-rajdhani font-semibold text-xs uppercase tracking-[2px] text-text-secondary mb-3">
+                      <p className="font-rajdhani font-semibold text-sm uppercase tracking-[2px] text-text-secondary mb-3">
                         Research Interests
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {member.researchInterests.map((interest) => (
                           <span
                             key={interest}
-                            className="font-dm-sans text-xs px-3 py-1"
+                            className="font-dm-sans text-base px-3 py-1"
                             style={{
                               background: `${colour}15`,
-                              color: colour,
+                              color: ink(colour),
                               border: `1px solid ${colour}30`,
                             }}
                           >
