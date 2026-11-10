@@ -41,6 +41,14 @@ export const team = [
   },
   {
     id: 6,
+    name: "Dr. Anusia Govender-Elshove",
+    role: "Interim Secretary",
+    institution: "University of the Witwatersrand",
+    photo: "/images/anusia.jpeg",
+    bio: "Dr. Anusia Govender-Elshove is the daughter of her pioneering Indian Classical dancer mother and aunt (South Africa, 1961). With interests in Interweaving Indo-Afro -Asian culture, her research explores decolonial methodologies through family archives.  She is also a game creator exploring Indian indenture, migration and South African diasporic histories and issues through interactive, Real-world games used in an educational, narrative as well as curatorial manner.",
+  },
+  {
+    id: 7,
     name: "Dr. Lance Bunt",
     role: "Communications Officer",
     institution: "North-West University",
@@ -48,7 +56,7 @@ export const team = [
     bio: "Dr Lance Bunt is a Senior Lecturer at North-West University, South Africa. He specialises in gameful learning, serious game design, and technology enhanced pedagogy. His work explores player experience, instructional design, and systems thinking to improve higher education practice, integrating AI and playful approaches to support meaningful learning.",
   },
   {
-    id: 7,
+    id: 8,
     name: "Nick Hall",
     role: "Industry Partnerships & Sponsorships",
     institution: "IESA / Africa Games Week",
@@ -56,7 +64,7 @@ export const team = [
     bio: "",
   },
   {
-    id: 8,
+    id: 9,
     name: " Prof. Rachel van der Merwe",
     role: "International Academic & Practice Partnerships",
     institution: "University of Groningen / University of the Free State",
@@ -64,7 +72,7 @@ export const team = [
     bio: "Rachel is an assistant professor of media studies at the Centre for Media and Journalism Studies at the University of Groningen and a Research Fellow at the Centre for Gender and Africa Studies at the University of the Free State. Her current research project, Gaming the Nation, is an qualitative study of the South African video game industry, which includes an investigation into the role games play in facilitating national and cultural identities.",
   },
   {
-    id: 9,
+    id: 10,
     name: "Kyle Smith",
     role: "Industry Advisory",
     institution: "Industry Advisory",
@@ -72,7 +80,7 @@ export const team = [
     bio: "Head of Game Design and Development at Emeris Vega School. My research and professional interests focus on game design, play, and game‑based learning that challenge convention. I am interested in the use of games as tools for meaningful impact, experimentation, and boundary‑pushing creativity across education, culture, and interactive media.",
   },
   {
-    id: 10,
+    id: 11,
     name: "Prof. Herman van der Merwe",
     role: "Academic Programmes Advisor",
     institution: "North-West University",
@@ -80,7 +88,7 @@ export const team = [
     bio: "",
   },
   {
-    id: 11,
+    id: 12,
     name: "Angus Davidson",
     role: "Technology, Infrastructure & Digital Production",
     institution: "University of the Witwatersrand",
