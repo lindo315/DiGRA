@@ -57,6 +57,14 @@ export const team = [
   },
   {
     id: 8,
+    name: " Prof. Rachel van der Merwe",
+    role: "International Academic & Practice Partnerships",
+    institution: "University of Groningen / University of the Free State",
+    photo: "/images/rachel.jpg",
+    bio: "Rachel is an assistant professor of media studies at the Centre for Media and Journalism Studies at the University of Groningen and a Research Fellow at the Centre for Gender and Africa Studies at the University of the Free State. Her current research project, Gaming the Nation, is an qualitative study of the South African video game industry, which includes an investigation into the role games play in facilitating national and cultural identities.",
+  },
+  {
+    id: 9,
     name: "Kyle Smith",
     role: "Industry Advisory",
     institution: "Industry Advisory",
@@ -64,7 +72,7 @@ export const team = [
     bio: "Head of Game Design and Development at Emeris Vega School. My research and professional interests focus on game design, play, and game‑based learning that challenge convention. I am interested in the use of games as tools for meaningful impact, experimentation, and boundary‑pushing creativity across education, culture, and interactive media.",
   },
   {
-    id: 9,
+    id: 10,
     name: "Prof. Herman van der Merwe",
     role: "Academic Programmes Advisor",
     institution: "North-West University",
@@ -72,7 +80,7 @@ export const team = [
     bio: "",
   },
   {
-    id: 10,
+    id: 11,
     name: "Angus Davidson",
     role: "Technology, Infrastructure & Digital Production",
     institution: "University of the Witwatersrand",
