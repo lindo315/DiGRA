@@ -1,18 +1,32 @@
 export const events = [
   {
     id: 1,
-    title: "Official Launch of DiGRA South Africa",
-    type: "Launch Event",
-    date: "18:00 SAST, 2 June 2026",
-    day: "",
-    month: "",
-    location: "Click here to Sign up for the launch",
-    locationUrl:
-      "https://redcap.core.wits.ac.za/redcap/surveys/?s=TW7KFWPY48PCAWYY",
+    title: "DiGRA South Africa at Africa Games Week and Playtopia 2026",
+    type: "Game Week",
+    date: "TBA",
+    day: "TBA",
+    month: "TBA",
+    location: "TBA",
+    // locationUrl:
+    //   "https://redcap.core.wits.ac.za/redcap/surveys/?s=TW7KFWPY48PCAWYY",
     description:
-      "You're Invited to the Launch of DiGRA South Africa. We're excited to announce the official launch of the Digital Games Research Association South Africa (DiGRA SA)—a space where play meets scholarship to explore the transformative role of games in society. Under the theme 'Why Games Matter', this launch brings together researchers, educators, developers, students, and industry professionals to engage in meaningful dialogue on games as cultural, educational, and innovative practices in South Africa and beyond. In true game spirit, this is a collaborative build—and we would love for you to be part of this journey from the very beginning.",
+      "As the South African chapter of the Digital Games Research Association, we are looking forward to connecting with the broader African games community, showcasing emerging research, and engaging in discussions about how games can inform learning, storytelling, social impact, and industry growth. If you're attending Africa Games Week, come and say hello. We'd love to meet fellow game enthusiasts, researchers, developers, and anyone curious about the power of play.",
     status: "upcoming",
   },
+  // {
+  //   id: 1,
+  //   title: "Official Launch of DiGRA South Africa",
+  //   type: "Launch Event",
+  //   date: "18:00 SAST, 2 June 2026",
+  //   day: "",
+  //   month: "",
+  //   location: "Click here to Sign up for the launch",
+  //   locationUrl:
+  //     "https://redcap.core.wits.ac.za/redcap/surveys/?s=TW7KFWPY48PCAWYY",
+  //   description:
+  //     "You're Invited to the Launch of DiGRA South Africa. We're excited to announce the official launch of the Digital Games Research Association South Africa (DiGRA SA)—a space where play meets scholarship to explore the transformative role of games in society. Under the theme 'Why Games Matter', this launch brings together researchers, educators, developers, students, and industry professionals to engage in meaningful dialogue on games as cultural, educational, and innovative practices in South Africa and beyond. In true game spirit, this is a collaborative build—and we would love for you to be part of this journey from the very beginning.",
+  //   status: "upcoming",
+  // },
   {
     id: 2,
     title: "DiGRA SA Founding Workshop",
