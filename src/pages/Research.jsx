@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import PixelDivider from '../components/PixelDivider'
 import SectionWrapper from '../components/SectionWrapper'
+import { ink } from '../lib/theme'
 import ResearchCard from '../components/cards/ResearchCard'
 import { researchAreas, journals } from '../data/research'
 
@@ -51,15 +52,15 @@ export default function Research() {
       />
 
       {/* GAME STUDIES IN SA */}
-      <section id="game-studies" className="bg-surface py-16 md:py-24">
+      <section id="game-studies" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-10 items-start">
             {/* Left: editorial text */}
             <SectionWrapper className="lg:col-span-3">
-              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-cyan text-sm uppercase tracking-[3px] mb-3">
                 The Field
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-6">
                 Game Studies in South Africa
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -85,7 +86,7 @@ export default function Research() {
                 <p className="font-rajdhani font-semibold text-text-primary text-sm uppercase tracking-wider mb-2">
                   Did You Know?
                 </p>
-                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                   South Africa has one of the most active independent game development scenes on
                   the continent, with dedicated studios in Cape Town, Johannesburg, and Pretoria.
                 </p>
@@ -94,7 +95,7 @@ export default function Research() {
                 <p className="font-rajdhani font-semibold text-text-primary text-sm uppercase tracking-wider mb-2">
                   Our Approach
                 </p>
-                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                   We apply African philosophy, ubuntu principles, and decolonial methodology
                   to game research — not as a critique of existing work, but as an expansion of it.
                 </p>
@@ -107,14 +108,14 @@ export default function Research() {
       <PixelDivider variant="cool" />
 
       {/* RESEARCH AREAS */}
-      <section id="research-areas" className="pixel-grid-light py-16 md:py-24">
+      <section id="research-areas" className="pixel-grid-light py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-violet text-sm uppercase tracking-[3px] mb-2">
                 What We Study
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Research Areas
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet" />
@@ -138,14 +139,14 @@ export default function Research() {
       </section>
 
       {/* DiGRA DIGITAL LIBRARY */}
-      <section id="library" className="bg-surface py-16 md:py-24">
+      <section id="library" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
-              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-gold text-sm uppercase tracking-[3px] mb-3">
                 Open Access
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-4">
                 DiGRA Digital Library
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -158,7 +159,7 @@ export default function Research() {
                 through DiGRA International conferences and publications.
               </p>
               <a
-                href="https://digra.co.za"
+                href="https://dl.digra.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-8 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
@@ -183,7 +184,7 @@ export default function Research() {
                     { label: 'Format', value: 'PDF / HTML' },
                   ].map(({ label, value }) => (
                     <div key={label}>
-                      <p className="font-rajdhani text-xs text-white/40 uppercase tracking-wider">{label}</p>
+                      <p className="font-rajdhani text-sm text-white/70 uppercase tracking-wider">{label}</p>
                       <p className="font-dm-sans text-white font-medium">{value}</p>
                     </div>
                   ))}
@@ -205,14 +206,14 @@ export default function Research() {
       <PixelDivider variant="warm" />
 
       {/* JOURNALS */}
-      <section id="journals" className="bg-bg-tint py-16 md:py-24">
+      <section id="journals" className="bg-bg-tint py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-red text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-red text-sm uppercase tracking-[3px] mb-2">
                 Publish
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Journals & Publications
               </h2>
               <div className="w-16 h-[2px] bg-accent-red" />
@@ -241,15 +242,15 @@ export default function Research() {
                   <h3 className="font-rajdhani font-bold text-text-primary text-base leading-tight mb-3 flex-1">
                     {journal.name}
                   </h3>
-                  <p className="font-dm-sans text-text-secondary text-xs leading-relaxed mb-4">
+                  <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
                     {journal.description}
                   </p>
                   <a
                     href={journal.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-rajdhani font-semibold text-xs uppercase tracking-wider transition-colors"
-                    style={{ color: colour }}
+                    className="font-rajdhani font-semibold text-sm uppercase tracking-wider transition-colors"
+                    style={{ color: ink(colour) }}
                   >
                     Visit →
                   </a>
@@ -261,14 +262,14 @@ export default function Research() {
       </section>
 
       {/* TEACHING RESOURCES */}
-      <section id="teaching" className="bg-surface py-16 md:py-24">
+      <section id="teaching" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-green text-sm uppercase tracking-[3px] mb-2">
                 Teach
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Teaching Resources
               </h2>
               <div className="w-16 h-[2px] bg-accent-green" />
@@ -297,10 +298,10 @@ export default function Research() {
                 <h3 className="font-rajdhani font-semibold text-text-primary text-xl mb-2">
                   {title}
                 </h3>
-                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                   {description}
                 </p>
-                <p className="font-rajdhani text-xs uppercase tracking-wider text-text-secondary/60 mt-4">
+                <p className="font-rajdhani text-sm uppercase tracking-wider text-text-secondary mt-4">
                   Coming Soon
                 </p>
               </motion.div>
@@ -333,7 +334,7 @@ export default function Research() {
               ].map(({ colour, heading, body }) => (
                 <div key={heading} className="border-l-2 pl-5" style={{ borderColor: colour }}>
                   <h3 className="font-rajdhani font-bold text-white text-lg mb-2">{heading}</h3>
-                  <p className="font-dm-sans text-white/50 text-sm leading-relaxed">{body}</p>
+                  <p className="font-dm-sans text-white/70 text-base leading-relaxed">{body}</p>
                 </div>
               ))}
             </div>
@@ -350,7 +351,7 @@ export default function Research() {
                 <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
                   Contribute to the field.
                 </h2>
-                <p className="font-dm-sans text-white/50 text-base">
+                <p className="font-dm-sans text-white/70 text-base">
                   Join DiGRA SA to access resources and publish through our network.
                 </p>
               </div>

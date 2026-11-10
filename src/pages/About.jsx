@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import PixelDivider from '../components/PixelDivider'
 import SectionWrapper from '../components/SectionWrapper'
+import { ink } from '../lib/theme'
 import TeamCard from '../components/cards/TeamCard'
 import TeamMemberModal from '../components/TeamMemberModal'
 import { team } from '../data/team'
@@ -73,15 +74,15 @@ export default function About() {
       />
 
       {/* WHO WE ARE */}
-      <section id="who-we-are" className="bg-surface py-16 md:py-24">
+      <section id="who-we-are" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-10 items-start">
             {/* Left: body text */}
             <SectionWrapper className="lg:col-span-3">
-              <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-violet text-sm uppercase tracking-[3px] mb-3">
                 Who We Are
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-6">
                 The South African Chapter
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -117,10 +118,10 @@ export default function About() {
                     { label: 'Focus', value: 'Game Studies & Culture' },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex flex-col gap-0.5">
-                      <span className="font-rajdhani font-light text-xs uppercase tracking-wider text-accent-gold/60">
+                      <span className="font-rajdhani font-light text-sm uppercase tracking-wider text-accent-gold">
                         {label}
                       </span>
-                      <span className="font-dm-sans font-medium text-white text-sm">{value}</span>
+                      <span className="font-dm-sans font-medium text-white text-base">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -139,11 +140,11 @@ export default function About() {
       <PixelDivider variant="cool" />
 
       {/* MISSION & GOALS */}
-      <section id="mission" className="bg-bg-tint py-16 md:py-24">
+      <section id="mission" className="bg-bg-tint py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-12">
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Mission & Goals
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet mx-auto" />
@@ -162,22 +163,22 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
           >
-            {GOALS.map(({ num, colour, title, desc }, i) => (
+            {GOALS.map(({ num, colour, title, desc }) => (
               <motion.div
                 key={num}
                 className="flex gap-4 sm:gap-5 items-start p-5 sm:p-8 border border-border-light"
                 variants={fadeUp}
               >
                 <span
-                  className="font-rajdhani font-bold text-3xl sm:text-4xl md:text-5xl leading-none flex-shrink-0 w-12 sm:w-16"
-                  style={{ color: colour }}
+                  className="font-rajdhani font-bold text-[32px] sm:text-[40px] md:text-5xl leading-none flex-shrink-0 w-12 sm:w-16"
+                  style={{ color: ink(colour) }}
                 >
                   {num}
                 </span>
                 <div className="pt-1">
                   <div className="w-6 h-[2px] mb-3" style={{ background: colour }} />
                   <h3 className="font-rajdhani font-semibold text-text-primary text-xl mb-2">{title}</h3>
-                  <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">{desc}</p>
+                  <p className="font-dm-sans text-text-secondary text-base leading-relaxed">{desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -186,14 +187,14 @@ export default function About() {
       </section>
 
       {/* OUR AIMS */}
-      <section id="aims" className="pixel-grid-sparse py-16 md:py-24">
+      <section id="aims" className="pixel-grid-sparse py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
-              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-green text-sm uppercase tracking-[3px] mb-3">
                 Our Aims
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-4">
                 What We're Here to Do
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
@@ -231,18 +232,18 @@ export default function About() {
       <PixelDivider variant="warm" />
 
       {/* FOUNDING COMMITTEE */}
-      <section id="committee" className="pixel-grid-light py-16 md:py-24">
+      <section id="committee" className="pixel-grid-light py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-orange text-sm uppercase tracking-[3px] mb-2">
                 The People
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Founding Committee
               </h2>
               <div className="w-16 h-[2px] bg-accent-orange mb-3" />
-              <p className="font-dm-sans text-text-secondary text-sm">
+              <p className="font-dm-sans text-text-secondary text-base">
                 All members formally accepted their roles at the 3 February 2026 meeting.
               </p>
             </div>
@@ -274,14 +275,14 @@ export default function About() {
       </section>
 
       {/* DiGRA INTERNATIONAL CONNECTION */}
-      <section id="digra-international" className="pixel-grid-sparse py-16 md:py-24">
+      <section id="digra-international" className="pixel-grid-sparse py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
-              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-cyan text-sm uppercase tracking-[3px] mb-3">
                 Our Parent Organisation
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-4">
                 DiGRA International
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -303,7 +304,7 @@ export default function About() {
                 <p className="font-orbitron text-white text-2xl font-bold mb-4">
                   DiGRA International
                 </p>
-                <p className="font-dm-sans text-white/50 text-sm mb-6">
+                <p className="font-dm-sans text-white/70 text-base mb-6">
                   Digital Games Research Association · Est. 2003
                 </p>
                 <a
@@ -343,7 +344,7 @@ export default function About() {
                 <div key={label} className="bg-deep-purple px-4 py-6 sm:px-6 sm:py-8 text-center">
                   <div className="w-8 h-[2px] mx-auto mb-4" style={{ background: colour }} />
                   <p className="font-rajdhani font-bold text-white text-base mb-1">{label}</p>
-                  <p className="font-dm-sans text-white/40 text-xs">{value}</p>
+                  <p className="font-dm-sans text-white/70 text-base">{value}</p>
                 </div>
               ))}
             </div>
@@ -360,7 +361,7 @@ export default function About() {
                 <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
                   Be part of building something new.
                 </h2>
-                <p className="font-dm-sans text-white/50 text-base">
+                <p className="font-dm-sans text-white/70 text-base">
                   The chapter is in its founding phase. Now is the time.
                 </p>
               </div>

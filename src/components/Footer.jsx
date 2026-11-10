@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { FiMail, FiMapPin, FiTwitter, FiLinkedin, FiFacebook } from 'react-icons/fi'
+import { FiMail, FiMapPin, FiArrowRight } from 'react-icons/fi'
+import SocialIcon from './SocialIcon'
+import { CONTACT_EMAIL, SOCIAL_LINKS } from '../data/site'
 import PixelDivider from './PixelDivider'
 
 export default function Footer() {
@@ -14,33 +16,39 @@ export default function Footer() {
             <div className="font-orbitron font-bold text-accent-gold tracking-[4px] text-base mb-1">
               DiGRA SA
             </div>
-            <div className="font-rajdhani font-light text-white/50 text-xs tracking-[2px] uppercase mb-4">
+            <div className="font-rajdhani font-light text-white/70 text-sm tracking-[2px] uppercase mb-4">
               South Africa Chapter
             </div>
-            <p className="font-dm-sans text-white/50 text-sm leading-relaxed mb-4">
+            <p className="font-dm-sans text-white/70 text-base leading-relaxed mb-4">
               The official South African chapter of the Digital Games Research Association.
             </p>
             <a
               href="https://digra.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-dm-sans text-accent-gold text-sm hover:underline"
+              className="font-dm-sans text-accent-gold text-base hover:underline"
             >
               DiGRA International ↗
             </a>
+            <Link
+              to="/membership#join-form"
+              className="mt-6 inline-flex items-center gap-2 min-h-11 bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-5 text-sm shadow-[3px_3px_0_rgba(0,0,0,0.3)] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_rgba(0,0,0,0.35)] transition-all"
+            >
+              Join the Chapter <FiArrowRight aria-hidden="true" />
+            </Link>
           </div>
 
           {/* Col 2: Quick Links */}
           <div>
-            <h3 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-4">
+            <h2 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-4">
               Quick Links
-            </h3>
+            </h2>
             <ul className="space-y-2">
-              {['Home', 'About', 'Events', 'Research', 'Membership', 'Contact'].map((label) => (
+              {['Home', 'About', 'Events', 'Research', 'News', 'Membership', 'Contact'].map((label) => (
                 <li key={label}>
                   <Link
                     to={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
-                    className="font-dm-sans text-white/60 text-sm hover:text-accent-gold transition-colors"
+                    className="font-dm-sans text-white/60 text-base hover:text-accent-gold transition-colors"
                   >
                     {label}
                   </Link>
@@ -51,9 +59,9 @@ export default function Footer() {
 
           {/* Col 3: Resources */}
           <div>
-            <h3 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-4">
+            <h2 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-4">
               Resources
-            </h3>
+            </h2>
             <ul className="space-y-2">
               {[
                 { label: 'DiGRA Digital Library', href: 'https://dl.digra.org' },
@@ -68,14 +76,14 @@ export default function Footer() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-dm-sans text-white/60 text-sm hover:text-accent-gold transition-colors"
+                      className="font-dm-sans text-white/60 text-base hover:text-accent-gold transition-colors"
                     >
                       {label}
                     </a>
                   ) : (
                     <Link
                       to={href}
-                      className="font-dm-sans text-white/60 text-sm hover:text-accent-gold transition-colors"
+                      className="font-dm-sans text-white/60 text-base hover:text-accent-gold transition-colors"
                     >
                       {label}
                     </Link>
@@ -87,41 +95,46 @@ export default function Footer() {
 
           {/* Col 4: Contact */}
           <div>
-            <h3 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-4">
+            <h2 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-[2px] text-sm mb-4">
               Get in Touch
-            </h3>
+            </h2>
             <div className="space-y-3 mb-6">
               <a
-                href="mailto:info@digrasa.org"
-                className="flex items-center gap-2 font-dm-sans text-white/60 text-sm hover:text-accent-gold transition-colors"
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="flex items-center gap-2 font-dm-sans text-white/60 text-base hover:text-accent-gold transition-colors"
               >
                 <FiMail size={14} />
-                info@digrasa.org
+                {CONTACT_EMAIL}
               </a>
-              <div className="flex items-center gap-2 font-dm-sans text-white/60 text-sm">
+              <div className="flex items-center gap-2 font-dm-sans text-white/60 text-base">
                 <FiMapPin size={14} />
                 South Africa
               </div>
             </div>
-            <div className="flex gap-4">
-              {[FiTwitter, FiLinkedin, FiFacebook].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="text-white/50 hover:text-accent-gold hover:scale-110 transition-all duration-200"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
+            {SOCIAL_LINKS.length > 0 && (
+              <div className="flex gap-2">
+                {SOCIAL_LINKS.map(({ network, name, url }) => (
+                  <a
+                    key={network}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`DiGRA SA on ${name}`}
+                    className="flex items-center justify-center w-11 h-11 text-white/80 hover:text-accent-gold hover:scale-110 transition-all duration-200"
+                  >
+                    <SocialIcon network={network} size={20} />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       <div className="border-t border-white/10">
         <div className="container mx-auto py-4">
-          <p className="font-dm-sans text-white/40 text-sm">
-            © 2025 DiGRA South Africa. All rights reserved.
+          <p className="font-dm-sans text-white/70 text-base">
+            © {new Date().getFullYear()} DiGRA South Africa. All rights reserved.
           </p>
         </div>
       </div>

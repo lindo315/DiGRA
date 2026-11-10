@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { ink } from '../../lib/theme'
 import {
   FaGlobeAfrica,
   FaBookOpen,
@@ -39,7 +40,7 @@ export default function ResearchCard({ area }) {
     >
       <Icon size={28} style={{ color: colour }} className="mb-4" />
       <h3 className="font-rajdhani font-semibold text-text-primary text-xl mb-2">{area.title}</h3>
-      <p className="font-dm-sans text-text-secondary text-sm leading-relaxed flex-1">
+      <p className="font-dm-sans text-text-secondary text-base leading-relaxed flex-1">
         {area.description}
       </p>
       {area.tags && area.tags.length > 0 && (
@@ -47,8 +48,8 @@ export default function ResearchCard({ area }) {
           {area.tags.map((tag) => (
             <span
               key={tag}
-              className="font-rajdhani font-semibold text-[10px] uppercase tracking-wider px-2 py-0.5"
-              style={{ color: colour, background: `${colour}15`, border: `1px solid ${colour}30` }}
+              className="font-rajdhani font-semibold text-sm uppercase tracking-wider px-2 py-0.5"
+              style={{ color: ink(colour), background: `${colour}15`, border: `1px solid ${colour}30` }}
             >
               {tag}
             </span>

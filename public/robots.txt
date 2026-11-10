@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digrasa.co.za/sitemap.xml

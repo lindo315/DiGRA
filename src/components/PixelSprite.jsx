@@ -127,7 +127,6 @@ export default function PixelSprite({ name, colour = '#F5A623', size = 24, class
 
   const rows = grid.length
   const cols = grid[0].length
-  const cellSize = size / 8  // scale to fit in `size` × `size` box
 
   return (
     <svg

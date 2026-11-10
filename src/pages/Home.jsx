@@ -6,8 +6,9 @@ import SectionWrapper from '../components/SectionWrapper'
 import NewsCard from '../components/cards/NewsCard'
 import EventCard from '../components/cards/EventCard'
 import { news } from '../data/news'
-import { events } from '../data/events'
+import { upcomingEvents } from '../data/events'
 import { team } from '../data/team'
+import { ACCENTS, ink } from '../lib/theme'
 import { FiArrowRight } from 'react-icons/fi'
 
 const PERSON_COLOURS = ['#F5A623', '#00CFDD', '#E94560', '#3DE87A', '#B45FFF', '#FF6B35']
@@ -46,11 +47,47 @@ const MISSION_ITEMS = [
 const HERO_BLOCKS = [
   { sprite: 'book',    label: 'Research', tag: 'Scholarship',     bg: '#F5A623', fg: '#1C0A3A' },
   { sprite: 'gamepad', label: 'Play',     tag: 'African Games',   bg: '#00CFDD', fg: '#1C0A3A' },
-  { sprite: 'africa',  label: 'Africa',   tag: 'Pan-Continental', bg: '#E94560', fg: '#FFFFFF' },
+  { sprite: 'africa',  label: 'Africa',   tag: 'Pan-Continental', bg: '#C2183A', fg: '#FFFFFF' },
+]
+
+const START_PATHS = [
+  {
+    audience: 'Students',
+    title: 'Find your research community',
+    text: 'Studying games, play or interactive media? Meet researchers, come to events and find a way into international game studies.',
+    colour: ACCENTS.cyan,
+    links: [
+      { label: 'See upcoming events', to: '/events#upcoming' },
+      { label: 'Stand for Student Rep', to: '/news/board-call-for-nominations' },
+      { label: 'Join as a student', to: '/membership#join-form' },
+    ],
+  },
+  {
+    audience: 'Researchers & Educators',
+    title: 'Connect your work',
+    text: 'Explore our research areas and teaching resources, share your work, and collaborate with game scholars across South Africa.',
+    colour: ACCENTS.violet,
+    links: [
+      { label: 'Research areas', to: '/research#research-areas' },
+      { label: 'Teaching resources', to: '/research#teaching' },
+      { label: 'Join the chapter', to: '/membership#join-form' },
+    ],
+  },
+  {
+    audience: 'Industry & Developers',
+    title: 'Bridge practice and research',
+    text: 'Partner with us on talks, showcases and research. Come and meet us at Africa Games Week and Playtopia in Cape Town this December.',
+    colour: ACCENTS.orange,
+    links: [
+      { label: 'Africa Games Week & Playtopia', to: '/events#upcoming' },
+      { label: 'Stand for Industry Rep', to: '/news/board-call-for-nominations' },
+      { label: 'Talk to us', to: '/contact#contact-form' },
+    ],
+  },
 ]
 
 export default function Home() {
-  const upcomingEvents = events.filter((e) => e.status === 'upcoming').slice(0, 4)
+  const nextEvents = upcomingEvents.slice(0, 4)
   const latestNews = news.slice(0, 3)
 
   return (
@@ -85,7 +122,7 @@ export default function Home() {
               </motion.p>
 
               <motion.h1
-                className="font-rajdhani font-bold text-4xl sm:text-5xl md:text-7xl leading-[1.05] mb-6"
+                className="font-rajdhani font-bold text-[44px] sm:text-5xl md:text-[64px] leading-[1.05] mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
@@ -97,7 +134,7 @@ export default function Home() {
               </motion.h1>
 
               <motion.p
-                className="font-dm-sans text-white/65 text-base sm:text-lg max-w-[560px] leading-relaxed mb-8"
+                className="font-dm-sans text-white/85 text-lg max-w-[560px] leading-[1.7] mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.5 }}
@@ -166,8 +203,8 @@ export default function Home() {
                             {label}
                           </p>
                           <p
-                            className="font-dm-sans text-[10px] tracking-[2px] uppercase mt-1"
-                            style={{ color: `${fg}80` }}
+                            className="font-dm-sans text-sm tracking-[2px] uppercase mt-1"
+                            style={{ color: fg }}
                           >
                             {tag}
                           </p>
@@ -223,7 +260,7 @@ export default function Home() {
               ].map(({ label, value }) => (
                 <div key={label} className="px-6 py-3 text-center sm:text-left first:pl-0">
                   <p className="font-rajdhani font-semibold text-white text-sm">{label}</p>
-                  <p className="font-dm-sans text-white/50 text-xs mt-0.5">{value}</p>
+                  <p className="font-dm-sans text-white/70 text-base mt-0.5">{value}</p>
                 </div>
               ))}
             </div>
@@ -233,14 +270,77 @@ export default function Home() {
 
       <PixelDivider variant="warm" />
 
-      {/* MISSION STRIP */}
-      <section className="pixel-grid-sparse py-16 md:py-24">
+      {/* START HERE: entry points for the three main audiences */}
+      <section className="bg-surface py-24 md:py-32" aria-labelledby="start-here-title">
         <div className="container mx-auto">
           <SectionWrapper>
-            <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+            <p className="font-rajdhani font-semibold text-ink-violet text-sm uppercase tracking-[3px] mb-2">
+              New here?
+            </p>
+            <h2 id="start-here-title" className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
+              Start Here
+            </h2>
+            <p className="font-dm-sans text-text-secondary text-lg leading-[1.7] max-w-2xl mb-12">
+              DiGRA South Africa brings together everyone who studies, teaches and makes games. Pick the path that fits you.
+            </p>
+          </SectionWrapper>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {START_PATHS.map(({ audience, title, text, colour, links }, i) => (
+              <motion.article
+                key={audience}
+                variants={fadeUp}
+                className={`relative flex flex-col bg-surface border border-border-light p-7 hover:shadow-[0_14px_40px_rgba(28,10,58,0.12)] hover:-translate-y-1 transition-all duration-200 ${i === 1 ? 'md:translate-y-6 md:hover:translate-y-5' : ''}`}
+                style={{ borderTop: `4px solid ${colour}` }}
+              >
+                <div
+                  className="absolute top-0 right-0 w-20 h-20 opacity-[0.14] pointer-events-none"
+                  aria-hidden="true"
+                  style={{
+                    background: `repeating-linear-gradient(45deg, ${colour} 0, ${colour} 2px, transparent 0, transparent 50%)`,
+                    backgroundSize: '7px 7px',
+                  }}
+                />
+                <p className="font-rajdhani font-bold text-sm uppercase tracking-[2px] mb-2" style={{ color: ink(colour) }}>
+                  {audience}
+                </p>
+                <h3 className="font-rajdhani font-bold text-deep-purple text-2xl leading-tight mb-3">{title}</h3>
+                <p className="font-dm-sans text-text-secondary text-base leading-[1.7] mb-6 flex-1">{text}</p>
+                <ul className="space-y-1">
+                  {links.map(({ label, to }) => (
+                    <li key={label}>
+                      <Link
+                        to={to}
+                        className="group/link inline-flex items-center gap-2 min-h-11 font-rajdhani font-bold uppercase tracking-wider text-sm hover:gap-3 transition-all"
+                        style={{ color: ink(colour) }}
+                      >
+                        {label} <FiArrowRight aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <PixelDivider variant="cool" />
+
+      {/* MISSION STRIP */}
+      <section className="pixel-grid-sparse py-24 md:py-32">
+        <div className="container mx-auto">
+          <SectionWrapper>
+            <p className="font-rajdhani font-semibold text-ink-gold text-sm uppercase tracking-[3px] mb-2">
               Our Purpose
             </p>
-            <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+            <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
               What We Stand For
             </h2>
             <div className="w-16 h-[2px] bg-accent-gold mb-10" />
@@ -256,7 +356,7 @@ export default function Home() {
                   <h3 className="font-rajdhani font-semibold text-deep-purple text-xl mb-2">
                     {title}
                   </h3>
-                  <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">
+                  <p className="font-dm-sans text-text-secondary text-base leading-relaxed">
                     {description}
                   </p>
                   <div
@@ -273,7 +373,7 @@ export default function Home() {
       <PixelDivider variant="cool" />
 
       {/* LATEST NEWS */}
-      <section className="dark-textured py-16 md:py-24">
+      <section className="dark-textured py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
@@ -281,13 +381,13 @@ export default function Home() {
                 <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
                   Latest Updates
                 </p>
-                <h2 className="font-rajdhani font-bold text-white text-3xl sm:text-4xl mb-3">
+                <h2 className="font-rajdhani font-bold text-white text-[32px] sm:text-[40px] mb-3">
                   News & Updates
                 </h2>
                 <div className="w-16 h-[2px] bg-accent-gold" />
               </div>
               <Link
-                to="/research"
+                to="/news"
                 className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 pb-1"
               >
                 All Updates <FiArrowRight />
@@ -356,7 +456,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
           >
-            {upcomingEvents.map((event) => (
+            {nextEvents.map((event) => (
               <motion.div key={event.id} variants={fadeUp}>
                 <EventCard event={event} />
               </motion.div>
@@ -368,15 +468,15 @@ export default function Home() {
       <PixelDivider variant="full" />
 
       {/* ABOUT TEASER */}
-      <section className="pixel-grid-light py-16 md:py-24">
+      <section className="pixel-grid-light py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left: 55% */}
             <SectionWrapper className="lg:col-span-3">
-              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-gold text-sm uppercase tracking-[3px] mb-3">
                 Who We Are
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-6">
                 About DiGRA South Africa
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -391,23 +491,10 @@ export default function Home() {
               </p>
               <Link
                 to="/about"
-                className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200"
+                className="font-rajdhani font-semibold text-ink-gold uppercase tracking-wider text-sm inline-flex items-center gap-2 min-h-11 hover:gap-3 transition-all duration-200"
               >
                 Learn More About Us <FiArrowRight />
               </Link>
-              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-3">
-                Where to Find DiGRA SA
-              </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-6">
-                DiGRA South Africa at the eFundanathi Gaming Symposium
-              </h2>
-              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
-                DiGRA South Africa (DiGRA SA) will be present at the eFundanathi Gaming Symposium, hosted on the University of the Witwatersrand (Wits) campus.
-                As part of the symposium programme, DiGRA SA will host and facilitate a panel discussion, bringing together researchers, educators, and industry practitioners to explore critical questions around games, play, and digital culture in South Africa and the African context.
-              </p>
-              <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-6">
-                This engagement forms part of DiGRA SA’s soft‑launch activities and reflects the chapter’s commitment to dialogue across academia, industry, and creative practice. Register here:
-              </p>
             </SectionWrapper>
 
 
@@ -419,7 +506,7 @@ export default function Home() {
                   <p className="font-orbitron text-accent-gold text-2xl leading-tight mb-4">
                     "I am because we are"
                   </p>
-                  <p className="font-dm-sans italic text-white/40 text-sm">
+                  <p className="font-dm-sans italic text-white/70 text-base">
                     — Ubuntu Philosophy
                   </p>
                 </div>
@@ -438,22 +525,22 @@ export default function Home() {
       </section>
 
       {/* PEOPLE STRIP */}
-      <section className="bg-surface py-16 md:py-24">
+      <section className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
               <div>
-                <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+                <p className="font-rajdhani font-semibold text-ink-orange text-sm uppercase tracking-[3px] mb-2">
                   The Team
                 </p>
-                <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+                <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                   Who's Building This
                 </h2>
                 <div className="w-16 h-[2px] bg-accent-orange" />
               </div>
               <Link
                 to="/about"
-                className="font-rajdhani font-semibold text-accent-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 pb-1"
+                className="font-rajdhani font-semibold text-ink-gold uppercase tracking-wider text-sm flex items-center gap-2 hover:gap-3 transition-all duration-200 pb-1"
               >
                 Full Committee <FiArrowRight />
               </Link>
@@ -490,15 +577,15 @@ export default function Home() {
                     </div>
                     <div className="p-4">
                       <p
-                        className="font-rajdhani font-bold text-xs uppercase tracking-[2px] mb-0.5 truncate"
-                        style={{ color: colour }}
+                        className="font-rajdhani font-bold text-sm uppercase tracking-[2px] mb-0.5 truncate"
+                        style={{ color: ink(colour) }}
                       >
                         {member.role}
                       </p>
                       <p className="font-rajdhani font-bold text-text-primary text-base leading-tight">
                         {member.name}
                       </p>
-                      <p className="font-dm-sans italic text-text-secondary text-xs mt-1 truncate">
+                      <p className="font-dm-sans italic text-text-secondary text-base mt-1 truncate">
                         {member.institution}
                       </p>
                     </div>
@@ -513,7 +600,7 @@ export default function Home() {
       <PixelDivider variant="full" />
 
       {/* WHY IT MATTERS */}
-      <section className="dark-textured py-16 md:py-24">
+      <section className="dark-textured py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -521,7 +608,7 @@ export default function Home() {
                 <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-3">
                   The Gap We're Filling
                 </p>
-                <h2 className="font-rajdhani font-bold text-white text-3xl sm:text-4xl mb-6">
+                <h2 className="font-rajdhani font-bold text-white text-[32px] sm:text-[40px] mb-6">
                   African Games. African Scholarship.
                 </h2>
                 <p className="font-dm-sans text-white/60 text-base leading-relaxed mb-4">
@@ -561,8 +648,8 @@ export default function Home() {
                       <PixelSprite name={sprite} colour={colour} size={20} />
                     </div>
                     <div>
-                      <h4 className="font-rajdhani font-semibold text-white text-base mb-0.5">{title}</h4>
-                      <p className="font-dm-sans text-white/45 text-sm leading-relaxed">{desc}</p>
+                      <h3 className="font-rajdhani font-semibold text-white text-lg mb-0.5">{title}</h3>
+                      <p className="font-dm-sans text-white/70 text-base leading-relaxed">{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -581,7 +668,7 @@ export default function Home() {
                 <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
                   Join the chapter.
                 </h2>
-                <p className="font-dm-sans text-white/50 text-base">
+                <p className="font-dm-sans text-white/70 text-base">
                   Be part of building African game studies from the ground up.
                 </p>
               </div>

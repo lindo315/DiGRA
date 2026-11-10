@@ -40,7 +40,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accentColor = 'g
               {breadcrumb}
             </p>
           )}
-          <h1 className="font-rajdhani text-3xl sm:text-5xl font-bold text-white md:text-6xl">{title}</h1>
+          <h1 className="font-rajdhani text-[40px] sm:text-5xl font-bold text-white md:text-6xl leading-[1.05]">{title}</h1>
           {subtitle && (
             <p className="mt-3 max-w-[600px] font-dm-sans text-base sm:text-lg text-white/65">{subtitle}</p>
           )}

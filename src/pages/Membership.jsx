@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { submitForm, CONTACT_EMAIL } from '../lib/submitForm'
 import { motion } from 'framer-motion'
 import { FiCheck, FiCheckCircle } from 'react-icons/fi'
 import PageHero from '../components/PageHero'
@@ -95,6 +96,10 @@ export default function Membership() {
     heard: '',
   })
   const [errors, setErrors] = useState({})
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState('')
+  const [honeypot, setHoneypot] = useState('')
+  const startedAt = useRef(Date.now())
 
   function validate() {
     const e = {}
@@ -104,14 +109,22 @@ export default function Membership() {
     return e
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault()
     const e = validate()
-    if (Object.keys(e).length > 0) {
-      setErrors(e)
-      return
+    setErrors(e)
+    if (Object.keys(e).length > 0) return
+    setSending(true)
+    setSendError('')
+    try {
+      await submitForm('membership', { ...form, website: honeypot }, startedAt.current)
+      setSubmitted(true)
+    } catch (err) {
+      if (err.fields) setErrors(err.fields)
+      setSendError(err.fields ? 'Please check the highlighted fields.' : 'unsent')
+    } finally {
+      setSending(false)
     }
-    setSubmitted(true)
   }
 
   const inputClass = (field) =>
@@ -139,14 +152,14 @@ export default function Membership() {
       />
 
       {/* WHY JOIN */}
-      <section id="benefits" className="bg-surface py-16 md:py-24">
+      <section id="benefits" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-10">
-              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-gold text-sm uppercase tracking-[3px] mb-2">
                 Why Join?
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Member Benefits
               </h2>
               <div className="w-16 h-[2px] bg-accent-gold mx-auto" />
@@ -171,7 +184,7 @@ export default function Membership() {
                   <PixelSprite name={sprite} colour={colour} size={28} />
                 </div>
                 <h3 className="font-rajdhani font-bold text-text-primary text-xl mb-2">{title}</h3>
-                <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">{description}</p>
+                <p className="font-dm-sans text-text-secondary text-base leading-relaxed">{description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -181,14 +194,14 @@ export default function Membership() {
       <PixelDivider variant="warm" />
 
       {/* WHO CAN JOIN */}
-      <section id="eligibility" className="pixel-grid-light py-16 md:py-24">
+      <section id="eligibility" className="pixel-grid-light py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-start">
             <SectionWrapper>
-              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-green text-sm uppercase tracking-[3px] mb-3">
                 Eligibility
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Who Can Join?
               </h2>
               <div className="w-16 h-[2px] bg-accent-green mb-4" />
@@ -211,7 +224,7 @@ export default function Membership() {
                   className="flex items-start gap-3 font-dm-sans text-text-secondary text-base"
                   variants={fadeUp}
                 >
-                  <FiCheck size={16} className="flex-shrink-0 mt-1 text-accent-green" />
+                  <FiCheck size={16} className="flex-shrink-0 mt-1 text-ink-green" />
                   {item}
                 </motion.li>
               ))}
@@ -221,14 +234,14 @@ export default function Membership() {
       </section>
 
       {/* MEMBERSHIP TIERS */}
-      <section id="tiers" className="pixel-grid-sparse py-16 md:py-24">
+      <section id="tiers" className="pixel-grid-sparse py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-10">
-              <p className="font-rajdhani font-semibold text-accent-violet text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-violet text-sm uppercase tracking-[3px] mb-2">
                 Pricing
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Membership Tiers
               </h2>
               <div className="w-16 h-[2px] bg-accent-violet mx-auto" />
@@ -254,7 +267,7 @@ export default function Membership() {
               >
                 {tier.badge && (
                   <div className="mb-3">
-                    <span className="font-rajdhani font-bold text-xs uppercase tracking-[2px] text-accent-gold bg-accent-gold/10 px-3 py-1">
+                    <span className="font-rajdhani font-bold text-sm uppercase tracking-[2px] text-ink-gold bg-accent-gold/10 px-3 py-1">
                       {tier.badge}
                     </span>
                   </div>
@@ -262,11 +275,11 @@ export default function Membership() {
                 <h3 className="font-rajdhani font-bold text-deep-purple text-2xl mb-1">
                   {tier.title}
                 </h3>
-                <p className="font-dm-sans text-text-secondary text-sm mb-6">{tier.price}</p>
+                <p className="font-dm-sans text-text-secondary text-base mb-6">{tier.price}</p>
                 <ul className="space-y-3 flex-1">
                   {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 font-dm-sans text-text-secondary text-sm">
-                      <FiCheck size={14} className="flex-shrink-0 mt-0.5 text-accent-gold" />
+                    <li key={f} className="flex items-start gap-2 font-dm-sans text-text-secondary text-base">
+                      <FiCheck size={14} className="flex-shrink-0 mt-0.5 text-ink-gold" />
                       {f}
                     </li>
                   ))}
@@ -280,14 +293,14 @@ export default function Membership() {
       <PixelDivider variant="cool" />
 
       {/* HOW TO JOIN — Stepper */}
-      <section id="how-to-join" className="bg-bg-tint py-16 md:py-24">
+      <section id="how-to-join" className="bg-bg-tint py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="text-center mb-12">
-              <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-orange text-sm uppercase tracking-[3px] mb-2">
                 Process
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 How to Join
               </h2>
               <div className="w-16 h-[2px] bg-accent-orange mx-auto" />
@@ -304,10 +317,10 @@ export default function Membership() {
                 <div className="relative z-10 w-12 h-12 flex items-center justify-center bg-accent-gold font-rajdhani font-bold text-deep-purple text-xl mb-4">
                   {step.num}
                 </div>
-                <h4 className="font-rajdhani font-semibold text-text-primary text-base text-center mb-1">
+                <h3 className="font-rajdhani font-semibold text-text-primary text-lg text-center mb-1">
                   {step.title}
-                </h4>
-                <p className="font-dm-sans text-text-secondary text-sm text-center leading-relaxed px-2">
+                </h3>
+                <p className="font-dm-sans text-text-secondary text-base text-center leading-relaxed px-2">
                   {step.desc}
                 </p>
               </div>
@@ -327,8 +340,8 @@ export default function Membership() {
                   )}
                 </div>
                 <div className="pb-6">
-                  <h4 className="font-rajdhani font-semibold text-text-primary text-base mb-1">{step.title}</h4>
-                  <p className="font-dm-sans text-text-secondary text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="font-rajdhani font-semibold text-text-primary text-lg mb-1">{step.title}</h3>
+                  <p className="font-dm-sans text-text-secondary text-base leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -337,14 +350,14 @@ export default function Membership() {
       </section>
 
       {/* JOIN FORM */}
-      <section id="join-form" className="bg-surface py-16 md:py-24">
+      <section id="join-form" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-gold text-sm uppercase tracking-[3px] mb-2">
                 Expression of Interest
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Join the Chapter
               </h2>
               <div className="w-16 h-[2px] bg-accent-gold" />
@@ -361,7 +374,7 @@ export default function Membership() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <FiCheckCircle size={48} className="text-accent-green mx-auto mb-4" />
+                  <FiCheckCircle size={48} className="text-ink-green mx-auto mb-4" />
                   <h3 className="font-rajdhani font-bold text-deep-purple text-3xl mb-3">
                     Thanks, {form.name.split(' ')[0]}!
                   </h3>
@@ -371,35 +384,38 @@ export default function Membership() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+                <form onSubmit={handleSubmit} noValidate className="relative flex flex-col gap-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className={labelClass}>Full Name *</label>
+                      <label htmlFor="membership-name" className={labelClass}>Full Name *</label>
                       <input
+                        id="membership-name"
                         type="text"
                         className={inputClass('name')}
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Dr. Jane Smith"
                       />
-                      {errors.name && <p className="font-dm-sans text-accent-red text-xs mt-1">{errors.name}</p>}
+                      {errors.name && <p className="font-dm-sans text-ink-red text-base mt-1.5" role="alert">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className={labelClass}>Email *</label>
+                      <label htmlFor="membership-email" className={labelClass}>Email *</label>
                       <input
+                        id="membership-email"
                         type="email"
                         className={inputClass('email')}
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="jane@university.ac.za"
                       />
-                      {errors.email && <p className="font-dm-sans text-accent-red text-xs mt-1">{errors.email}</p>}
+                      {errors.email && <p className="font-dm-sans text-ink-red text-base mt-1.5" role="alert">{errors.email}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className={labelClass}>Institution / Affiliation</label>
+                    <label htmlFor="membership-institution" className={labelClass}>Institution / Affiliation</label>
                     <input
+                      id="membership-institution"
                       type="text"
                       className={inputClass('institution')}
                       value={form.institution}
@@ -409,26 +425,28 @@ export default function Membership() {
                   </div>
 
                   <div>
-                    <label className={labelClass}>Role</label>
+                    <label htmlFor="membership-role" className={labelClass}>Role</label>
                     <select
+                      id="membership-role"
                       className={inputClass('role')}
                       value={form.role}
                       onChange={(e) => setForm({ ...form, role: e.target.value })}
                     >
                       <option value="">Select your role</option>
-                      <option value="academic">Academic / Researcher</option>
-                      <option value="postgrad">Postgraduate Student</option>
-                      <option value="undergrad">Undergraduate Student</option>
-                      <option value="educator">Educator</option>
-                      <option value="developer">Game Developer</option>
-                      <option value="independent">Independent Scholar</option>
-                      <option value="other">Other</option>
+                      <option value="Academic / Researcher">Academic / Researcher</option>
+                      <option value="Postgraduate Student">Postgraduate Student</option>
+                      <option value="Undergraduate Student">Undergraduate Student</option>
+                      <option value="Educator">Educator</option>
+                      <option value="Game Developer">Game Developer</option>
+                      <option value="Independent Scholar">Independent Scholar</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className={labelClass}>Research Interests</label>
+                    <label htmlFor="membership-interests" className={labelClass}>Research Interests</label>
                     <textarea
+                      id="membership-interests"
                       className={`${inputClass('interests')} resize-none`}
                       rows={4}
                       value={form.interests}
@@ -438,27 +456,71 @@ export default function Membership() {
                   </div>
 
                   <div>
-                    <label className={labelClass}>How did you hear about us?</label>
+                    <label htmlFor="membership-heard" className={labelClass}>How did you hear about us?</label>
                     <select
+                      id="membership-heard"
                       className={inputClass('heard')}
                       value={form.heard}
                       onChange={(e) => setForm({ ...form, heard: e.target.value })}
                     >
                       <option value="">Select</option>
-                      <option value="digra">DiGRA International</option>
-                      <option value="colleague">Colleague / Word of mouth</option>
-                      <option value="social">Social media</option>
-                      <option value="search">Web search</option>
-                      <option value="event">Event / Conference</option>
-                      <option value="other">Other</option>
+                      <option value="DiGRA International">DiGRA International</option>
+                      <option value="Colleague / Word of mouth">Colleague / Word of mouth</option>
+                      <option value="Social media">Social media</option>
+                      <option value="Web search">Web search</option>
+                      <option value="Event / Conference">Event / Conference</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
 
+                  {/* Honeypot: hidden from people, catches spam bots */}
+
+                  <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+
+                    <label htmlFor="membership-website">Leave this field empty</label>
+
+                    <input id="membership-website" type="text" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+
+                  </div>
+
+
+                  {sendError && (
+
+                    <div role="alert" className="border-l-4 border-ink-red bg-accent-red/5 px-4 py-3 font-dm-sans text-base text-text-primary">
+
+                      {sendError === 'unsent' ? (
+
+                        <>
+
+                          Sorry, your message couldn't be sent just now. Please try again, or email us at{' '}
+
+                          <a className="font-semibold underline text-ink-red" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+
+                        </>
+
+                      ) : (
+
+                        sendError
+
+                      )}
+
+                    </div>
+
+                  )}
+
+
                   <button
+
                     type="submit"
-                    className="w-full md:w-auto md:self-start bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-6 sm:px-10 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200"
+
+                    disabled={sending}
+
+                    className="w-full md:w-auto md:self-start bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-6 sm:px-10 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.25)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_rgba(0,0,0,0.3)] transition-all duration-200 disabled:opacity-60 disabled:cursor-wait"
+
                   >
-                    Submit Expression of Interest
+
+                    {sending ? 'Sending…' : 'Submit Expression of Interest'}
+
                   </button>
                 </form>
               )}
@@ -467,7 +529,7 @@ export default function Membership() {
             {/* Sidebar: 40% */}
             <div className="lg:col-span-2">
               <div className="bg-deep-purple p-5 sm:p-8">
-                <p className="font-rajdhani font-semibold text-accent-gold text-xs uppercase tracking-[2px] mb-6">
+                <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[2px] mb-6">
                   What you get
                 </p>
                 <div className="space-y-5">
@@ -481,7 +543,7 @@ export default function Membership() {
                       </div>
                       <div>
                         <p className="font-rajdhani font-semibold text-white text-sm mb-0.5">{title}</p>
-                        <p className="font-dm-sans text-white/50 text-xs leading-relaxed">{description}</p>
+                        <p className="font-dm-sans text-white/70 text-base leading-relaxed">{description}</p>
                       </div>
                     </div>
                   ))}
@@ -499,7 +561,7 @@ export default function Membership() {
             <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
               FAQ
             </p>
-            <h2 className="font-rajdhani font-bold text-white text-3xl mb-3">
+            <h2 className="font-rajdhani font-bold text-white text-[32px] sm:text-[40px] mb-3">
               Common Questions
             </h2>
             <div className="w-16 h-[2px] bg-accent-gold mb-8" />
@@ -521,14 +583,14 @@ export default function Membership() {
                   q: 'Can I join from outside South Africa?',
                   a: 'Yes. While we are a South African chapter, our scope is Pan-African. Researchers based elsewhere in Africa are welcome to join.',
                 },
-              ].map(({ q, a }, i, arr) => (
+              ].map(({ q, a }, i) => (
                 <div
                   key={q}
                   className="py-5 border-b border-white/10"
                   style={{ borderTopWidth: i === 0 ? '1px' : '0', borderTopColor: 'rgba(255,255,255,0.1)' }}
                 >
                   <p className="font-rajdhani font-semibold text-white text-base mb-2">{q}</p>
-                  <p className="font-dm-sans text-white/50 text-sm leading-relaxed">{a}</p>
+                  <p className="font-dm-sans text-white/70 text-base leading-relaxed">{a}</p>
                 </div>
               ))}
             </div>
@@ -545,7 +607,7 @@ export default function Membership() {
                 <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
                   Questions?
                 </h2>
-                <p className="font-dm-sans text-white/50 text-base">
+                <p className="font-dm-sans text-white/70 text-base">
                   Reach out — we're happy to talk through membership before you commit.
                 </p>
               </div>

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { FiChevronDown, FiChevronUp, FiMapPin, FiCalendar } from 'react-icons/fi'
+import { FiChevronDown, FiChevronUp, FiMapPin, FiCalendar, FiExternalLink } from 'react-icons/fi'
 import PageHero from '../components/PageHero'
 import PixelDivider from '../components/PixelDivider'
 import SectionWrapper from '../components/SectionWrapper'
 import EventCard from '../components/cards/EventCard'
-import { events } from '../data/events'
+import { upcomingEvents, pastEvents } from '../data/events'
+import { ACCENTS, EVENT_TYPE_COLOURS, onDark } from '../lib/theme'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,35 +19,24 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 }
 
-const TYPE_COLOURS = {
-  Symposium:    '#F5A623',
-  Workshop:     '#3DE87A',
-  Seminar:      '#00CFDD',
-  Conference:   '#B45FFF',
-  Talk:         '#E94560',
-  Webinar:      '#00CFDD',
-  'Game Jam':   '#F5A623',
-  'Launch Event': '#FF6B35',
-}
-
 function FeaturedEventCard({ event }) {
-  const colour = TYPE_COLOURS[event.type] || '#F5A623'
-  const dateLabel = event.month !== 'TBA'
-    ? `${event.month} ${event.date !== 'TBA' ? event.date : ''}`.trim()
-    : event.date !== 'TBA' ? event.date : 'Date TBA'
+  const colour = EVENT_TYPE_COLOURS[event.type] || ACCENTS.gold
+  const text = onDark(colour)
+  const dateLabel = event.date && event.date !== 'TBA' ? event.date.trim() : 'Date TBA'
+  const paragraphs = (event.description || '').split(/\n\s*\n/)
 
   return (
-    <motion.div
+    <motion.article
       className="relative overflow-hidden bg-deep-purple p-6 sm:p-10 mb-8"
       style={{ borderLeft: `5px solid ${colour}` }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
     >
       {/* Background pixel accent */}
       <div
-        className="absolute top-0 right-0 w-48 h-48 opacity-[0.04] pointer-events-none"
+        className="absolute top-0 right-0 w-56 h-56 opacity-[0.08] pointer-events-none"
         aria-hidden="true"
         style={{
           background: `repeating-linear-gradient(45deg, ${colour} 0, ${colour} 2px, transparent 0, transparent 50%)`,
@@ -54,61 +44,87 @@ function FeaturedEventCard({ event }) {
         }}
       />
 
-      {/* Featured label */}
-      <div className="flex items-center gap-3 mb-5 flex-wrap">
+      <div className="relative flex items-center gap-3 mb-5 flex-wrap">
         <span
-          className="font-rajdhani font-bold text-[10px] uppercase tracking-[2px] px-2 py-0.5"
-          style={{ background: `${colour}22`, color: colour, border: `1px solid ${colour}40` }}
+          className="font-rajdhani font-bold text-sm uppercase tracking-[2px] px-2 py-0.5"
+          style={{ background: `${colour}22`, color: text, border: `1px solid ${colour}40` }}
         >
           ◆ Featured
         </span>
         <span
-          className="font-rajdhani font-bold text-[10px] uppercase tracking-[2px] px-2 py-0.5"
-          style={{ background: `${colour}14`, color: colour }}
+          className="font-rajdhani font-bold text-sm uppercase tracking-[2px] px-2 py-0.5"
+          style={{ background: `${colour}14`, color: text }}
         >
           {event.type}
         </span>
       </div>
 
-      <h3 className="font-rajdhani font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-4 max-w-2xl">
+      <h3 className="relative font-rajdhani font-bold text-white text-[28px] sm:text-4xl md:text-[44px] leading-tight mb-5 max-w-3xl">
         {event.title}
       </h3>
 
-      <p className="font-dm-sans text-white/60 text-base leading-relaxed mb-6 max-w-2xl">
-        {event.description}
-      </p>
-
-      <div className="flex flex-wrap gap-5 text-sm font-dm-sans text-white/50">
-        <span className="flex items-center gap-1.5">
-          <FiCalendar size={13} style={{ color: colour }} />
+      <div className="relative flex flex-wrap gap-x-6 gap-y-2 text-base font-dm-sans text-white/80 mb-6">
+        <span className="flex items-center gap-2">
+          <FiCalendar size={16} style={{ color: colour }} aria-hidden="true" />
           {dateLabel}
         </span>
-        <span className="flex items-center gap-1.5">
-          <FiMapPin size={13} style={{ color: colour }} />
-          <p>
-          <a
-            href={event.locationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {event.location}
-          </a>
-        </p>
+        <span className="flex items-center gap-2">
+          <FiMapPin size={16} style={{ color: colour }} aria-hidden="true" />
+          {event.locationUrl ? (
+            <a
+              href={event.locationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-white transition-colors"
+            >
+              {event.location}
+            </a>
+          ) : (
+            event.location
+          )}
         </span>
       </div>
+
+      <div className="relative space-y-4 max-w-3xl mb-2">
+        {paragraphs.map((para, i) => (
+          <p key={i} className="font-dm-sans text-white/75 text-base sm:text-lg leading-[1.7]">
+            {para}
+          </p>
+        ))}
+      </div>
+
+      {event.links?.length > 0 && (
+        <div className="relative flex flex-wrap gap-3 mt-7">
+          {event.links.map(({ label, url }, i) => (
+            <a
+              key={url}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 min-h-11 px-5 py-2.5 font-rajdhani font-bold uppercase tracking-wider text-sm transition-all duration-200 ${
+                i === 0
+                  ? 'bg-accent-gold text-deep-purple shadow-[3px_3px_0_rgba(0,0,0,0.3)] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_rgba(0,0,0,0.35)]'
+                  : 'border-2 border-white/70 text-white hover:bg-white hover:text-deep-purple'
+              }`}
+            >
+              {label} <FiExternalLink size={14} aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+      )}
 
       {/* Bottom accent line */}
       <div className="absolute bottom-0 left-0 right-0 h-[2px]"
         style={{ background: `linear-gradient(90deg, ${colour}60, transparent)` }}
       />
-    </motion.div>
+    </motion.article>
   )
 }
 
 export default function Events() {
   const [pastOpen, setPastOpen] = useState(true)
-  const upcoming = events.filter((e) => e.status === 'upcoming')
-  const past = events.filter((e) => e.status === 'past')
+  const upcoming = upcomingEvents
+  const past = pastEvents
   const featured = upcoming[0]
   const rest = upcoming.slice(1)
 
@@ -128,27 +144,27 @@ export default function Events() {
       />
 
       {/* UPCOMING EVENTS */}
-      <section id="upcoming" className="pixel-grid-light py-16 md:py-24">
+      <section id="upcoming" className="pixel-grid-light py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-10">
-              <p className="font-rajdhani font-semibold text-accent-green text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-green text-sm uppercase tracking-[3px] mb-2">
                 What's Next
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-3">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-3">
                 Upcoming Events
               </h2>
               <div className="w-16 h-[2px] bg-accent-green mb-4" />
               {/* Metadata pills */}
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: `${upcoming.length} events planned` },
+                  { label: `${upcoming.length} ${upcoming.length === 1 ? 'event' : 'events'} planned` },
                   { label: '2026 – 2028' },
                   { label: 'In-person & online' },
                 ].map(({ label }) => (
                   <span
                     key={label}
-                    className="font-rajdhani text-[11px] uppercase tracking-[1.5px] px-3 py-1 text-text-secondary border border-border-light"
+                    className="font-rajdhani text-sm uppercase tracking-[1.5px] px-3 py-1 text-text-secondary border border-border-light"
                   >
                     {label}
                   </span>
@@ -190,22 +206,22 @@ export default function Events() {
       <PixelDivider variant="cool" />
 
       {/* PAST EVENTS */}
-      <section id="past" className="bg-bg-tint py-16 md:py-24">
+      <section id="past" className="bg-bg-tint py-24 md:py-32">
         <div className="container mx-auto">
           <SectionWrapper>
             <div className="mb-8">
-              <p className="font-rajdhani font-semibold text-accent-cyan text-sm uppercase tracking-[3px] mb-2">
+              <p className="font-rajdhani font-semibold text-ink-cyan text-sm uppercase tracking-[3px] mb-2">
                 Archive
               </p>
               <button
                 className="flex items-center gap-3 group"
                 onClick={() => setPastOpen(!pastOpen)}
               >
-                <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl group-hover:text-accent-cyan transition-colors">
+                <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] group-hover:text-accent-cyan transition-colors">
                   Past Events
                 </h2>
                 <div className="flex items-center gap-1 font-rajdhani text-text-secondary">
-                  <span className="text-sm">2025</span>
+                  <span className="text-sm">({past.length})</span>
                   {pastOpen ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}
                 </div>
               </button>
@@ -235,7 +251,7 @@ export default function Events() {
                     ))}
                   </motion.div>
                 ) : (
-                  <p className="font-dm-sans text-text-secondary text-sm py-8">
+                  <p className="font-dm-sans text-text-secondary text-base py-8">
                     No past events on record yet.
                   </p>
                 )}
@@ -246,14 +262,14 @@ export default function Events() {
       </section>
 
       {/* HOST AN EVENT */}
-      <section id="host" className="bg-surface py-16 md:py-24">
+      <section id="host" className="bg-surface py-24 md:py-32">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <SectionWrapper>
-              <p className="font-rajdhani font-semibold text-accent-orange text-sm uppercase tracking-[3px] mb-3">
+              <p className="font-rajdhani font-semibold text-ink-orange text-sm uppercase tracking-[3px] mb-3">
                 Get Involved
               </p>
-              <h2 className="font-rajdhani font-bold text-deep-purple text-3xl sm:text-4xl mb-4">
+              <h2 className="font-rajdhani font-bold text-deep-purple text-[32px] sm:text-[40px] mb-4">
                 Host an Event
               </h2>
               <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">
@@ -288,14 +304,14 @@ export default function Events() {
                     ].map(({ label, colour }) => (
                       <div
                         key={label}
-                        className="flex items-center justify-center py-3 font-rajdhani text-xs font-semibold uppercase tracking-wider"
-                        style={{ background: `${colour}20`, color: colour, border: `1px solid ${colour}30` }}
+                        className="flex items-center justify-center py-3 font-rajdhani text-sm font-semibold uppercase tracking-wider"
+                        style={{ background: `${colour}20`, color: onDark(colour), border: `1px solid ${colour}30` }}
                       >
                         {label}
                       </div>
                     ))}
                   </div>
-                  <p className="font-dm-sans text-white/40 text-sm text-center mt-6">
+                  <p className="font-dm-sans text-white/70 text-base text-center mt-6">
                     All formats welcome
                   </p>
                 </div>
@@ -320,7 +336,7 @@ export default function Events() {
             <p className="font-rajdhani font-semibold text-accent-gold text-sm uppercase tracking-[3px] mb-2">
               What We Run
             </p>
-            <h2 className="font-rajdhani font-bold text-white text-3xl mb-8">
+            <h2 className="font-rajdhani font-bold text-white text-[32px] sm:text-[40px] mb-8">
               Event Formats
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -335,7 +351,7 @@ export default function Events() {
                 <div key={label} className="p-5 border border-white/8 hover:border-white/20 transition-colors duration-200" style={{ background: `${colour}07` }}>
                   <div className="w-6 h-[2px] mb-3" style={{ background: colour }} />
                   <h3 className="font-rajdhani font-semibold text-white text-base mb-2">{label}</h3>
-                  <p className="font-dm-sans text-white/45 text-sm leading-relaxed">{desc}</p>
+                  <p className="font-dm-sans text-white/70 text-base leading-relaxed">{desc}</p>
                 </div>
               ))}
             </div>
@@ -352,7 +368,7 @@ export default function Events() {
                 <h2 className="font-rajdhani font-bold text-white text-3xl md:text-4xl mb-2">
                   Never miss an event.
                 </h2>
-                <p className="font-dm-sans text-white/50 text-base">
+                <p className="font-dm-sans text-white/70 text-base">
                   Become a member to get direct invitations and announcements.
                 </p>
               </div>
