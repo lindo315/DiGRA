@@ -6,7 +6,7 @@ import { ACCENTS, EVENT_TYPE_COLOURS, ink } from '../../lib/theme'
 const show = (v) => (v && v !== 'TBA' ? v : null)
 
 /* ── Timeline row: used for past events on the Events page (light background) ── */
-function EventCardTimeline({ event, isPast = false, isLast = false }) {
+function EventCardTimeline({ event, isPast = false, isLast = false, recapLabel = 'Read the recap' }) {
   const colour = EVENT_TYPE_COLOURS[event.type] || ACCENTS.gold
   const text = ink(colour)
 
@@ -74,7 +74,7 @@ function EventCardTimeline({ event, isPast = false, isLast = false }) {
           <span>{event.location}</span>
         </div>
 
-        <p className="font-dm-sans text-text-secondary text-base leading-[1.7] line-clamp-3">
+        <p className="font-dm-sans text-text-secondary text-base leading-[1.7] whitespace-pre-line line-clamp-3">
           {event.description}
         </p>
 
@@ -84,7 +84,7 @@ function EventCardTimeline({ event, isPast = false, isLast = false }) {
             className="inline-flex items-center gap-2 min-h-11 mt-2 font-rajdhani font-bold uppercase tracking-wider text-sm hover:gap-3 transition-all"
             style={{ color: text }}
           >
-            Read the recap <FiArrowRight aria-hidden="true" />
+            {recapLabel} <FiArrowRight aria-hidden="true" />
           </Link>
         )}
       </motion.article>
@@ -93,9 +93,9 @@ function EventCardTimeline({ event, isPast = false, isLast = false }) {
 }
 
 /* ── Default card: white card used in grids (Home, Events) ── */
-export default function EventCard({ event, isPast = false, variant = 'default', isLast = false }) {
+export default function EventCard({ event, isPast = false, variant = 'default', isLast = false, recapLabel }) {
   if (variant === 'timeline') {
-    return <EventCardTimeline event={event} isPast={isPast} isLast={isLast} />
+    return <EventCardTimeline event={event} isPast={isPast} isLast={isLast} recapLabel={recapLabel} />
   }
 
   const colour = EVENT_TYPE_COLOURS[event.type] || ACCENTS.gold
@@ -138,7 +138,7 @@ export default function EventCard({ event, isPast = false, variant = 'default', 
           <span className="truncate">{event.location}</span>
         </div>
         <p className="font-dm-sans text-text-secondary text-base leading-[1.7] line-clamp-3">
-          {event.description}
+          {(event.description || '').split(/\n\s*\n/)[0]}
         </p>
       </div>
     </motion.article>

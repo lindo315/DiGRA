@@ -24,7 +24,9 @@ export default defineConfig([
     },
     rules: {
       // `motion` is used as <motion.div>; core ESLint can't see JSX member usage
-      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)', argsIgnorePattern: '^[A-Z_]' }],
+      // Helper hooks/functions live next to the components that use them; this only affects hot reload in development.
+      'react-refresh/only-export-components': 'warn',
     },
   },
 ])

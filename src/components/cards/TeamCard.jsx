@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ink, onDark } from "../../lib/theme";
+import PixelSprite from "../PixelSprite";
+import { safeUrl } from "../../lib/text";
 
 const ACCENT_COLOURS = [
   "#F5A623",
@@ -19,7 +22,8 @@ function hashColour(name) {
 }
 
 function getInitials(name) {
-  return name
+  return (name || "")
+    .replace(/^(Dr|Prof|Mr|Ms|Mrs|Dr\.|Prof\.)\s+/i, "")
     .split(" ")
     .map((n) => n[0])
     .join("")
@@ -28,7 +32,7 @@ function getInitials(name) {
 }
 
 /* ── Leader variant: same dimensions as default, dark bg, elevated styling ── */
-function TeamCardLeader({ member, onClick }) {
+function TeamCardLeader({ member, onClick, labels = {} }) {
   const colour = hashColour(member.name);
   const initials = getInitials(member.name);
 
@@ -102,24 +106,62 @@ function TeamCardLeader({ member, onClick }) {
           </p>
         ) : (
           <p className="font-dm-sans text-white/70 text-base italic mb-4">
-            Bio coming soon.
+            {labels.no_bio || "Bio coming soon."}
           </p>
         )}
         <p
           className="font-rajdhani font-bold text-sm uppercase tracking-wider mt-auto"
           style={{ color: onDark(colour) }}
         >
-          View Profile →
+          {labels.profile_label || "View Profile →"}
         </p>
       </div>
     </motion.article>
   );
 }
 
+/* ── Vacant seat: dashed "nominations open" card ── */
+function TeamCardVacant({ member, labels = {} }) {
+  const colour = "#F5A623";
+  const to = safeUrl(member.vacancy_link);
+  const inner = (
+    <>
+      <div className="relative flex flex-col items-center justify-center gap-3 aspect-[4/3] bg-[repeating-linear-gradient(45deg,rgba(245,166,35,0.08)_0,rgba(245,166,35,0.08)_6px,transparent_6px,transparent_12px)]">
+        <PixelSprite name="star" colour={colour} size={44} />
+        <span className="font-rajdhani font-bold text-sm uppercase tracking-[3px] text-ink-gold bg-white px-3 py-1 border-2 border-accent-gold">
+          Nominations open
+        </span>
+      </div>
+      <div className="p-5 flex flex-col flex-1">
+        <p className="font-rajdhani font-bold text-sm uppercase tracking-[2px] mb-1 text-ink-gold">{member.role}</p>
+        <h3 className="font-rajdhani font-bold text-text-primary text-xl leading-tight mb-3 pb-3 border-b border-dashed border-accent-gold/60">
+          {labels.vacant_name || "Vacant Seat"}
+        </h3>
+        {member.vacancy_text && (
+          <p className="font-dm-sans text-text-secondary text-base leading-relaxed mb-4">{member.vacancy_text}</p>
+        )}
+        {to && (
+          <p className="font-rajdhani font-bold text-sm uppercase tracking-wider mt-auto text-ink-gold">
+            {labels.vacant_button || "How to Stand →"}
+          </p>
+        )}
+      </div>
+    </>
+  );
+  const cls = "bg-surface overflow-hidden flex flex-col h-full border-2 border-dashed border-accent-gold/70 hover:border-accent-gold hover:-translate-y-1 transition-all duration-200";
+  if (!to) return <article className={cls}>{inner}</article>;
+  return /^https?:/.test(to) ? (
+    <a href={to} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+  ) : (
+    <Link to={to} className={cls}>{inner}</Link>
+  );
+}
+
 /* ── Default variant: vertical card for committee grid ── */
-export default function TeamCard({ member, onClick, variant = "default" }) {
+export default function TeamCard({ member, onClick, variant = "default", labels = {} }) {
+  if (member.vacant) return <TeamCardVacant member={member} labels={labels} />;
   if (variant === "leader")
-    return <TeamCardLeader member={member} onClick={onClick} />;
+    return <TeamCardLeader member={member} onClick={onClick} labels={labels} />;
 
   const colour = hashColour(member.name);
   const initials = getInitials(member.name);
@@ -190,14 +232,14 @@ export default function TeamCard({ member, onClick, variant = "default" }) {
           </p>
         ) : (
           <p className="font-dm-sans text-text-secondary text-base italic mb-4">
-            Bio coming soon.
+            {labels.no_bio || "Bio coming soon."}
           </p>
         )}
         <p
           className="font-rajdhani font-bold text-sm uppercase tracking-wider mt-auto"
           style={{ color: ink(colour) }}
         >
-          View Profile →
+          {labels.profile_label || "View Profile →"}
         </p>
       </div>
     </motion.article>

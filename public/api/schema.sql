@@ -1,0 +1,67 @@
+-- DiGRA SA website database. Created automatically by install.php.
+CREATE TABLE IF NOT EXISTS users (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL DEFAULT 'editor',
+  created_at DATETIME NOT NULL,
+  last_login DATETIME NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS settings (
+  skey VARCHAR(64) PRIMARY KEY,
+  data LONGTEXT NOT NULL,
+  updated_at DATETIME NOT NULL,
+  updated_by VARCHAR(120) NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS items (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  collection VARCHAR(64) NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  published TINYINT(1) NOT NULL DEFAULT 1,
+  data LONGTEXT NOT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL,
+  updated_by VARCHAR(120) NULL,
+  INDEX idx_collection (collection, sort_order)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS revisions (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  ref_type VARCHAR(16) NOT NULL,
+  ref_key VARCHAR(64) NOT NULL,
+  data LONGTEXT NOT NULL,
+  saved_by VARCHAR(120) NULL,
+  created_at DATETIME NOT NULL,
+  INDEX idx_ref (ref_type, ref_key, id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS submissions (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  form VARCHAR(32) NOT NULL,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(200) NOT NULL,
+  data LONGTEXT NOT NULL,
+  is_read TINYINT(1) NOT NULL DEFAULT 0,
+  emailed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS login_attempts (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  ip VARCHAR(64) NOT NULL,
+  email VARCHAR(190) NOT NULL,
+  created_at DATETIME NOT NULL,
+  INDEX idx_ip (ip, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS password_resets (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id INT UNSIGNED NOT NULL,
+  token_hash CHAR(64) NOT NULL,
+  expires_at DATETIME NOT NULL,
+  used TINYINT(1) NOT NULL DEFAULT 0,
+  INDEX idx_token (token_hash)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

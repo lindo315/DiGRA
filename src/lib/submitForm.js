@@ -1,7 +1,6 @@
 // Sends a form to the PHP handler on the Axxess server (public/api/contact.php),
-// which emails it to info@digrasa.co.za.
+// which emails it to the address set in Admin → Site settings and keeps a copy in Admin → Messages.
 
-export { CONTACT_EMAIL } from '../data/site'
 const ENDPOINT = '/api/contact.php'
 
 export async function submitForm(form, fields, startedAt) {

@@ -60,3 +60,9 @@ export const NEWS_CATEGORY_COLOURS = {
   Community: ACCENTS.cyan,
   Research: ACCENTS.violet,
 }
+
+/** Admin colour names ("gold", "cyan"…) → hex. Hex values pass through. */
+export function accent(name, fallback = 'gold') {
+  if (typeof name === 'string' && name.startsWith('#')) return name
+  return ACCENTS[name] || ACCENTS[fallback] || ACCENTS.gold
+}

@@ -1,0 +1,5 @@
+# Only the public entry points can be called. Helpers, config, schema and the seed stay private.
+<FilesMatch "^(_lib\.php|config\.php|config\.sample\.php|schema\.sql|install\.lock)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

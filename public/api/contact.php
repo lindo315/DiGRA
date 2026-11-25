@@ -7,17 +7,18 @@
  *                        website (honeypot, must be empty), startedAt (ms) }
  */
 
-const TO_ADDRESS   = 'info@digrasa.co.za';
+require __DIR__ . '/_lib.php';
+
+const DEFAULT_TO   = 'info@digrasa.co.za';
 const FROM_ADDRESS = 'no-reply@digrasa.co.za';   // must be an address on the digrasa.co.za domain
 const FROM_NAME    = 'DiGRA SA Website';
 const RATE_LIMIT   = 5;      // max submissions…
 const RATE_WINDOW  = 600;    // …per IP per 10 minutes
 
-date_default_timezone_set('Africa/Johannesburg');
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
-function respond($status, $payload) {
+function respond($status, $payload): void {
     http_response_code($status);
     echo json_encode($payload);
     exit;
@@ -119,9 +120,36 @@ $headers = [
     'X-Mailer: DiGRA-SA-Website',
 ];
 
-$sent = @mail(TO_ADDRESS, $encodedSubject, $body, implode("\r\n", $headers), '-f' . FROM_ADDRESS);
+// Recipient comes from Admin → Site settings; falls back to info@.
+$to = DEFAULT_TO;
+$pdo = null;
+if (load_config()) {
+    try {
+        $pdo = db();
+        $st = $pdo->prepare("SELECT data FROM settings WHERE skey = 'site'");
+        $st->execute();
+        $site = json_decode((string)$st->fetchColumn(), true) ?: [];
+        $cand = trim((string)($site['form_recipient'] ?? ''));
+        if (filter_var($cand, FILTER_VALIDATE_EMAIL)) $to = $cand;
+    } catch (Throwable $e) { $pdo = null; }
+}
 
-if (!$sent) {
+$sent = @mail($to, $encodedSubject, $body, implode("\r\n", $headers), '-f' . FROM_ADDRESS);
+
+$c = load_config() ?: [];
+if (!empty($c['mail_disabled'])) $sent = true;   // local testing only
+
+// Keep a copy in the admin inbox, so nothing is lost if email fails.
+$stored = false;
+if ($pdo) {
+    try {
+        $pdo->prepare('INSERT INTO submissions (form, name, email, data, emailed, created_at) VALUES (?,?,?,?,?,?)')
+            ->execute([$form, $name, $email, json_encode($fields, JSON_UNESCAPED_UNICODE), $sent ? 1 : 0, date('Y-m-d H:i:s')]);
+        $stored = true;
+    } catch (Throwable $e) { /* inbox is optional */ }
+}
+
+if (!$sent && !$stored) {
     respond(500, ['ok' => false, 'error' => 'We couldn\'t send your message right now.']);
 }
 

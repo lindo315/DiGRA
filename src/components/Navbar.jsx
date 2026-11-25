@@ -1,56 +1,18 @@
+import { useContent } from '../content/ContentContext'
+import { isExternal, safeUrl } from '../lib/text'
 import { useState, useRef, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const NAV_ITEMS = [
-  { to: '/', label: 'Home', sections: [] },
-  {
-    to: '/about', label: 'About',
-    sections: [
-      { label: 'Who We Are', hash: '#who-we-are' },
-      { label: 'Mission & Goals', hash: '#mission' },
-      { label: 'Our Aims', hash: '#aims' },
-      { label: 'Founding Committee', hash: '#committee' },
-      { label: 'DiGRA International', hash: '#digra-international' },
-    ],
-  },
-  {
-    to: '/events', label: 'Events',
-    sections: [
-      { label: 'Upcoming Events', hash: '#upcoming' },
-      { label: 'Past Events', hash: '#past' },
-      { label: 'Host an Event', hash: '#host' },
-    ],
-  },
-  {
-    to: '/research', label: 'Research',
-    sections: [
-      { label: 'Game Studies in SA', hash: '#game-studies' },
-      { label: 'Research Areas', hash: '#research-areas' },
-      { label: 'DiGRA Library', hash: '#library' },
-      { label: 'Journals', hash: '#journals' },
-      { label: 'Teaching Resources', hash: '#teaching' },
-    ],
-  },
-  { to: '/news', label: 'News', sections: [] },
-  {
-    to: '/membership', label: 'Membership',
-    sections: [
-      { label: 'Member Benefits', hash: '#benefits' },
-      { label: 'Who Can Join', hash: '#eligibility' },
-      { label: 'Membership Tiers', hash: '#tiers' },
-      { label: 'How to Join', hash: '#how-to-join' },
-      { label: 'Join Now', hash: '#join-form' },
-    ],
-  },
-  {
-    to: '/contact', label: 'Contact',
-    sections: [
-      { label: 'Send a Message', hash: '#contact-form' },
-    ],
-  },
-]
+// Menu links can point to another website too.
+function MenuLink({ to, className, children, end, ...rest }) {
+  if (isExternal(to)) {
+    const cls = typeof className === 'function' ? className({ isActive: false }) : className
+    return <a href={safeUrl(to)} target="_blank" rel="noopener noreferrer" className={cls} {...rest}>{children}</a>
+  }
+  return <NavLink to={to} end={end} className={className} {...rest}>{children}</NavLink>
+}
 
 function NavDropdown({ item, onClose }) {
   if (!item.sections.length) return null
@@ -81,6 +43,11 @@ function NavDropdown({ item, onClose }) {
 }
 
 export default function Navbar() {
+  const { nav, site } = useContent()
+  const NAV_ITEMS = (nav.items || []).filter((i) => i.label && i.to).map((i) => ({ ...i, sections: (i.sections || []).filter((x) => x.label && x.hash).map((x) => ({ ...x, hash: x.hash.startsWith('#') ? x.hash : '#' + x.hash })) }))
+  const joinTo = nav.join_to || '/membership'
+  const joinLabel = nav.join_label || 'Join Us'
+  const joinShort = nav.join_label_short || joinLabel
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
@@ -141,7 +108,7 @@ export default function Navbar() {
               src="/digra-logo-nav.png"
               width="170"
               height="40"
-              alt="DiGRA SA"
+              alt={site.short_name || 'DiGRA SA'}
               className="h-10 w-auto"
               onError={(e) => {
                 e.currentTarget.style.display = 'none'
@@ -149,7 +116,7 @@ export default function Navbar() {
               }}
             />
             <span className="font-orbitron font-bold text-accent-gold tracking-[4px] text-sm hidden">
-              DiGRA SA
+              {site.short_name || 'DiGRA SA'}
             </span>
           </Link>
 
@@ -157,12 +124,12 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6">
             {NAV_ITEMS.map((item) => (
               <div
-                key={item.to}
+                key={item.label + item.to}
                 className="relative"
                 onMouseEnter={() => openDropdown(item.label)}
                 onMouseLeave={scheduleClose}
               >
-                <NavLink
+                <MenuLink
                   to={item.to}
                   end={item.to === '/'}
                   className={({ isActive }) =>
@@ -180,7 +147,7 @@ export default function Navbar() {
                       className={`transition-transform duration-150 ${activeDropdown === item.label ? 'rotate-180' : ''}`}
                     />
                   )}
-                </NavLink>
+                </MenuLink>
 
                 <AnimatePresence>
                   {activeDropdown === item.label && item.sections.length > 0 && (
@@ -191,20 +158,20 @@ export default function Navbar() {
             ))}
 
             <Link
-              to="/membership"
+              to={joinTo}
               className="bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-5 py-2 text-sm shadow-[3px_3px_0_rgba(0,0,0,0.25)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_rgba(0,0,0,0.3)] transition-all duration-200 ml-2"
             >
-              Join Us
+              {joinLabel}
             </Link>
           </div>
 
           {/* Mobile: Join stays visible + labelled menu button (44px targets) */}
           <div className="md:hidden flex items-center gap-2">
             <Link
-              to="/membership#join-form"
+              to={joinTo}
               className="inline-flex items-center min-h-11 bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-4 text-sm shadow-[2px_2px_0_rgba(0,0,0,0.3)]"
             >
-              Join
+              {joinShort}
             </Link>
             <button
               className="flex items-center gap-1.5 min-h-11 min-w-11 px-2 text-white font-rajdhani font-semibold uppercase tracking-wider text-sm"
@@ -249,7 +216,7 @@ export default function Navbar() {
               {/* Drawer header — same height as navbar */}
               <div className="flex items-center justify-between px-6 h-16 border-b border-white/10 shrink-0">
                 <span className="font-orbitron font-bold text-accent-gold tracking-[3px] text-sm">
-                  DiGRA SA
+                  {site.short_name || 'DiGRA SA'}
                 </span>
                 <button
                   onClick={() => setOpen(false)}
@@ -263,8 +230,8 @@ export default function Navbar() {
               {/* Scrollable nav links */}
               <div className="flex-1 overflow-y-auto py-2">
                 {NAV_ITEMS.map((item) => (
-                  <div key={item.to}>
-                    <NavLink
+                  <div key={item.label + item.to}>
+                    <MenuLink
                       to={item.to}
                       end={item.to === '/'}
                       onClick={() => setOpen(false)}
@@ -277,7 +244,7 @@ export default function Navbar() {
                       }
                     >
                       {item.label}
-                    </NavLink>
+                    </MenuLink>
 
                     {item.sections.length > 0 && (
                       <div className="pl-8 pb-1">
@@ -300,11 +267,11 @@ export default function Navbar() {
               {/* Drawer footer CTA */}
               <div className="px-6 py-4 border-t border-white/10 shrink-0">
                 <Link
-                  to="/membership"
+                  to={joinTo}
                   onClick={() => setOpen(false)}
                   className="block bg-accent-gold text-deep-purple font-rajdhani font-bold uppercase tracking-wider px-5 py-3 text-center shadow-[3px_3px_0_rgba(0,0,0,0.25)]"
                 >
-                  Join Us
+                  {joinLabel}
                 </Link>
               </div>
             </motion.div>

@@ -2,12 +2,19 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FiArrowRight } from 'react-icons/fi'
 import { ACCENTS, NEWS_CATEGORY_COLOURS, onDark } from '../../lib/theme'
+import { usePage } from '../../content/ContentContext'
+
+function useLabels() {
+  const { p } = usePage('news_page')
+  return { by: p.article.by_label || 'By', closes: p.article.deadline_label || 'Closes', more: p.list.read_more || 'Read the full story' }
+}
 
 function colourFor(item) {
   return NEWS_CATEGORY_COLOURS[item.category] || ACCENTS.gold
 }
 
 function Meta({ item, colour, size = 'sm' }) {
+  const L = useLabels()
   return (
     <div className="flex items-center gap-3 flex-wrap">
       <span
@@ -23,6 +30,7 @@ function Meta({ item, colour, size = 'sm' }) {
 
 /* ── Featured: large editorial hero card, with photo when available ── */
 function NewsCardFeatured({ item }) {
+  const L = useLabels()
   const colour = colourFor(item)
 
   return (
@@ -81,7 +89,7 @@ function NewsCardFeatured({ item }) {
             {item.title}
           </h3>
           {item.author && (
-            <p className="font-dm-sans text-white/75 text-sm mb-3">By {item.author}</p>
+            <p className="font-dm-sans text-white/75 text-sm mb-3">{L.by} {item.author}</p>
           )}
           <p className="font-dm-sans text-white/85 text-base leading-[1.7] mb-5" style={{ maxWidth: '520px' }}>
             {item.excerpt}
@@ -90,7 +98,7 @@ function NewsCardFeatured({ item }) {
             className="inline-flex items-center gap-2 font-rajdhani font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all duration-200"
             style={{ color: onDark(colour) }}
           >
-            Read the full story <FiArrowRight size={15} aria-hidden="true" />
+            {L.more} <FiArrowRight size={15} aria-hidden="true" />
           </span>
         </div>
       </Link>
@@ -100,6 +108,7 @@ function NewsCardFeatured({ item }) {
 
 /* ── Secondary: compact horizontal card ── */
 function NewsCardSecondary({ item }) {
+  const L = useLabels()
   const colour = colourFor(item)
 
   return (
@@ -118,7 +127,7 @@ function NewsCardSecondary({ item }) {
             {item.title}
           </h3>
           {item.deadline && (
-            <p className="font-dm-sans text-sm text-accent-gold mt-1.5">Closes {item.deadline}</p>
+            <p className="font-dm-sans text-sm text-accent-gold mt-1.5">{L.closes} {item.deadline}</p>
           )}
         </div>
         <FiArrowRight
@@ -133,6 +142,7 @@ function NewsCardSecondary({ item }) {
 
 /* ── Default: dark grid card (News page) ── */
 export default function NewsCard({ item, variant = 'default' }) {
+  const L = useLabels()
   if (variant === 'featured') return <NewsCardFeatured item={item} />
   if (variant === 'secondary') return <NewsCardSecondary item={item} />
 

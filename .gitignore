@@ -25,3 +25,9 @@ dist-ssr
 
 # Deployment archives (never commit or upload these)
 *.zip
+
+# Server secrets (written by api/install.php)
+public/api/config.php
+digrasa-config.php
+# Copied from src/content/seed.json at build time
+public/api/seed.json
